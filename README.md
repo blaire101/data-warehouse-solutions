@@ -83,7 +83,7 @@ flowchart LR
 **Subject-Specifc Analysis model**, covering `Sending Institution (Remittance Providers)`, `Orders`, and `Users`.
 
 - Sending Institution (Remittance Providers)
-- Orders (Order Full Lifecycle Funnel Analysis, From SI placing the order → Order Stage 1 → Order Stage 2 → Order Stage 3 → ends with Payment Success or Failure.)
+- Orders (Order Full Lifecycle Funnel Analysis, Order Stage 1 → 2 → 3)
 - Users （Sender & Payee）
 
 ## 3. ToB Business - Cross-border E-commerce Collection and Payment

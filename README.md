@@ -27,7 +27,7 @@ Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and tra
 
 ---
 
-## 2. Inbound Remittance to China (ToC Flow – Generalized)
+## 2. Remittance to China (ToC Flow)
 
 ```mermaid
 flowchart LR

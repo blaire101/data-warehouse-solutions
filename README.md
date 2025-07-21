@@ -103,26 +103,22 @@ Background: Under the standard collection model, Shopee currently only supports 
 
 | Category                                | Field Name                          | Data Type | Description                                                                 |
 |-----------------------------------------|--------------------------------------|-----------|-----------------------------------------------------------------------------|
-| Partition Time                          | fdate                                | BIGINT    | Partition date                                                              |
-| -   | fetl_time                            | BIGINT    | ETL processing timestamp                                                    |
-| - | - | - | - |
-| Primary Key                             | fgid                                 | STRING    | Merchant GID (Global ID)                                                   |
+| **Partition Field**                          | fdate                                | BIGINT    | Partition date                                                              |
+| **Primary Key**                             | fgid                                 | STRING    | Merchant GID (Global ID)                                                   |
 | ...                             | fspid                                | STRING    | Merchant SPID (Sub-platform ID)                                            |
+| **Merchant Basic Attributes**               | fcompany_name                        | STRING    | Company name                                                                |
 | - | - | - | - |
-| Merchant Basic Attributes               | fcompany_name                        | STRING    | Company name                                                                |
-| Merchant Basic Attributes               | fregister_country                    | STRING    | Country/region of merchant registration                                    |
-| - | - | - | - |
-| 1. Merchant Onboarding                  | fkyc_first_submit_time               | STRING    | First KYC submission time                                                   |
-| 1. Merchant Onboarding                  | fkyc_first_approved_time             | STRING    | First KYC approval time                                                     |
-| 2. Merchant Store Binding               | fshop_apply_time                     | STRING    | Store application time                                                      |
-| 2. Merchant Store Binding               | fshop_first_bind_time                | STRING    | First store binding time                                                    |
-| 5. Merchant Card Binding                | fcard_first_bind_time                | STRING    | First card binding time                                                     |
-| 3. Funds Inflow                         | ffirst_recharge_time                 | STRING    | First top-up time (Shopee to ZX-Shopee)                                    |
-| 4. Funds Payout                         | ffirst_disbursement_time            | STRING    | First disbursement time (funds distributed on behalf of merchant)          |
-| 7. Withdrawal & Payment                 | ffirst_withdraw_time                 | STRING    | First withdrawal to merchant bank account                                  |
-| 7. Withdrawal & Payment                 | ffirst_payment_time                  | STRING    | First payment to external supplier                                         |
-| 6. Merchant Operations                  | fyear_card_first_buy_time            | STRING    | First annual plan purchase time                                             |
-| 6. Merchant Operations                  | fyear_card_first_use_time            | STRING    | First annual plan usage time                                                |
+| Time-based Funnel Analysis - 1. Merchant Onboarding    | fkyc_first_submit_time             | STRING    | First KYC submission time                                                   |
+| Time-based Funnel Analysis - 1. Merchant Onboarding    | fkyc_first_approved_time           | STRING    | First KYC approval time                                                     |
+| Time-based Funnel Analysis - 2. Merchant Store Binding | fshop_apply_time                   | STRING    | Store application time                                                      |
+| Time-based Funnel Analysis - 2. Merchant Store Binding | fshop_first_bind_time              | STRING    | First store binding time                                                    |
+| Time-based Funnel Analysis - 5. Merchant Card Binding  | fcard_first_bind_time              | STRING    | First card binding time                                                     |
+| Time-based Funnel Analysis - 3. Funds Inflow           | ffirst_recharge_time               | STRING    | First top-up time (Shopee to ZX-Shopee)                                    |
+| Time-based Funnel Analysis - 4. Funds Payout           | ffirst_disbursement_time           | STRING    | First disbursement time (funds distributed on behalf of merchant)          |
+| Time-based Funnel Analysis - 7. Withdrawal & Payment   | ffirst_withdraw_time               | STRING    | First withdrawal to merchant bank account                                  |
+| Time-based Funnel Analysis - 7. Withdrawal & Payment   | ffirst_payment_time                | STRING    | First payment to external supplier                                         |
+| Time-based Funnel Analysis - 6. Merchant Operations    | fyear_card_first_buy_time          | STRING    | First annual plan purchase time                                             |
+| Time-based Funnel Analysis - 6. Merchant Operations    | fyear_card_first_use_time          | STRING    | First annual plan usage time                                                |
 | - | - | - | - |
 | Merchant – Vertical Metrics  | faccount_count                       | BIGINT    | Number of accounts under this merchant                                     |
 | - | fshop_count                          | BIGINT    | Number of stores bound to merchant                                         |

@@ -72,9 +72,7 @@ flowchart LR
     end
 ```
 
-**Key Business Processes**
-
-| No. | Step                | Description |
+| No. | Business Processes  | Description |
 |:---:|---------------------|-------------|
 | pre 1   | Partner Onboarding  | Partners complete a onboarding process. Risk & compliance teams perform due diligence. |
 | pre 2   | Institution Funding | Partners pre-fund a designated account to ensure sufficient liquidity for remittance. |

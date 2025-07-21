@@ -30,7 +30,7 @@ Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and tra
 Partner with overseas remittance providers (e.g. Panda Remit, Wise) to bring foreign currency into China  
 
 ```mermaid
-flowchart LR
+flowchart TD
     %% Style definitions
     classDef user      fill:#E8F5E9,stroke:#388E3C,stroke-width:1px
     classDef product   fill:#FFEBEE,stroke:#C62828,stroke-width:1px
@@ -55,9 +55,9 @@ flowchart LR
 
     %% Transaction flows
     Sender -->|initiate transfer <br> make payment| SI
-    SI     -->|Forward Transfer <br> Prefund | TRS
+    SI     -->|Forward Transfer <br> Prefund| TRS
     TRS    -->|Forward Transfer <br> Settlement| RI
-    RI -.->| Notify| Recipient
+    RI -.->|Notify| Recipient
 
     %% Apply region-specific outline styles
     class Sender,SI,TRS overseas

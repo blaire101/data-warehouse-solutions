@@ -104,7 +104,7 @@ Background: Under the standard collection model, Shopee currently only supports 
 | Category                                | Field Name                          | Data Type | Description                                                                 |
 |-----------------------------------------|--------------------------------------|-----------|-----------------------------------------------------------------------------|
 | Partition Time                          | fdate                                | BIGINT    | Partition date                                                              |
-| -                          | fetl_time                            | BIGINT    | ETL processing timestamp                                                    |
+| -   | fetl_time                            | BIGINT    | ETL processing timestamp                                                    |
 | - | - | - | - |
 | Primary Key                             | fgid                                 | STRING    | Merchant GID (Global ID)                                                   |
 | ...                             | fspid                                | STRING    | Merchant SPID (Sub-platform ID)                                            |
@@ -140,4 +140,4 @@ Background: Under the standard collection model, Shopee currently only supports 
 | - | fmax_trd_amt_month                   | DOUBLE    | Max single transaction amount this month                                   |
 | - | fmax_trd_amt_year                    | DOUBLE    | Max single transaction amount this year                                    |
 | - | - | - | - |
-| Lifecycle Tag                           | fmerchant_lifecycle_tag              | STRING    | Merchant lifecycle status tag:<br>1. Not disbursed<br>2. New<br>3. Retained<br>4. Lost<br>5. Recovered<br>0. Default |
+| Lifecycle Tag | fmerchant_lifecycle_tag   | BIGINT    | Merchant lifecycle status tag:<br>1. Not disbursed<br>2. New<br>3. Retained<br>4. Lost<br>5. Recovered<br>0. Default |

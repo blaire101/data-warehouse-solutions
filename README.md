@@ -105,22 +105,22 @@ Background: Under the standard collection model, Shopee currently only supports 
 |-----------------------------------------|--------------------------------------|-----------|-----------------------------------------------------------------------------|
 | **Partition Field**                          | fdate                                | BIGINT    | Partition date                                                              |
 | **Primary Key**                             | fgid                                 | STRING    | Merchant GID (Global ID)                                                   |
-| ...                             | fspid                                | STRING    | Merchant SPID (Sub-platform ID)                                            |
+| **Primary Key**                          | fspid                                | STRING    | Merchant SPID (Sub-platform ID)                                            |
 | **Merchant Basic Attributes**               | fcompany_name                        | STRING    | Company name                                                                |
-| - | - | - | - |
-| Time-based Funnel Analysis - 1. Merchant Onboarding    | fkyc_first_submit_time             | STRING    | First KYC submission time                                                   |
-| Time-based Funnel Analysis - 1. Merchant Onboarding    | fkyc_first_approved_time           | STRING    | First KYC approval time                                                     |
-| Time-based Funnel Analysis - 2. Merchant Store Binding | fshop_apply_time                   | STRING    | Store application time                                                      |
-| Time-based Funnel Analysis - 2. Merchant Store Binding | fshop_first_bind_time              | STRING    | First store binding time                                                    |
-| Time-based Funnel Analysis - 5. Merchant Card Binding  | fcard_first_bind_time              | STRING    | First card binding time                                                     |
-| Time-based Funnel Analysis - 3. Funds Inflow           | ffirst_recharge_time               | STRING    | First top-up time (Shopee to ZX-Shopee)                                    |
-| Time-based Funnel Analysis - 4. Funds Payout           | ffirst_disbursement_time           | STRING    | First disbursement time (funds distributed on behalf of merchant)          |
-| Time-based Funnel Analysis - 7. Withdrawal & Payment   | ffirst_withdraw_time               | STRING    | First withdrawal to merchant bank account                                  |
-| Time-based Funnel Analysis - 7. Withdrawal & Payment   | ffirst_payment_time                | STRING    | First payment to external supplier                                         |
-| Time-based Funnel Analysis - 6. Merchant Operations    | fyear_card_first_buy_time          | STRING    | First annual plan purchase time                                             |
-| Time-based Funnel Analysis - 6. Merchant Operations    | fyear_card_first_use_time          | STRING    | First annual plan usage time                                                |
-| - | - | - | - |
-| Merchant – Vertical Metrics  | faccount_count                       | BIGINT    | Number of accounts under this merchant                                     |
+| **Time-based Funnel** | - | - | - |
+| 1. Merchant Onboarding    | fkyc_first_submit_time             | STRING    | First KYC submission time                                                   |
+| 1. Merchant Onboarding    | fkyc_first_approved_time           | STRING    | First KYC approval time                                                     |
+| 2. Merchant Store Binding | fshop_apply_time                   | STRING    | Store application time                                                      |
+| 2. Merchant Store Binding | fshop_first_bind_time              | STRING    | First store binding time                                                    |
+| 5. Merchant Card Binding  | fcard_first_bind_time              | STRING    | First card binding time                                                     |
+| 3. Funds Inflow           | ffirst_recharge_time               | STRING    | First top-up time (Shopee to ZX-Shopee)                                    |
+| 4. Funds Payout           | ffirst_disbursement_time           | STRING    | First disbursement time (funds distributed on behalf of merchant)          |
+| 7. Withdrawal & Payment   | ffirst_withdraw_time               | STRING    | First withdrawal to merchant bank account                                  |
+| 7. Withdrawal & Payment   | ffirst_payment_time                | STRING    | First payment to external supplier                                         |
+| 6. Merchant Operations    | fyear_card_first_buy_time          | STRING    | First annual plan purchase time                                             |
+| 6. Merchant Operations    | fyear_card_first_use_time          | STRING    | First annual plan usage time                                                |
+| **Vertical Metrics** | - | - | - |
+| - | faccount_count                       | BIGINT    | Number of accounts under this merchant                                     |
 | - | fshop_count                          | BIGINT    | Number of stores bound to merchant                                         |
 | - | fsite_count                          | BIGINT    | Number of sites (e.g., Shopee-TW, Shopee-SG)                               |
 | - | fpayee_count                         | BIGINT    | Unique payee count (withdrawal or supplier payments)                       |
@@ -135,5 +135,4 @@ Background: Under the standard collection model, Shopee currently only supports 
 | - | ftrd_amt_year                        | DOUBLE    | Total transaction amount this year                                         |
 | - | fmax_trd_amt_month                   | DOUBLE    | Max single transaction amount this month                                   |
 | - | fmax_trd_amt_year                    | DOUBLE    | Max single transaction amount this year                                    |
-| - | - | - | - |
-| Lifecycle Tag | fmerchant_lifecycle_tag   | BIGINT    | Merchant lifecycle status tag:<br>1. Not disbursed<br>2. New<br>3. Retained<br>4. Lost<br>5. Recovered<br>0. Default |
+| **Lifecycle Tag** | fmerchant_lifecycle_tag   | BIGINT    | Merchant lifecycle status tag:<br>1. Not disbursed<br>2. New<br>3. Retained<br>4. Lost<br>5. Recovered<br>0. Default |

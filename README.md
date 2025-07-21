@@ -4,7 +4,7 @@
 
 
 <div align="center">
-  <img src="docs/dwh-1.jpg" alt="Diagram" width="800">
+  <img src="docs/dwh-1.jpg" alt="Diagram" width="600">
 </div>
 
 Built data warehouse (ODS > DIL > DML > DAL) to ingest, clean, transform, data

@@ -90,15 +90,14 @@ Background: Under the standard collection model, Shopee currently only supports 
 
 | No. | Business Process                    | Description                                                                                  |
 |-----|-------------------------------------|----------------------------------------------------------------------------------------------|
-| 1   | **Merchant Onboarding**            | Merchant registers on the platform and completes qualification review to begin operations.   |
-| 2   | **Merchant Shop Binding**         | Merchant links their e-commerce - shops to the platform to enable transaction synchronization. |
-| 3   | **Funds Inflow (E-commerce Top-up)** | (E-commerce Top-up) |
+| 1   | **Merchant Onboarding**            | Merchant registers on the platform and completes kyc.   |
+| 2   | **Merchant Shop Binding**         | Merchant links their shops. |
+| 3   | **Funds Inflow (E-commerce Top-up)** | E-commerce Top-up |
 | 4   | **Funds Payout (Disbursement & Deduction)** | The platform processes payouts or automatic deductions on behalf of the merchant (e.g. platform fees, commission). |
 | 5   | **Merchant Shop Card Binding**          | Merchant binds a settlement bank card for receiving withdrawals.     |
 | 6   | **Merchant Operations (e.g., Annual Plan Purchase)** | Merchant performs business-related actions such as purchasing subscription plans or value-added services. |
 | 7   | **Withdrawal and Payment**         | Merchant initiates fund withdrawal to their own bank account or makes payments to external suppliers. |
 
- 
 ### 3.1 Merchant Subject Table
 
 | Category                                | Field Name                          | Data Type | Description                                                                 |
@@ -122,8 +121,8 @@ Background: Under the standard collection model, Shopee currently only supports 
 | **Vertical - Tag** | faccount_count                 | BIGINT  | Number of accounts under this merchant                                     |
 | **Vertical - Tag** | fpayee_count                   | BIGINT  | Unique payee count (withdrawal or supplier payments)                       |
 | **Vertical - Tag** | fpayee_count_30d               | BIGINT  | Payee count in the last 30 days                                            |
-| **Vertical - Tag** | ftrd_cnt_month                 | BIGINT  | Total transaction count this month                                         |
-| **Vertical - Tag** | ftrd_cnt_year                  | BIGINT  | Total transaction count this year                                          |
+| **Vertical - Statistical** | ftrd_cnt_month                 | BIGINT  | Total transaction count this month                                         |
+| **Vertical - Statistical** | ftrd_cnt_year                  | BIGINT  | Total transaction count this year                                          |
 | **Vertical - Statistical** | flast_disbursement_amount_cny_1d    | DOUBLE    | Disbursement amount in CNY (today)                                         |
 | **Vertical - Statistical** | flast_disbursement_amount_usd_1d    | DOUBLE    | Disbursement amount in USD (today)                                         |
 | **Vertical - Statistical** | flast_disbursement_amount_cny_28d   | DOUBLE    | Disbursement amount in CNY (last 28 days)                                  |

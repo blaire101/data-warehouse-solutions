@@ -72,6 +72,13 @@ flowchart LR
     end
 ```
 
+**Subject-Specifc Analysis model**, covering `Sending Institution (Remittance Providers)`, `Orders`, and `Users`.
+
+1. Remittance Provider : Analysed key metrics (countries, currencies and transaction, user volumes, fees, FX ...)
+income), produced reports of transaction & profits to guide improvements.
+2. Orders: 3 stage life-cycle funnel to measure conversion rates and bottleneck. - Order status: A: Provider order | B: Account opening process | C:  Complete fund receipt.
+3. Users: basic info, behaviour, life-cycle, preferences for targeted campaigns.
+
 | No. | Business Processes  | Description |
 |:---:|---------------------|-------------|
 | pre 1   | Partner Onboarding  | Partners complete a onboarding process. Risk & compliance teams perform due diligence. |
@@ -79,12 +86,6 @@ flowchart LR
 | 3   | Currency Exchange   | Based on settlement needs, foreign currency is converted into RMB. |
 | 4   | Remittance Service | End-users initiate remittance via the provider's app by submitting sender and recipient info.<br>1. If the recipient is new, an SMS prompts setup of a receiving card.<br>2. The provider calls the remittance API to submit the order.<br>3. Funds are routed into local settlement accounts. |
 | 5   | Payment Collection  | Recipients collect RMB via digital wallets or linked bank-cards. |
-
-**Subject-Specifc Analysis model**, covering `Sending Institution (Remittance Providers)`, `Orders`, and `Users`.
-
-- Sending Institution (Remittance Providers)
-- Orders (Order Full Lifecycle Funnel Analysis, Order Stage 1 → 2 → 3)
-- Users （Sender & Payee）
 
 ## 3. ToB Business - Cross-border E-commerce Collection and Payment
 

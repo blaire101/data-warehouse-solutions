@@ -80,12 +80,11 @@ flowchart LR
 | 4   | Remittance Service | End-users initiate remittance via the provider's app by submitting sender and recipient info.<br>1. If the recipient is new, an SMS prompts setup of a receiving card.<br>2. The provider calls the remittance API to submit the order.<br>3. Funds are routed into local settlement accounts. |
 | 5   | Payment Collection  | Recipients collect RMB via digital wallets or linked bank-cards. |
 
-**Subject-Specifc Analysis model**, covering `Remittance Providers (Institution)`, `Orders`, and `Users`.
+**Subject-Specifc Analysis model**, covering `Sending Institution (Remittance Providers)`, `Orders`, and `Users`.
 
-- 1. Subject - Sending Institution (Remittance Providers)
-- 2. Subject - Orders (Order Full Lifecycle Funnel Analysis, From institution placing the order → Order Stage 1 → Order Stage 2 → Order Stage 3 → ends with Payment Success or Failure.)
-- 3. Subject - Users （Sender & Payee）
-
+- Sending Institution (Remittance Providers)
+- Orders (Order Full Lifecycle Funnel Analysis, From SI placing the order → Order Stage 1 → Order Stage 2 → Order Stage 3 → ends with Payment Success or Failure.)
+- Users （Sender & Payee）
 
 ## 3. ToB Business - Cross-border E-commerce Collection and Payment
 

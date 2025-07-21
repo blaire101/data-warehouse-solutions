@@ -102,6 +102,8 @@ Background: Under the standard collection model, Shopee currently only supports 
 | 6   | **Merchant Operations (e.g., Annual Subscription Plan)** | Merchant performs business-related actions such as purchasing subscription plans or value-added services. |
 | 7   | **Withdrawal and Payment**         | Merchant initiates fund withdrawal to their own bank account or makes payments to external suppliers. |
 
+**Subject-Specifc Analysis model**, covering `Merchant`, `Shop`, and `Orders`.
+
 ### 3.1 Merchant Subject Table
 
 | Category                                | Field Name                          | Data Type | Description                                                                 |
@@ -110,16 +112,16 @@ Background: Under the standard collection model, Shopee currently only supports 
 | **Primary Key**       | fgid                        | STRING  | Merchant GID (Global ID)                                                   |
 | **Primary Key**       | fspid                       | STRING  | Merchant SPID (Sub-platform ID)                                            |
 | **Merchant Basic Attributes** | fcompany_name       | STRING  | Company name                                                                |
-| **Time-based**    | fkyc_first_submit_time          | STRING  | First KYC submission time                                                   |
-| **Time-based**    | fkyc_first_approved_time        | STRING  | First KYC approval time                                                     |
-| **Time-based** | fshop_apply_time                   | STRING  | Store application time                                                      |
-| **Time-based** | fshop_first_bind_time              | STRING  | First store binding time                                                    |
-| **Time-based** | fcard_first_bind_time              | STRING  | First card binding time                                                     |
-| **Time-based** | ffirst_disbursement_time           | STRING  | First disbursement time (funds distributed on behalf of merchant)          |
-| **Time-based** | ffirst_withdraw_time               | STRING  | First withdrawal to merchant bank account                                  |
-| **Time-based** | ffirst_payment_time                | STRING  | First payment to external supplier                                         |
-| **Time-based** | fsubs_plan_first_buy_time          | STRING  | First annual plan purchase time                                             |
-| **Time-based** | fsubs_plan_first_use_time          | STRING  | First annual plan usage time                                                |
+| **Horizontal Time-based**    | fkyc_first_submit_time          | STRING  | First KYC submission time                                                   |
+| **Horizontal Time-based**    | fkyc_first_approved_time        | STRING  | First KYC approval time                                                     |
+| **Horizontal Time-based** | fshop_apply_time                   | STRING  | Store application time                                                      |
+| **Horizontal Time-based** | fshop_first_bind_time              | STRING  | First store binding time                                                    |
+| **Horizontal Time-based** | fcard_first_bind_time              | STRING  | First card binding time                                                     |
+| **Horizontal Time-based** | ffirst_disbursement_time           | STRING  | First disbursement time (funds distributed on behalf of merchant)          |
+| **Horizontal Time-based** | ffirst_withdraw_time               | STRING  | First withdrawal to merchant bank account                                  |
+| **Horizontal Time-based** | ffirst_payment_time                | STRING  | First payment to external supplier                                         |
+| **Horizontal Time-based** | fsubs_plan_first_buy_time          | STRING  | First annual plan purchase time                                             |
+| **Horizontal Time-based** | fsubs_plan_first_use_time          | STRING  | First annual plan usage time                                                |
 | **Vertical - Tag** | fsite_count                    | BIGINT  | Number of sites (e.g., Shopee-TW, Shopee-SG)                               |
 | **Vertical - Tag** | fshop_count                    | BIGINT  | Number of stores bound to merchant                                         |
 | **Vertical - Tag** | faccount_count                 | BIGINT  | Number of accounts under this merchant                                     |

@@ -106,7 +106,7 @@ Background: Under the standard collection model, Shopee currently only supports 
 
 ### 3.1 Merchant Subject Table
 
-| --Category-- | Field Name | Data Type | Description |
+| Category | Field Name | Data_Type | Description |
 |-----------------------------------------|--------------------------------------|-----------|-----------------------------------------------------------------------------|
 | **Partition Field**   | fdate                       | BIGINT  | Partition date                                                              |
 | **Primary Key**       | fgid                        | STRING  | Merchant GID (Global ID)                                                   |

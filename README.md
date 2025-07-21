@@ -82,6 +82,11 @@ flowchart LR
 
 **Subject-Specifc Analysis model**, covering `Remittance Providers (Institution)`, `Orders`, and `Users`.
 
+- 1. Subject - Sending Institution (Remittance Providers)
+- 2. Subject - Orders (Order Full Lifecycle Funnel Analysis, From institution placing the order → Order Stage 1 → Order Stage 2 → Order Stage 3 → ends with Payment Success or Failure.)
+- 3. Subject - Users （Sender & Payee）
+
+
 ## 3. ToB Business - Cross-border E-commerce Collection and Payment
 
 Provide offshore accounts (Shopee official wallet) and fund repatriation services for Shopee cross-border sellers based in Mainland China, Hong Kong, and South Korea.

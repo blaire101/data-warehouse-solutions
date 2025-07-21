@@ -98,3 +98,43 @@ Background: Under the standard collection model, Shopee currently only supports 
 | 6   | **Merchant Operations (e.g., Annual Plan Purchase)** | Merchant performs business-related actions such as purchasing subscription plans or value-added services. |
 | 7   | **Withdrawal and Payment**         | Merchant initiates fund withdrawal to their own bank account or makes payments to external suppliers. |
 
+### Table: dml_usr_kjzf_shopee_merchant_topic_mso_d  
+**Shopee Collection – Merchant Topic Table**
+
+| Category                                | Field Name                          | Data Type | Description                                                                 |
+|-----------------------------------------|--------------------------------------|-----------|-----------------------------------------------------------------------------|
+| Partition Time                          | fdate                                | BIGINT    | Partition date                                                              |
+| Partition Time                          | fetl_time                            | BIGINT    | ETL processing timestamp                                                    |
+| Primary Key                             | fgid                                 | STRING    | Merchant GID (Global ID)                                                   |
+| Primary Key                             | fspid                                | STRING    | Merchant SPID (Sub-platform ID)                                            |
+| Merchant Basic Attributes               | fcompany_name                        | STRING    | Company name                                                                |
+| Merchant Basic Attributes               | fmerchant_wallet_type                | STRING    | Merchant wallet type (e.g., personal, business)                            |
+| Merchant Basic Attributes               | fregister_country                    | STRING    | Country/region of merchant registration                                    |
+| 1. Merchant Onboarding                  | fkyc_first_submit_time               | STRING    | First KYC submission time                                                   |
+| 1. Merchant Onboarding                  | fkyc_first_approved_time             | STRING    | First KYC approval time                                                     |
+| 2. Merchant Store Binding               | fshop_apply_time                     | STRING    | Store application time                                                      |
+| 2. Merchant Store Binding               | fshop_first_bind_time                | STRING    | First store binding time                                                    |
+| 5. Merchant Card Binding                | fcard_first_bind_time                | STRING    | First card binding time                                                     |
+| 3. Funds Inflow                         | ffirst_recharge_time                 | STRING    | First top-up time (Shopee to ZX-Shopee)                                    |
+| 4. Funds Payout                         | ffirst_disbursement_time            | STRING    | First disbursement time (funds distributed on behalf of merchant)          |
+| 7. Withdrawal & Payment                 | ffirst_withdraw_time                 | STRING    | First withdrawal to merchant bank account                                  |
+| 7. Withdrawal & Payment                 | ffirst_payment_time                  | STRING    | First payment to external supplier                                         |
+| 6. Merchant Operations                  | fyear_card_first_buy_time            | STRING    | First annual plan purchase time                                             |
+| 6. Merchant Operations                  | fyear_card_first_use_time            | STRING    | First annual plan usage time                                                |
+| Merchant Metrics (accumulated)          | faccount_count                       | BIGINT    | Number of accounts under this merchant                                     |
+| Merchant Metrics (accumulated)          | fshop_count                          | BIGINT    | Number of stores bound to merchant                                         |
+| Merchant Metrics (accumulated)          | fsite_count                          | BIGINT    | Number of sites (e.g., Shopee-TW, Shopee-SG)                               |
+| Merchant Metrics (accumulated)          | fpayee_count                         | BIGINT    | Unique payee count (withdrawal or supplier payments)                       |
+| Merchant Metrics (accumulated)          | fpayee_count_30d                     | BIGINT    | Payee count in the last 30 days                                            |
+| Merchant Metrics (accumulated) – TODO   | ftrd_cnt_month                       | BIGINT    | Total transaction count this month                                         |
+| Merchant Metrics (accumulated) – TODO   | ftrd_cnt_year                        | BIGINT    | Total transaction count this year                                          |
+| Merchant Metrics (accumulated) – TODO   | flast_disbursement_amount_cny_1d    | DOUBLE    | Disbursement amount in CNY (today)                                         |
+| Merchant Metrics (accumulated) – TODO   | flast_disbursement_amount_usd_1d    | DOUBLE    | Disbursement amount in USD (today)                                         |
+| Merchant Metrics (accumulated) – TODO   | flast_disbursement_amount_cny_28d   | DOUBLE    | Disbursement amount in CNY (last 28 days)                                  |
+| Merchant Metrics (accumulated) – TODO   | flast_disbursement_amount_usd_28d   | DOUBLE    | Disbursement amount in USD (last 28 days)                                  |
+| Merchant Metrics (accumulated) – TODO   | ftrd_amt_month                       | DOUBLE    | Total transaction amount this month                                        |
+| Merchant Metrics (accumulated) – TODO   | ftrd_amt_year                        | DOUBLE    | Total transaction amount this year                                         |
+| Merchant Metrics (accumulated) – TODO   | fmax_trd_amt_month                   | DOUBLE    | Max single transaction amount this month                                   |
+| Merchant Metrics (accumulated) – TODO   | fmax_trd_amt_year                    | DOUBLE    | Max single transaction amount this year                                    |
+| Lifecycle Tag                           | fwas_merchant_lost_p1d              | STRING    | Was the merchant considered lost yesterday? (Y/N)                          |
+| Lifecycle Tag                           | fmerchant_lifecycle_tag              | STRING    | Merchant lifecycle status tag:<br>1. Not disbursed<br>2. New<br>3. Retained<br>4. Lost<br>5. Recovered<br>0. Default |

@@ -91,10 +91,10 @@ Background: Under the standard collection model, Shopee currently only supports 
 | No. | Business Process                    | Description                                                                                  |
 |-----|-------------------------------------|----------------------------------------------------------------------------------------------|
 | 1   | **Merchant Onboarding**            | Merchant registers on the platform and completes qualification review to begin operations.   |
-| 2   | **Merchant Store Binding**         | Merchant links their e-commerce store(s) to the platform to enable transaction synchronization. |
-| 3   | **Funds Inflow (E-commerce Top-up)** | Merchant tops up funds to the platform, enabling future business operations and payments.     |
+| 2   | **Merchant Shop Binding**         | Merchant links their e-commerce - shops to the platform to enable transaction synchronization. |
+| 3   | **Funds Inflow (E-commerce Top-up)** | (E-commerce Top-up) |
 | 4   | **Funds Payout (Disbursement & Deduction)** | The platform processes payouts or automatic deductions on behalf of the merchant (e.g. platform fees, commission). |
-| 5   | **Merchant Card Binding**          | Merchant binds a settlement bank card for receiving withdrawals or refunds.                  |
+| 5   | **Merchant Shop Card Binding**          | Merchant binds a settlement bank card for receiving withdrawals.     |
 | 6   | **Merchant Operations (e.g., Annual Plan Purchase)** | Merchant performs business-related actions such as purchasing subscription plans or value-added services. |
 | 7   | **Withdrawal and Payment**         | Merchant initiates fund withdrawal to their own bank account or makes payments to external suppliers. |
 
@@ -103,27 +103,27 @@ Background: Under the standard collection model, Shopee currently only supports 
 
 | Category                                | Field Name                          | Data Type | Description                                                                 |
 |-----------------------------------------|--------------------------------------|-----------|-----------------------------------------------------------------------------|
-| **Partition Field**   | fdate                       | BIGINT    | Partition date                                                              |
-| **Primary Key**       | fgid                        | STRING    | Merchant GID (Global ID)                                                   |
-| **Primary Key**       | fspid                       | STRING    | Merchant SPID (Sub-platform ID)                                            |
-| **Merchant Basic Attributes** | fcompany_name       | STRING    | Company name                                                                |
-| **Time-based**    | fkyc_first_submit_time          | STRING    | First KYC submission time                                                   |
-| **Time-based**    | fkyc_first_approved_time        | STRING    | First KYC approval time                                                     |
-| **Time-based** | fshop_apply_time                   | STRING    | Store application time                                                      |
-| **Time-based** | fshop_first_bind_time              | STRING    | First store binding time                                                    |
-| **Time-based** | fcard_first_bind_time              | STRING    | First card binding time                                                     |
-| **Time-based** | ffirst_disbursement_time           | STRING    | First disbursement time (funds distributed on behalf of merchant)          |
-| **Time-based** | ffirst_withdraw_time               | STRING    | First withdrawal to merchant bank account                                  |
-| **Time-based** | ffirst_payment_time                | STRING    | First payment to external supplier                                         |
-| **Time-based** | fyear_card_first_buy_time          | STRING    | First annual plan purchase time                                             |
-| **Time-based** | fyear_card_first_use_time          | STRING    | First annual plan usage time                                                |
-| **Vertical - Tag** | faccount_count                 | BIGINT    | Number of accounts under this merchant                                     |
-| **Vertical - Tag** | fshop_count                    | BIGINT    | Number of stores bound to merchant                                         |
-| **Vertical - Tag** | fsite_count                    | BIGINT    | Number of sites (e.g., Shopee-TW, Shopee-SG)                               |
-| **Vertical - Tag** | fpayee_count                   | BIGINT    | Unique payee count (withdrawal or supplier payments)                       |
-| **Vertical - Tag** | fpayee_count_30d               | BIGINT    | Payee count in the last 30 days                                            |
-| **Vertical - Tag** | ftrd_cnt_month                 | BIGINT    | Total transaction count this month                                         |
-| **Vertical - Tag** | ftrd_cnt_year                  | BIGINT    | Total transaction count this year                                          |
+| **Partition Field**   | fdate                       | BIGINT  | Partition date                                                              |
+| **Primary Key**       | fgid                        | STRING  | Merchant GID (Global ID)                                                   |
+| **Primary Key**       | fspid                       | STRING  | Merchant SPID (Sub-platform ID)                                            |
+| **Merchant Basic Attributes** | fcompany_name       | STRING  | Company name                                                                |
+| **Time-based**    | fkyc_first_submit_time          | STRING  | First KYC submission time                                                   |
+| **Time-based**    | fkyc_first_approved_time        | STRING  | First KYC approval time                                                     |
+| **Time-based** | fshop_apply_time                   | STRING  | Store application time                                                      |
+| **Time-based** | fshop_first_bind_time              | STRING  | First store binding time                                                    |
+| **Time-based** | fcard_first_bind_time              | STRING  | First card binding time                                                     |
+| **Time-based** | ffirst_disbursement_time           | STRING  | First disbursement time (funds distributed on behalf of merchant)          |
+| **Time-based** | ffirst_withdraw_time               | STRING  | First withdrawal to merchant bank account                                  |
+| **Time-based** | ffirst_payment_time                | STRING  | First payment to external supplier                                         |
+| **Time-based** | fsubs_plan_first_buy_time          | STRING  | First annual plan purchase time                                             |
+| **Time-based** | fsubs_plan_first_use_time          | STRING  | First annual plan usage time                                                |
+| **Vertical - Tag** | fsite_count                    | BIGINT  | Number of sites (e.g., Shopee-TW, Shopee-SG)                               |
+| **Vertical - Tag** | fshop_count                    | BIGINT  | Number of stores bound to merchant                                         |
+| **Vertical - Tag** | faccount_count                 | BIGINT  | Number of accounts under this merchant                                     |
+| **Vertical - Tag** | fpayee_count                   | BIGINT  | Unique payee count (withdrawal or supplier payments)                       |
+| **Vertical - Tag** | fpayee_count_30d               | BIGINT  | Payee count in the last 30 days                                            |
+| **Vertical - Tag** | ftrd_cnt_month                 | BIGINT  | Total transaction count this month                                         |
+| **Vertical - Tag** | ftrd_cnt_year                  | BIGINT  | Total transaction count this year                                          |
 | **Vertical - Statistical** | flast_disbursement_amount_cny_1d    | DOUBLE    | Disbursement amount in CNY (today)                                         |
 | **Vertical - Statistical** | flast_disbursement_amount_usd_1d    | DOUBLE    | Disbursement amount in USD (today)                                         |
 | **Vertical - Statistical** | flast_disbursement_amount_cny_28d   | DOUBLE    | Disbursement amount in CNY (last 28 days)                                  |

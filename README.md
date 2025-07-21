@@ -63,8 +63,7 @@ flowchart LR
     %% Apply region-specific outline styles
     class Sender,SI,Platform overseas
     class ReceiverBank,Recipient domestic
-
-
+```
 
 - Partner with overseas remittance providers (e.g. Panda Remit, Wise) to bring foreign currency into China  
 - Recipients collect funds via WeChat Wallet or their linked bank account  

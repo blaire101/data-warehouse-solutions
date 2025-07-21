@@ -88,4 +88,20 @@ Provide offshore accounts (Shopee official wallet) and fund repatriation service
 
 Background: Under the standard collection model, Shopee currently only supports local settlement of sales proceeds—meaning funds from sold goods can only be settled into local overseas bank accounts. However, for cross-border sellers, it is generally not feasible to open overseas bank accounts due to high entry barriers and operational costs. As a result, sellers face challenges in receiving payments and difficulties in capital circulation.
 
-
+```mermaid
+flowchart TD
+    A["1 - Merchant Onboarding"] --> B["2 - Merchant Store Binding"]
+    B --> C["3 - Funds Inflow - E-commerce Top-up"]
+    C --> D["4 - Funds Payout - Disbursement and Deduction"]
+    D --> E["5 - Merchant Card Binding"]
+    E --> F["6 - Merchant Operations - Annual Plan Purchase"]
+    F --> G["7 - Withdrawal and Payment"]
+     A:::success
+     B:::success
+     C:::success
+     D:::success
+     E:::success
+     F:::success
+     G:::success
+    classDef success fill:#e6f7ff,stroke:#1890ff,stroke-width:2px
+```

@@ -8,21 +8,19 @@
 
 ## 1. Data Warehouse Architecture 
 
+Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and transform data into fact and dimension tables. Defined data domains, granularity, metrics, and embedded business logic for subject-oriented, multi-dimensional analysis.
+
 <div align="center">
   <img src="docs/dwh-1.jpg" alt="Diagram" width="700">
 </div>
-
-Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and transform data into fact and dimension tables. Defined data domains, granularity, metrics, and embedded business logic for subject-oriented, multi-dimensional analysis.
 
 **Data Domains**
 
 | No. | Domain Name    | Description |
 |-----|----------------|-------------|
 | 1   | Customer (USR) | Covers individuals and merchants, including user info, identity data, and credit profiles. |
-| 2   | Product (PRD)  | Service or product metadata such as repayment tools, vouchers, etc. |
-| 3   | Transaction (TRD) | Order lifecycle, including creation, payment, completion, and closure. |
-| 4   | Event (EVT)    | Risk signals, marketing campaigns, click logs, etc. |
-| 5   | Agreement (AGT)| Contract-level information and binding terms. |
+| 2   | Transaction (TRD) | Order lifecycle, including creation, payment, completion, and closure. |
+| 3   | Event (EVT)    | Risk signals, marketing campaigns, click logs, etc. |
 | …   | …              | … |
 
 ---

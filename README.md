@@ -14,15 +14,6 @@ Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and tra
   <img src="docs/dwh-1.jpg" alt="Diagram" width="700">
 </div>
 
-**Data Domains**
-
-| No. | Domain Name    | Description |
-|-----|----------------|-------------|
-| 1   | Customer (USR) | Covers individuals and merchants, including user info, identity data, and credit profiles. |
-| 2   | Transaction (TRD) | Order lifecycle, including creation, payment, completion, and closure. |
-| 3   | Event (EVT)    | Risk signals, marketing campaigns, click logs, etc. |
-| …   | …              | … |
-
 ---
 
 ## 2. ToC Business - Global Remittances to China

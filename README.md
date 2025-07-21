@@ -14,8 +14,6 @@ Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and tra
   <img src="docs/dwh-1.jpg" alt="Diagram" width="700">
 </div>
 
----
-
 ## 2. ToC Business - Global Remittances to China
 
 Partner with overseas remittance providers (e.g. Panda Remit, Wise) to bring foreign currency into China  
@@ -79,9 +77,9 @@ flowchart LR
 
 ## 3. ToB Business - Cross-border E-commerce Collection and Payment
 
-Provide offshore accounts (Shopee official wallet) and fund repatriation services for Shopee cross-border sellers based in Mainland China, Hong Kong, and South Korea.
+> Background: Under the standard collection model, Shopee currently only supports local settlement of sales proceeds—meaning funds from sold goods can only be settled into local overseas bank accounts. However, for cross-border sellers, it is generally not feasible to open overseas bank accounts due to high entry barriers and operational costs. As a result, sellers face challenges in receiving payments and difficulties in capital circulation.
 
-Background: Under the standard collection model, Shopee currently only supports local settlement of sales proceeds—meaning funds from sold goods can only be settled into local overseas bank accounts. However, for cross-border sellers, it is generally not feasible to open overseas bank accounts due to high entry barriers and operational costs. As a result, sellers face challenges in receiving payments and difficulties in capital circulation.
+Provide offshore accounts (Shopee official wallet) and fund repatriation services for Shopee cross-border sellers based in Mainland China, Hong Kong, and South Korea.
 
 | No. | Business Process                    | Description                                                                                  |
 |-----|-------------------------------------|----------------------------------------------------------------------------------------------|

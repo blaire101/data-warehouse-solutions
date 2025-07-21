@@ -88,20 +88,13 @@ Provide offshore accounts (Shopee official wallet) and fund repatriation service
 
 Background: Under the standard collection model, Shopee currently only supports local settlement of sales proceeds—meaning funds from sold goods can only be settled into local overseas bank accounts. However, for cross-border sellers, it is generally not feasible to open overseas bank accounts due to high entry barriers and operational costs. As a result, sellers face challenges in receiving payments and difficulties in capital circulation.
 
-```mermaid
-flowchart TD
-    A["1 - Merchant Onboarding"] --> B["2 - Merchant Store Binding"]
-    B --> C["3 - Funds Inflow - E-commerce Top-up"]
-    C --> D["4 - Funds Payout - Disbursement and Deduction"]
-    D --> E["5 - Merchant Card Binding"]
-    E --> F["6 - Merchant Operations - Annual Plan Purchase"]
-    F --> G["7 - Withdrawal and Payment"]
-     A:::success
-     B:::success
-     C:::success
-     D:::success
-     E:::success
-     F:::success
-     G:::success
-    classDef success fill:#e6f7ff,stroke:#1890ff,stroke-width:2px
-```
+| No. | Business Process                    | Description                                                                                  |
+|-----|-------------------------------------|----------------------------------------------------------------------------------------------|
+| 1   | **Merchant Onboarding**            | Merchant registers on the platform and completes qualification review to begin operations.   |
+| 2   | **Merchant Store Binding**         | Merchant links their e-commerce store(s) to the platform to enable transaction synchronization. |
+| 3   | **Funds Inflow (E-commerce Top-up)** | Merchant tops up funds to the platform, enabling future business operations and payments.     |
+| 4   | **Funds Payout (Disbursement & Deduction)** | The platform processes payouts or automatic deductions on behalf of the merchant (e.g. platform fees, commission). |
+| 5   | **Merchant Card Binding**          | Merchant binds a settlement bank card for receiving withdrawals or refunds.                  |
+| 6   | **Merchant Operations (e.g., Annual Plan Purchase)** | Merchant performs business-related actions such as purchasing subscription plans or value-added services. |
+| 7   | **Withdrawal and Payment**         | Merchant initiates fund withdrawal to their own bank account or makes payments to external suppliers. |
+

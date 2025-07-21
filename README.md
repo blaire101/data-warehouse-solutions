@@ -23,7 +23,6 @@ Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and tra
 | 3   | Transaction (TRD) | Order lifecycle, including creation, payment, completion, and closure. |
 | 4   | Event (EVT)    | Risk signals, marketing campaigns, click logs, etc. |
 | 5   | Agreement (AGT)| Contract-level information and binding terms. |
-| 6   | Finance (FIN)  | Financial indicators such as balances, overdraft limits, reserve positions. |
 | …   | …              | … |
 
 ---
@@ -43,26 +42,26 @@ flowchart LR
     subgraph Overseas
         direction TB
         Sender["Sender"]:::user
-        SI["Remittance Institution"]:::product
-        Platform["Remittance Platform"]:::infra
+        SI["Sending Institution - SI"]:::product
+        TRS["Remittance Services - TRS"]:::infra
     end
 
     %% Onshore China section
     subgraph "Onshore China"
         direction TB
-        ReceiverBank["Receiving Partner Bank"]:::product
+        RI["Receiving Institution - RI"]:::product
         Recipient["Recipient"]:::user
     end
 
     %% Transaction flows
-    Sender -->|Initiate & Pay| SI
-    SI -->|Forward Transaction| Platform
-    Platform -->|Settle Locally| ReceiverBank
-    ReceiverBank -.->|Notify Recipient| Recipient
+    Sender -->|initiate transfer <br> make payment| SI
+    SI     -->|Forward Transfer <br> Prefund | TRS
+    TRS    -->|Forward Transfer <br> Settlement| RI
+    RI -.->| Notify| Recipient
 
     %% Apply region-specific outline styles
-    class Sender,SI,Platform overseas
-    class ReceiverBank,Recipient domestic
+    class Sender,SI,TRS overseas
+    class RI,Recipient domestic
 ```
 
 - Partner with overseas remittance providers (e.g. Panda Remit, Wise) to bring foreign currency into China  

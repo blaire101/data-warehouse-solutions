@@ -65,8 +65,7 @@ flowchart LR
 ```
 
 - Partner with overseas remittance providers (e.g. Panda Remit, Wise) to bring foreign currency into China  
-- Recipients collect funds via WeChat Wallet or their linked bank account  
-
+- Recipients collect funds via Wallet or their linked bank account  
 
 **Key Business Processes**
 

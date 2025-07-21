@@ -93,7 +93,7 @@ Provide offshore accounts (Shopee official wallet) and fund repatriation service
 
 **Subject-Specifc Analysis model**, covering `Merchant`, `Shop`, and `Orders`.
 
-### 3.1 Merchant Subject Table
+### Merchant Subject Table
 
 | Category | Field Name | Data_Type | Description |
 |-----------------------------------------|--------------------------------------|-----------|-----------------------------------------------------------------------------|

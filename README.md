@@ -31,36 +31,6 @@ Partner with overseas remittance providers (e.g. Panda Remit, Wise) to bring for
 
 ```mermaid
 flowchart LR
-    %% Node styles
-    classDef user      fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px;
-    classDef product   fill:#FFEBEE,stroke:#C62828,stroke-width:2px;
-    classDef infra     fill:#E3F2FD,stroke:#1565C0,stroke-width:2px;
-
-    classDef overseas  fill:#E0F7FA,stroke:#00838F,stroke-width:3px;
-    classDef domestic  fill:#FCE4EC,stroke:#AD1457,stroke-width:3px;
-
-    %% Overseas section
-    Sender["Sender"]:::user
-    SI["Sending Institution - SI"]:::product
-    TRS["Remittance Services - TRS"]:::infra
-
-    %% Onshore China section
-    RI["Receiving Institution - RI"]:::product
-    Recipient["Recipient"]:::user
-
-    %% Transaction flows
-    Sender -->|initiate transfer <br> make payment| SI
-    SI     -->|Forward Transfer <br> Prefund | TRS
-    TRS    -->|Forward Transfer <br> Settlement| RI
-    RI -.->| Notify| Recipient
-
-    %% Apply background group styles
-    class Sender,SI,TRS overseas
-    class RI,Recipient domestic
-```
-
-```mermaid
-flowchart LR
     %% Style definitions
     classDef user      fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px
     classDef product   fill:#FFEBEE,stroke:#C62828,stroke-width:2px

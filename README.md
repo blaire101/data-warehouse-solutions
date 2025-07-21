@@ -27,7 +27,7 @@ Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and tra
 
 ---
 
-## 2. Remittance to China (ToC Flow)
+## 2. ToC Business - Global Remittances to China (Wallet)
 
 ```mermaid
 flowchart LR
@@ -77,4 +77,8 @@ flowchart LR
 | 3   | Currency Exchange   | Based on settlement needs, foreign currency is converted into RMB either in bulk or per transaction. |
 | 4   | Remittance          | End-users initiate remittance via the provider's app by submitting sender and recipient info.<br>1. If the recipient is new, an SMS prompts setup of a receiving card.<br>2. The provider calls the remittance API to submit the order.<br>3. Funds are routed into local settlement accounts. |
 | 5   | Funds Disbursement  | Recipients collect RMB via digital wallets or linked local bank cards. |
+
+**Subject-Specifc Analysis model**, covering `Remittance Providers (Institution)`, `Orders`, and `Users`.
+
+## 3. ToB Business - Cross-border E-commerce Collection and Payment
 

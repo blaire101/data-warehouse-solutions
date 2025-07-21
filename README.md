@@ -1,33 +1,34 @@
-# data-warehouse-solutions
+# Data Warehouse Solutions (Generalized Case – Fully Anonymized)
+
+> 🛡️ **Disclaimer:**  
+> The following content represents generalized industry knowledge and anonymized case practices.  
+> It does **not contain any confidential, proprietary, or internal information** from any specific company.
+
+---
 
 ## 1. Data Warehouse Architecture 
-
 
 <div align="center">
   <img src="docs/dwh-1.jpg" alt="Diagram" width="600">
 </div>
 
-Built data warehouse (ODS > DIL > DML > DAL) to ingest, clean, transform, data
-into fact and dimension tables. Defined data domains, granularity, metrics, and
-encoded business rules in DML for subject-oriented, multi-dimensional analysis.
+Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and transform data into fact and dimension tables. Defined data domains, granularity, metrics, and embedded business logic for subject-oriented, multi-dimensional analysis.
 
+**Data Domains**
 
-**data domain**
+| No. | Domain Name    | Description |
+|-----|----------------|-------------|
+| 1   | Customer (USR) | Covers individuals and merchants, including user info, identity data, and credit profiles. |
+| 2   | Product (PRD)  | Service or product metadata such as repayment tools, vouchers, etc. |
+| 3   | Transaction (TRD) | Order lifecycle, including creation, payment, completion, and closure. |
+| 4   | Event (EVT)    | Risk signals, marketing campaigns, click logs, etc. |
+| 5   | Agreement (AGT)| Contract-level information and binding terms. |
+| 6   | Finance (FIN)  | Financial indicators such as balances, overdraft limits, reserve positions. |
+| …   | …              | … |
 
-| No. | Domain Name | Description |
-|-----|-------------|-------------|
-| 1   | Customer (USR) | Includes individuals, merchants, and users. Covers user information, credit bureau data, and personal details such as education, occupation, etc. |
-| 2   | Product (PRD) | Information related to services and products, such as credit card repayment, red packets, etc. |
-| 3   | Transaction (TRD) | Order lifecycle management, including order creation, payment, success, and closure. |
-| 4   | Event (EVT) | Includes risk events, marketing activities, click logs, etc. |
-| 5   | Agreement (AGT) | Contract-related information. |
-| 6   | Finance (FIN) | Financial analytics, e.g., reserve balances at banks, overdraft limits for personal accounts. |
-| ... | ... | ... |
+---
 
-
-## 2. ToC Business Introduce
-
-Cross-border remittances to China
+## 2. Inbound Remittance to China (ToC Flow – Generalized)
 
 ```mermaid
 flowchart LR
@@ -42,44 +43,40 @@ flowchart LR
     subgraph Overseas
         direction TB
         Sender["Sender"]:::user
-        SI["Sending Institution - SI"]:::product
-        TRS["Remittance Services - TRS"]:::infra
+        SI["Remittance Institution"]:::product
+        Platform["Remittance Platform"]:::infra
     end
 
     %% Onshore China section
     subgraph "Onshore China"
         direction TB
-        RI["Receiving Institution - RI"]:::product
+        ReceiverBank["Receiving Partner Bank"]:::product
         Recipient["Recipient"]:::user
     end
 
     %% Transaction flows
-    Sender -->|initiate transfer <br> make payment| SI
-    SI     -->|Forward Transfer <br> Prefund | TRS
-    TRS    -->|Forward Transfer <br> Settlement| RI
-    RI -.->| Notify| Recipient
+    Sender -->|Initiate & Pay| SI
+    SI -->|Forward Transaction| Platform
+    Platform -->|Settle Locally| ReceiverBank
+    ReceiverBank -.->|Notify Recipient| Recipient
 
     %% Apply region-specific outline styles
-    class Sender,SI,TRS overseas
-    class RI,Recipient domestic
+    class Sender,SI,Platform overseas
+    class ReceiverBank,Recipient domestic
 
-```
 
 
 - Partner with overseas remittance providers (e.g. Panda Remit, Wise) to bring foreign currency into China  
 - Recipients collect funds via WeChat Wallet or their linked bank account  
 
 
-
 **Key Business Processes**
 
-| No. | Step                          | Description |
-|:-----:|-------------------------------|-------------|
-| **1**                         | Remittance Institutions Onboarding      | cooperate Institutions (e.g. Panda Remit, Wise) completes our standard onboarding and submits required documents. risk & compliance team then reviews.                                                                                                                                                                                                                                       |
-| **2**                         | Institution Funding                     | Providers transfer funds (usually USD or EUR, sometimes CNH) via bank wire into their ZX account to ensure sufficient balance for customer remittances.                                                                                                                                                                                                                                                                           |
-| **3**                         | Institution Currency Exchange           | Based on partner needs, convert foreign‑currency balances in their ZX account into RMB:                                                                                                                                                                                                                                               |
-| **4**                             | Remittance                              | Customers initiate a remittance via app by entering sender and recipient details. <br> 1. If the recipient is new, TRS sends an SMS with a link to set up a receiving card. <br> 2. The provider calls the ZX API to submit the order. <br> 3. Funds are settled into TRS accounts in China.                                                                                                                                                                   |
-| **5**                   | Receiving Funds                         | Recipients collect the remitted CNY via Wallet or their linked bank card.                                                                                                                                                                                                                                                                                           |
-
-
+| No. | Step                | Description |
+|:---:|---------------------|-------------|
+| 1   | Partner Onboarding  | Partners complete a standard onboarding process and submit required documents. Risk & compliance teams perform due diligence. |
+| 2   | Institution Funding | Partners pre-fund a designated account (typically in USD, EUR, or CNH) to ensure sufficient liquidity for remittance. |
+| 3   | Currency Exchange   | Based on settlement needs, foreign currency is converted into RMB either in bulk or per transaction. |
+| 4   | Remittance          | End-users initiate remittance via the provider's app by submitting sender and recipient info.<br>1. If the recipient is new, an SMS prompts setup of a receiving card.<br>2. The provider calls the remittance API to submit the order.<br>3. Funds are routed into local settlement accounts. |
+| 5   | Funds Disbursement  | Recipients collect RMB via digital wallets or linked local bank cards. |
 

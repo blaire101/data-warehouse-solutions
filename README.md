@@ -71,11 +71,11 @@ flowchart LR
 
 | No. | Step                | Description |
 |:---:|---------------------|-------------|
-| 1   | Partner Onboarding  | Partners complete a standard onboarding process and submit required documents. Risk & compliance teams perform due diligence. |
-| 2   | Institution Funding | Partners pre-fund a designated account (typically in USD, EUR, or CNH) to ensure sufficient liquidity for remittance. |
-| 3   | Currency Exchange   | Based on settlement needs, foreign currency is converted into RMB either in bulk or per transaction. |
+| 1   | Partner Onboarding  | Partners complete a onboarding process. Risk & compliance teams perform due diligence. |
+| 2   | Institution Funding | Partners pre-fund a designated account to ensure sufficient liquidity for remittance. |
+| 3   | Currency Exchange   | Based on settlement needs, foreign currency is converted into RMB. |
 | 4   | Remittance          | End-users initiate remittance via the provider's app by submitting sender and recipient info.<br>1. If the recipient is new, an SMS prompts setup of a receiving card.<br>2. The provider calls the remittance API to submit the order.<br>3. Funds are routed into local settlement accounts. |
-| 5   | Funds Disbursement  | Recipients collect RMB via digital wallets or linked local bank cards. |
+| 5   | Funds Disbursement  | Recipients collect RMB via digital wallets or linked bank-cards. |
 
 **Subject-Specifc Analysis model**, covering `Remittance Providers (Institution)`, `Orders`, and `Users`.
 

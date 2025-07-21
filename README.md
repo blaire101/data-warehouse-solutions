@@ -25,7 +25,7 @@ Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and tra
 
 ---
 
-## 2. ToC Business - Global Remittances to China (Wallet)
+## 2. ToC Business - Global Remittances to China
 
 Partner with overseas remittance providers (e.g. Panda Remit, Wise) to bring foreign currency into China  
 

@@ -65,5 +65,5 @@ If **any** of the following violations occur, the table receives **0 points**:
 
 ## 📈 Results
 
-- ✅ **Average asset score improved** from **77.6 → 86**  
+- ✅ **Average asset score improved** from **77 → 86**  
 - ✅ **SLA compliance increased** from **95% → 99%+**, driven by workflow optimization and scheduling improvements

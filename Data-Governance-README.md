@@ -1,6 +1,10 @@
 # 📊 Data Governance – Data Quality Overview
 
-## 🔍 Background
+> 🛡️ **Disclaimer:**  
+> The following content represents generalized industry knowledge and anonymized case practices.  
+> It does **not contain any confidential, proprietary, or internal information** from any specific company.
+
+🔍 **Background**
 
 - **Total Tables**: 30,000+  
 - **Average Asset Score**: 78+  

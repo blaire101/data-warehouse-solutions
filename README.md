@@ -27,8 +27,9 @@ flowchart LR
 classDef user fill:#D1C4E9,stroke:#673AB7,stroke-width:2px;
 classDef product fill:#C8E6C9,stroke:#388E3C,stroke-width:2px;
 classDef infra fill:#FFF9C4,stroke:#FBC02D,stroke-width:2px;
+classDef spacer fill:none,stroke:none;
 
-%% Subgraph box background (use style + ID)
+%% Subgraph background styles
 style overseasBox fill:#EBF5FB,stroke:#85C1E9,stroke-width:2px
 style chinaBox fill:#FEF9E7,stroke:#F7DC6F,stroke-width:2px
 
@@ -39,18 +40,20 @@ API["Remittance Services - API"]:::infra
 RI["Receiving Institution - RI"]:::product
 Recipient["Recipient"]:::user
 
-%% Overseas Section
+%% Subgraph: Overseas
 subgraph overseasBox["Overseas or HK"]
     direction LR
     Sender -->|Initiate Transfer<br>Make Payment| SI
     SI -->|Forward Transfer<br>Prefund| API
+    OV_SPACER1[" "]:::spacer
 end
 
-%% Onshore China Section
+%% Subgraph: Onshore China
 subgraph chinaBox["Onshore China"]
     direction LR
     API -->|Forward Transfer<br>Settlement| RI
     RI -.->|Notify| Recipient
+    CN_SPACER1[" "]:::spacer
 end
 ```
 

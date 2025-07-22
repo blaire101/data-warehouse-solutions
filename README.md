@@ -150,7 +150,7 @@ graph TD
 
 > Shopee's official wallet business leverages multi-dimensional data analysis to support merchant lifecycle management, transaction insights, and revenue optimization. From churn monitoring to cross-site transaction trend analysis, comprehensive dashboards and thematic tables provide strong data support for business growth, product experience enhancement, and precision operations.
 
-| Category | Field Name | Data_Type | Description |
+| --Category-- | Field Name | Data_Type | Description |
 |-----------------------------------------|--------------------------------------|-----------|-----------------------------------------------------------------------------|
 | **Partition Field**   | fdate                       | BIGINT  | Partition date                                                              |
 | **Primary Key**       | fgid                        | STRING  | Merchant GID (Global ID)                                                   |

@@ -83,42 +83,54 @@ Provide offshore accounts (Shopee official wallet) and fund repatriation service
 
 ```mermaid
 graph TD
-    %% Left side entities
+    %% Left side entities - Shopee above Shopee Bank Card
     Shopee(S Shopee)
-    ShopeePayCard[Shopee Pay Card]
+    style Shopee fill:#FFA07A,stroke:#333,stroke-width:2px %% Adjusted to comfortable orange-yellow
+    ShopeeBankCard([Shopee Bank Card])
+    style ShopeeBankCard fill:#ccf,stroke:#333,stroke-width:2px %% Keep light blue for the card
 
-    %% Central green box - Shopee Wallet / T
-    subgraph Shopee Wallet & T Logo
+    %% Central green box - White-label Official Wallet
+    subgraph SG_Wallet_T["White-label Wallet System"]
         direction LR %% Internal layout is more left-to-right
-        SMA[Shopee Main Account]
-        SA_A[Seller A]
-        SA_B[Seller B]
-        SA_C[Seller C]
+        style SG_Wallet_T fill:#98FB98,stroke:#333,stroke-width:2px %% Changed to light green
+        SMA([Shopee Main Account])
+        style SMA fill:#F0FFF0,stroke:#333,stroke-width:2px %% Keep very pale green
+        SA_A([Seller Account A])
+        style SA_A fill:#F0FFF0,stroke:#333,stroke-width:2px %% Keep very pale green
+        SA_B([Seller Account B])
+        style SA_B fill:#F0FFF0,stroke:#333,stroke-width:2px %% Keep very pale green
+        SA_C([Seller Account C])
+        style SA_C fill:#F0FFF0,stroke:#333,stroke-width:2px %% Keep very pale green
 
-        SMA -- "Funds distributed" --> SA_A
-        SMA -- "Funds distributed" --> SA_B
-        SMA -- "Funds distributed" --> SA_C
+        SMA -- "Funds distribute" --> SA_A
+        SMA -- "Funds distribute" --> SA_B
+        SMA -- "Funds distribute" --> SA_C
+        linkStyle 0,1,2 stroke:#333,stroke-width:1px
     end
 
-    %% Right green box - Seller Bank Accounts
-    subgraph Seller Bank Accounts
+    %% Right blue box - Seller Bank Accounts
+    subgraph SG_SellerBanks["Seller Bank Accounts"]
         direction TB %% Internal layout is top-to-bottom
-        SBA_A[Seller Bank Account A]
-        SBA_B[Seller Bank Account B]
-        SBA_C[Seller Bank Account C]
+        style SG_SellerBanks fill:#ADD8E6,stroke:#333,stroke-width:2px %% Changed to light blue
+        SBA_A([Seller Bank Account A])
+        style SBA_A fill:#F5F5DC,stroke:#333,stroke-width:2px %% Keep beige
+        SBA_B([Seller Bank Account B])
+        style SBA_B fill:#F5F5DC,stroke:#333,stroke-width:2px %% Keep beige
+        SBA_C([Seller Bank Account C])
+        style SBA_C fill:#F5F5DC,stroke:#333,stroke-width:2px %% Keep beige
     end
 
     %% Connections between main sections
-    SMA --> |balance can be withdrawn to bank account| ShopeePayCard
-    ShopeePayCard --> |E-commerce Top-up| SMA
+    ShopeeBankCard --> |E-commerce Top-up| SMA
+    linkStyle 3 stroke:#333,stroke-width:1px,color:#000
+
+    SMA --> |balance can be withdrawn to bank account| ShopeeBankCard
+    linkStyle 4 stroke:#333,stroke-width:1px,color:#000
 
     SA_A --> SBA_A
     SA_B --> SBA_B
     SA_C --> SBA_C
-
-    %% The 'Shopee' box on the far left appears as a brand association with the Shopee Pay Card
-    %% but does not have explicit flow arrows to other parts of the diagram in the original.
-    %% Therefore, it is represented as a standalone node here.
+    linkStyle 5,6,7 stroke:#333,stroke-width:1px
 ```
 
 | No. | Business Process                    | Description                                                                                  |

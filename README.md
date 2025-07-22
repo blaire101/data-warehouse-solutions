@@ -155,7 +155,7 @@ graph TD
 | **Partition Field**   | fdate                       | BIGINT  | Partition date                                                              |
 | **Primary Key**       | fgid                        | STRING  | Merchant GID (Global ID)                                                   |
 | **Primary Key**       | fspid                       | STRING  | Merchant SPID (Sub-platform ID)                                            |
-| **Merchant Basic Attributes** | fcompany_name       | STRING  | Company name                                                                |
+| **Merchant Basic** | fcompany_name       | STRING  | Company name                                                                |
 | **Horizontal Time**    | fkyc_first_submit_time          | STRING  | First KYC submission time                                                   |
 | **Horizontal Time**    | fkyc_first_approved_time        | STRING  | First KYC approval time                                                     |
 | **Horizontal Time** | fshop_apply_time                   | STRING  | Store application time                                                      |

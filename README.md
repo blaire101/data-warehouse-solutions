@@ -81,6 +81,46 @@ flowchart LR
 
 Provide offshore accounts (Shopee official wallet) and fund repatriation services for Shopee cross-border sellers based in Mainland China, Hong Kong, and South Korea.
 
+```mermaid
+graph TD
+    %% Left side entities
+    Shopee(S Shopee)
+    ShopeePayCard[Shopee Pay Card]
+
+    %% Central green box - Shopee Wallet / T
+    subgraph Shopee Wallet & T Logo
+        direction LR %% Internal layout is more left-to-right
+        SMA[Shopee Main Account]
+        SA_A[Seller A]
+        SA_B[Seller B]
+        SA_C[Seller C]
+
+        SMA -- "Funds distributed" --> SA_A
+        SMA -- "Funds distributed" --> SA_B
+        SMA -- "Funds distributed" --> SA_C
+    end
+
+    %% Right green box - Seller Bank Accounts
+    subgraph Seller Bank Accounts
+        direction TB %% Internal layout is top-to-bottom
+        SBA_A[Seller Bank Account A]
+        SBA_B[Seller Bank Account B]
+        SBA_C[Seller Bank Account C]
+    end
+
+    %% Connections between main sections
+    SMA --> |balance can be withdrawn to bank account| ShopeePayCard
+    ShopeePayCard --> |E-commerce Top-up| SMA
+
+    SA_A --> SBA_A
+    SA_B --> SBA_B
+    SA_C --> SBA_C
+
+    %% The 'Shopee' box on the far left appears as a brand association with the Shopee Pay Card
+    %% but does not have explicit flow arrows to other parts of the diagram in the original.
+    %% Therefore, it is represented as a standalone node here.
+```
+
 | No. | Business Process                    | Description                                                                                  |
 |-----|-------------------------------------|----------------------------------------------------------------------------------------------|
 | 1   | **Merchant Onboarding**            | Merchant registers on the platform and completes kyc.   |

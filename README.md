@@ -18,38 +18,40 @@ Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and tra
 
 Partner with overseas remittance providers (e.g. Panda Remit, Wise) to bring foreign currency into China  
 
+> This diagram provides a basic outline, — the actual **information flow** and **funds flow** is much more complex.
+
 ```mermaid
 flowchart LR
     %% Style definitions
-    classDef user      fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px
-    classDef product   fill:#FFEBEE,stroke:#C62828,stroke-width:2px
-    classDef infra     fill:#E3F2FD,stroke:#1565C0,stroke-width:2px
+    classDef user fill:#D1C4E9,stroke:#673AB7,stroke-width:2px;
+    classDef product fill:#C8E6C9,stroke:#4CAF50,stroke-width:2px;
+    classDef infra fill:#FFF9C4,stroke:#FBC02D,stroke-width:2px;
 
-    classDef boxOverseas fill:#E0F7FA,stroke:#00838F,stroke-width:3px
-    classDef boxDomestic fill:#FCE4EC,stroke:#AD1457,stroke-width:3px
+    %% Subgraph specific styles for cleaner backgrounds
+    classDef boxOverseas fill:#EBF5FB,stroke:#85C1E9,stroke-width:2px;
+    classDef boxDomestic fill:#FEF9E7,stroke:#F7DC6F,stroke-width:2px;
 
     %% Actual nodes
     Sender["Sender"]:::user
     SI["Sending Institution - SI"]:::product
-    TRS["Remittance Services - TRS"]:::infra
+    API["Remittance Services - API"]:::infra
 
     RI["Receiving Institution - RI"]:::product
     Recipient["Recipient"]:::user
 
     %% Flow lines
     Sender -->|initiate transfer <br> make payment| SI
-    SI -->|Forward Transfer <br> Prefund | TRS
-    TRS -->|Forward Transfer <br> Settlement| RI
+    SI -->|Forward Transfer <br> Prefund | API
+    API -->|Forward Transfer <br> Settlement| RI
     RI -.->| Notify| Recipient
 
     %% Invisible bounding boxes for region grouping
-    subgraph Overseas [Overseas]
+    subgraph Overseas [Overseas or HK]
         direction LR
         O1[ ]:::boxOverseas
         Sender
         SI
-        TRS
-        O2[ ]:::boxOverseas
+        API
     end
 
     subgraph "Onshore China"
@@ -57,11 +59,8 @@ flowchart LR
         D1[ ]:::boxDomestic
         RI
         Recipient
-        D2[ ]:::boxDomestic
-    end
+    end 
 ```
-
-This diagram provides a basic outline, — the actual **information flow** and **funds flow** is much more complex.
 
 **Subject-Specifc Analysis model**, covering `Sending Institution (Remittance Providers)`, `Orders`, and `Users`.
 

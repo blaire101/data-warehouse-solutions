@@ -57,7 +57,9 @@ subgraph chinaBox["Onshore China"]
 end
 ```
 
-**Subject-Specifc Analysis model**, covering `Sending Institution (Remittance Providers)`, `Orders`, and `Users`.
+**Subject-Specifc Analysis model**
+
+> covering `Sending Institution (Remittance Providers)`, `Orders`, and `Users`.
 
 1. **Remittance Provider** : Analysed key metrics (countries, currencies and transaction, user volumes, fees, FX income ...), produced reports of transaction & profits to guide improvements.
 2. **Orders** : 3 stage life-cycle funnel to measure conversion rates and bottleneck. - Order status: A: Provider order | B: Account opening process | C:  Complete fund receipt.

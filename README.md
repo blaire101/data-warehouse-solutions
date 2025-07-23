@@ -153,6 +153,8 @@ graph TD
     linkStyle 5,6,7 stroke:#333,stroke-width:1px
 ```
 
+### Business Process 
+
 | No. | Business Process                    | Description                                                                                  |
 |-----|-------------------------------------|----------------------------------------------------------------------------------------------|
 | 1   | **Merchant Onboarding**            | Merchant registers on the platform and completes kyc.   |
@@ -163,9 +165,11 @@ graph TD
 | 6   | **Merchant Operations (e.g., Annual Subscription Plan)** | Merchant performs business-related actions such as purchasing subscription plans or value-added services. |
 | 7   | **Withdrawal and Payment**         | Merchant initiates fund withdrawal to their own bank account or makes payments to external suppliers. |
 
+### Subject-Specifc Table
+
 **Subject-Specifc Analysis model**, covering `Merchant`, `Shop`, and `Orders`.
 
-### Merchant Subject Table
+#### Merchant Subject Table
 
 > Shopee's official wallet business leverages multi-dimensional data analysis to support merchant lifecycle management, transaction insights, and revenue optimization. From churn monitoring to cross-site transaction trend analysis, comprehensive dashboards and thematic tables provide strong data support for business growth, product experience enhancement, and precision operations.
 
@@ -202,7 +206,7 @@ graph TD
 | **Vertical - Calc** | fmax_trd_amt_year                   | DOUBLE    | Max single transaction amount this year                                    |
 | **Lifecycle Tag** | fmerchant_lifecycle_tag   | BIGINT | Merchant lifecycle status tag:<br>1. Not disbursed<br>2. New<br>3. Retained<br>4. Lost<br>5. Recovered<br>0. Default |
 
-### Orders Subject Table
+#### Orders Subject Table
 
 | Description | Field Name | Type | Remarks |
 |-------------|------------|------|---------|

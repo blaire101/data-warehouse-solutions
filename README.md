@@ -198,7 +198,7 @@ graph TD
 | - | fshop_id | STRING | Present only in Disbursement & Withholding; ignored in Payment scenarios |
 | **Pay_Transaction** <br> (Withdrawal/Pay/Subs) | fpayee_id | STRING | Applicable in payment scenarios |
 | **Pay_Transaction** | fpayee_type | BIGINT | Domestic: 1 - Personal Bank Account, 2 - Corporate Account<br>Overseas: 1 - Same-name Account, 2 - Supplier Account |
-| **Pay_Transaction** | fbiz_type | BIGINT | 1: FX purchase inbound (domestic)<br>2: FX purchase payment (overseas)<br>3: FX payment (overseas)<br>4: Annual card |
+| **Pay_Transaction** | fbiz_type | BIGINT | 1: FX purchase inbound (domestic)<br>2: FX purchase payment (overseas)<br>3: FX payment (overseas)<br>4: Annual Subs |
 | **Pay_Transaction** | Fsell_cur_type | STRING | Outgoing currency, ISO 4217 format |
 | **Pay_Transaction** | Fbuy_cur_type | STRING | Incoming currency, ISO 4217 format |
 | **Pay_Transaction**  | Fbank_country | STRING | Destination country of funds |

@@ -9,8 +9,7 @@
 
 ## 🧠 SparkSQL - Optimization Case
 
-
-**The following are simplified examples. The real situation is more complicated.**
+> **The following are simplified examples. The real situation is more complicated.**
 
 ### init SQL
 

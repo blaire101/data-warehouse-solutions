@@ -213,3 +213,4 @@ graph TD
 | **General Transaction** | Famount_cny | BIGINT | Converted amount in CNY |
 | **General Transaction** | Ftransaction_initiation_time | STRING | Time when the transaction was initiated |
 
+### Dashboard

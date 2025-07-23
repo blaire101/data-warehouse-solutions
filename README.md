@@ -146,12 +146,11 @@ graph TD
     linkStyle 4 stroke:#333,stroke-width:1px,color:#000
 
     SA_A --> |Withdrawal| SBA_A
+    SA_A --> |SellerProductSupplier| SPS_A
+    SA_A --> |AnnualSubscriptionPlan| SASP_A
     SA_B --> |Withdrawal| SBA_B
     SA_C --> |Withdrawal| SBA_C
     linkStyle 5,6,7 stroke:#333,stroke-width:1px
-
-    SA_A --> |Seller Product Supplier A| SPS_A
-    SA_A --> |Annual Subscription Plan A| SASP_A
 ```
 
 | No. | Business Process                    | Description                                                                                  |

@@ -82,7 +82,7 @@ end
 
 Provide offshore accounts (Shopee official wallet) and **fund repatriation** services `[riːˌpætriˈeɪʃən]` for Shopee cross-border sellers based in Mainland China, Hong Kong, and South Korea.
 
-Tencent Pay is great at getting money back to China and distributing it efficiently.
+Ten-Pay is great at getting money back to China and distributing it efficiently.
 
 ```mermaid
 graph TD

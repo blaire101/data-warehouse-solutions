@@ -122,6 +122,14 @@ graph TD
         style SBA_C fill:#F5F5DC,stroke:#333,stroke-width:2px %% Keep beige
     end
 
+    %% Right blue box - Product Supplier
+    subgraph SZ_ProductSupplier["Seller Product Supplier"]
+        direction TB %% Internal layout is top-to-bottom
+        style SG_SellerBanks fill:#ADD8E6,stroke:#333,stroke-width:2px %% Changed to light blue
+        SPS_A([Seller Product Supplier A])
+        style SPS_A fill:#F5F5DC,stroke:#333,stroke-width:2px %% Keep beige
+    end
+
     %% Connections between main sections
     ShopeeBankCard --> |E-commerce Top-up| SMA
     linkStyle 3 stroke:#333,stroke-width:1px,color:#000
@@ -130,8 +138,8 @@ graph TD
     linkStyle 4 stroke:#333,stroke-width:1px,color:#000
 
     SA_A --> |Withdrawal| SBA_A
-    SA_B --> SBA_B
-    SA_C --> SBA_C
+    SA_B --> |Withdrawal| SBA_B
+    SA_C --> |Withdrawal| SBA_C
     linkStyle 5,6,7 stroke:#333,stroke-width:1px
 ```
 

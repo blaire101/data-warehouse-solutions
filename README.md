@@ -123,7 +123,7 @@ graph TD
     end
 
    %% Right blue box - Seller Product Supplier
-    subgraph SZ_ProductSupplier["1"]
+    subgraph SZ_ProductSupplier["I"]
         direction TB %% Internal layout is top-to-bottom
         style SZ_ProductSupplier fill:#ADD8,stroke:#333,stroke-width:2px %% Changed to light blue
         SPS_A([Product Supplier])
@@ -131,7 +131,7 @@ graph TD
     end
 
     %% Right blue box - Seller Annual Subscription Plan
-    subgraph Subs["1"]
+    subgraph Subs["I"]
         direction TB %% Internal layout is top-to-bottom
         style Subs fill:#ADD5,stroke:#333,stroke-width:1px %% Changed to light blue
         SASP_C([annual membership])

@@ -184,3 +184,33 @@ graph TD
 | **Vertical - Calc** | fmax_trd_amt_month                  | DOUBLE    | Max single transaction amount this month                                   |
 | **Vertical - Calc** | fmax_trd_amt_year                   | DOUBLE    | Max single transaction amount this year                                    |
 | **Lifecycle Tag** | fmerchant_lifecycle_tag   | BIGINT | Merchant lifecycle status tag:<br>1. Not disbursed<br>2. New<br>3. Retained<br>4. Lost<br>5. Recovered<br>0. Default |
+
+### Orders Subject Table
+
+| Description | Field Name | Type | Remarks |
+|-------------|------------|------|---------|
+| Partition date | fdate | BIGINT | Date partition field |
+| ETL time | fetl_time | BIGINT | Timestamp of ETL execution |
+| Transaction stage | Ftransaction_scene | BIGINT | 1: Collection (Top-up to ZX)<br>2: Disbursement & Withholding<br>3: Payment (Withdrawal / Payment / Card Purchase) |
+| Order ID | Flistid | STRING | Primary key |
+| Transaction subtype | Ftransaction_scene_type | trans_type | 1: Collection<br>2: Disbursement<br>3: Withholding<br>4: Withdrawal<br>5: Payment<br>6: Card Purchase |
+| Merchant SPID | fspid | STRING | Used to join with merchant dimension table |
+| - | fsite_id | STRING | One seller may have multiple sites |
+| - | fshop_id | STRING | Present only in Disbursement & Withholding; ignored in Payment scenarios |
+| Pay Scenario (Withdrawal | Payment | Subs ) | fpayee_id | STRING | Applicable in payment scenarios |
+| Pay Scenario (Withdrawal | Payment | Subs ) | fpayee_type | BIGINT | Domestic: 1 - Personal Bank Account, 2 - Corporate Account<br>Overseas: 1 - Same-name Account, 2 - Supplier Account |
+| Pay Scenario (Withdrawal | Payment | Subs ) | fbiz_type | BIGINT | 1: FX purchase inbound (domestic)<br>2: FX purchase payment (overseas)<br>3: FX payment (overseas)<br>4: Annual card |
+| Pay Scenario (Withdrawal | Payment | Subs ) | Fsell_cur_type | STRING | Outgoing currency, ISO 4217 format |
+| Pay Scenario (Withdrawal | Payment | Subs ) | Fbuy_cur_type | STRING | Incoming currency, ISO 4217 format |
+| Pay Scenario (Withdrawal | Payment | Subs ) | Fbank_country | STRING | Destination country of funds |
+| Pay Scenario (Withdrawal | Payment | Subs ) | Fproduct_code | STRING | Product code, used in annual card purchase |
+| Pay Scenario (Withdrawal | Payment | Subs ) | Fbiz_fee_cur_type | STRING | Currency of transaction fee |
+| Pay Scenario (Withdrawal | Payment | Subs ) | Fbiz_fee_amount | BIGINT | Transaction fee in original currency (unit: yuan) |
+| Pay Scenario (Withdrawal | Payment | Subs ) | Fbiz_fee_amount_usd | BIGINT | Fee amount (USD) |
+| Pay Scenario (Withdrawal | Payment | Subs ) | Fbiz_fee_amount_cny | BIGINT | Transaction fee converted to CNY |
+| General Transaction | Fcur_type | STRING | Transaction currency |
+| General Transaction | Famount | BIGINT | Transaction amount in original currency (unit: yuan) |
+| General Transaction | Famount_usd | BIGINT | Converted amount in USD |
+| General Transaction | Famount_cny | BIGINT | Converted amount in CNY |
+| General Transaction | Ftransaction_initiation_time | STRING | Time when the transaction was initiated |
+

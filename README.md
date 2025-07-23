@@ -190,23 +190,23 @@ graph TD
 | Description | Field Name | Type | Remarks |
 |-------------|------------|------|---------|
 | **Partition** | fdate | BIGINT | Date partition field |
-| **Primary Key** | Ftransaction_scene | BIGINT | 1: Collection (Top-up to ZX)<br>2: Disbursement & Withholding<br>3: Payment (Withdrawal / Payment / Card Purchase) |
+| **Primary Key** | Ftransaction_scene | BIGINT | 1: Collection (Top-up to ZX)<br>2: Disbursement & Withholding<br>3: Payment (Withdrawal / Payment / Subs Plan) |
 | **Primary Key** | Flistid | STRING | Primary key |
-| transaction_scene | Ftransaction_scene_type | trans_type | 1: Collection<br>2: Disbursement<br>3: Withholding<br>4: Withdrawal<br>5: Payment<br>6: Card Purchase |
+| transaction_scene | Ftransaction_scene_type | trans_type | 1: Collection<br>2: Disbursement<br>3: Withholding<br>4: Withdrawal<br>5: Payment<br>6: Subs Plan |
 | Merchant SPID | fspid | STRING | Used to join with merchant dimension table |
 | - | fsite_id | STRING | One seller may have multiple sites |
 | - | fshop_id | STRING | Present only in Disbursement & Withholding; ignored in Payment scenarios |
-| Pay_Scenario (Withdrawal/Pay/Subs) | fpayee_id | STRING | Applicable in payment scenarios |
-| Pay_Scenario (Withdrawal/Pay/Subs) | fpayee_type | BIGINT | Domestic: 1 - Personal Bank Account, 2 - Corporate Account<br>Overseas: 1 - Same-name Account, 2 - Supplier Account |
-| Pay_Scenario (Withdrawal/Pay/Subs) | fbiz_type | BIGINT | 1: FX purchase inbound (domestic)<br>2: FX purchase payment (overseas)<br>3: FX payment (overseas)<br>4: Annual card |
-| Pay_Scenario (Withdrawal/Pay/Subs) | Fsell_cur_type | STRING | Outgoing currency, ISO 4217 format |
-| Pay_Scenario (Withdrawal/Pay/Subs) | Fbuy_cur_type | STRING | Incoming currency, ISO 4217 format |
-| Pay_Scenario (Withdrawal/Pay/Subs) | Fbank_country | STRING | Destination country of funds |
-| Pay_Scenario (Withdrawal/Pay/Subs) | Fproduct_code | STRING | Product code, used in annual card purchase |
-| Pay_Scenario (Withdrawal/Pay/Subs) | Fbiz_fee_cur_type | STRING | Currency of transaction fee |
-| Pay_Scenario (Withdrawal/Pay/Subs) | Fbiz_fee_amount | BIGINT | Transaction fee in original currency (unit: yuan) |
-| Pay_Scenario (Withdrawal/Pay/Subs) | Fbiz_fee_amount_usd | BIGINT | Fee amount (USD) |
-| Pay_Scenario (Withdrawal/Pay/Subs) | Fbiz_fee_amount_cny | BIGINT | Transaction fee converted to CNY |
+| **Pay_Scenario** <br> (Withdrawal/Pay/Subs) | fpayee_id | STRING | Applicable in payment scenarios |
+| **Pay_Scenario** <br> (Withdrawal/Pay/Subs) | fpayee_type | BIGINT | Domestic: 1 - Personal Bank Account, 2 - Corporate Account<br>Overseas: 1 - Same-name Account, 2 - Supplier Account |
+| **Pay_Scenario** <br> (Withdrawal/Pay/Subs) | fbiz_type | BIGINT | 1: FX purchase inbound (domestic)<br>2: FX purchase payment (overseas)<br>3: FX payment (overseas)<br>4: Annual card |
+| **Pay_Scenario** <br> (Withdrawal/Pay/Subs) | Fsell_cur_type | STRING | Outgoing currency, ISO 4217 format |
+| **Pay_Scenario** <br> (Withdrawal/Pay/Subs) | Fbuy_cur_type | STRING | Incoming currency, ISO 4217 format |
+| **Pay_Scenario** <br> (Withdrawal/Pay/Subs) | Fbank_country | STRING | Destination country of funds |
+| **Pay_Scenario** <br> (Withdrawal/Pay/Subs) | Fproduct_code | STRING | Product code, used in annual card purchase |
+| **Pay_Scenario** <br> (Withdrawal/Pay/Subs) | Fbiz_fee_cur_type | STRING | Currency of transaction fee |
+| **Pay_Scenario** <br> (Withdrawal/Pay/Subs) | Fbiz_fee_amount | BIGINT | Transaction fee in original currency (unit: yuan) |
+| **Pay_Scenario** <br> (Withdrawal/Pay/Subs) | Fbiz_fee_amount_usd | BIGINT | Fee amount (USD) |
+| **Pay_Scenario** <br> (Withdrawal/Pay/Subs) | Fbiz_fee_amount_cny | BIGINT | Transaction fee converted to CNY |
 | General Transaction | Fcur_type | STRING | Transaction currency |
 | General Transaction | Famount | BIGINT | Transaction amount in original currency (unit: yuan) |
 | General Transaction | Famount_usd | BIGINT | Converted amount in USD |

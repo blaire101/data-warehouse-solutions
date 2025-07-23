@@ -195,7 +195,7 @@ graph TD
 | transaction_scene | Ftransaction_scene_type | trans_type | 1: Collection<br> 2: Disbursement<br> 3: Withholding<br>4: Withdrawal<br>5: Payment<br>6: Subs Plan |
 | Merchant SPID | fspid | STRING | Used to join with merchant dimension table |
 | - | fsite_id | STRING | One seller may have multiple sites |
-| - | fshop_id | STRING | Present only in Disbursement & Withholding; ignored in Payment scenarios |
+| - | fshop_id | STRING | Present only in Disbursement Scene; ignored in Payment Scene |
 | **Pay_Transaction** <br> (Withdrawal/Pay/Subs) | fpayee_id | STRING | Applicable in payment scenarios |
 | **Pay_Transaction** | fpayee_type | BIGINT | Domestic: 1 - Personal Bank Account, 2 - Corporate Account<br>Overseas: 1 - Same-name Account, 2 - Supplier Account |
 | **Pay_Transaction** | fbiz_type | BIGINT | 1: FX purchase inbound (domestic)<br>2: FX purchase payment (overseas)<br>3: FX payment (overseas)<br>4: Annual Subs |

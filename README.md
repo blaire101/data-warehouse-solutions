@@ -129,7 +129,7 @@ graph TD
     SMA --> |balance can be withdrawn to bank account| ShopeeBankCard
     linkStyle 4 stroke:#333,stroke-width:1px,color:#000
 
-    SA_A --> |Withdrawal|  SBA_A
+    SA_A --> |Withdrawal| SBA_A
     SA_B --> SBA_B
     SA_C --> SBA_C
     linkStyle 5,6,7 stroke:#333,stroke-width:1px

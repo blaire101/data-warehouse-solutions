@@ -122,20 +122,20 @@ graph TD
         style SBA_C fill:#F5F5DC,stroke:#333,stroke-width:2px %% Keep beige
     end
 
-    %% Right blue box - Seller Product Supplier
-    subgraph SZ_ProductSupplier["Seller Product Supplier"]
+   %% Right blue box - Seller Product Supplier
+    subgraph SZ_ProductSupplier["2"]
         direction TB %% Internal layout is top-to-bottom
-        style SG_SellerBanks fill:#ADD8E6,stroke:#333,stroke-width:2px %% Changed to light blue
-        SPS_A([Seller Product Supplier A])
+        style SZ_ProductSupplier fill:#ADD8,stroke:#333,stroke-width:2px %% Changed to light blue
+        SPS_A([Product Supplier])
         style SPS_A fill:#F5F5DC,stroke:#333,stroke-width:2px %% Keep beige
     end
 
     %% Right blue box - Seller Annual Subscription Plan
-    subgraph SZ_Subscription["Seller Annual Subscription Plan"]
+    subgraph Subs["3"]
         direction TB %% Internal layout is top-to-bottom
-        style SellerAnnualSubscriptionPlan fill:#ADD8E6,stroke:#333,stroke-width:2px %% Changed to light blue
-        SASP_A([Seller Annual Subscription Plan A])
-        style SASP_A fill:#F5F5DC,stroke:#333,stroke-width:2px %% Keep beige
+        style Subs fill:#ADD5,stroke:#333,stroke-width:1px %% Changed to light blue
+        SASP_C([annual membership])
+        style SASP_C fill:#F5F5,stroke:#333,stroke-width:1px %% Keep beige
     end
 
     %% Connections between main sections
@@ -146,8 +146,8 @@ graph TD
     linkStyle 4 stroke:#333,stroke-width:1px,color:#000
 
     SA_A --> |Withdrawal| SBA_A
-    SA_A --> |SellerProductSupplier| SPS_A
-    SA_A --> |AnnualSubscriptionPlan| SASP_A
+    SA_A --> |Payment| SPS_A
+    SA_C --> |Subscription| SASP_C
     SA_B --> |Withdrawal| SBA_B
     SA_C --> |Withdrawal| SBA_C
     linkStyle 5,6,7 stroke:#333,stroke-width:1px

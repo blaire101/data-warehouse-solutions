@@ -131,7 +131,7 @@ graph TD
     end
 
     %% Right blue box - Seller Annual Subscription Plan
-    subgraph ["Seller Annual Subscription Plan"]
+    subgraph SZ_Subscription["Seller Annual Subscription Plan"]
         direction TB %% Internal layout is top-to-bottom
         style SellerAnnualSubscriptionPlan fill:#ADD8E6,stroke:#333,stroke-width:2px %% Changed to light blue
         SASP_A([Seller Annual Subscription Plan A])

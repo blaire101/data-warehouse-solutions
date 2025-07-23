@@ -130,12 +130,12 @@ graph TD
         style SPS_A fill:#F5F5DC,stroke:#333,stroke-width:2px %% Keep beige
     end
 
-    %% Right blue box - Annual Subscription Plan
-    subgraph TEN_["Annual Subscription Plan"]
+    %% Right blue box - Seller Annual Subscription Plan
+    subgraph ["Seller Annual Subscription Plan"]
         direction TB %% Internal layout is top-to-bottom
-        style TEN_AnnualSubscriptionPlan fill:#ADD8E6,stroke:#333,stroke-width:2px %% Changed to light blue
-        ASP_A([Annual Subscription Plan A])
-        style ASP_A fill:#F5F5DC,stroke:#333,stroke-width:2px %% Keep beige
+        style SellerAnnualSubscriptionPlan fill:#ADD8E6,stroke:#333,stroke-width:2px %% Changed to light blue
+        SASP_A([Seller Annual Subscription Plan A])
+        style SASP_A fill:#F5F5DC,stroke:#333,stroke-width:2px %% Keep beige
     end
 
     %% Connections between main sections
@@ -149,6 +149,9 @@ graph TD
     SA_B --> |Withdrawal| SBA_B
     SA_C --> |Withdrawal| SBA_C
     linkStyle 5,6,7 stroke:#333,stroke-width:1px
+
+    SA_A --> |Seller Product Supplier A| SPS_A
+    SA_A --> |Annual Subscription Plan A| SASP_A
 ```
 
 | No. | Business Process                    | Description                                                                                  |

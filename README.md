@@ -197,17 +197,17 @@ graph TD
 | - | fsite_id | STRING | One seller may have multiple sites |
 | - | fshop_id | STRING | Present only in Disbursement & Withholding; ignored in Payment scenarios |
 | **Pay_Scenario** <br> (Withdrawal/Pay/Subs) | fpayee_id | STRING | Applicable in payment scenarios |
-| **Pay_Scenario** <br> (Withdrawal/Pay/Subs) | fpayee_type | BIGINT | Domestic: 1 - Personal Bank Account, 2 - Corporate Account<br>Overseas: 1 - Same-name Account, 2 - Supplier Account |
-| **Pay_Scenario** <br> (Withdrawal/Pay/Subs) | fbiz_type | BIGINT | 1: FX purchase inbound (domestic)<br>2: FX purchase payment (overseas)<br>3: FX payment (overseas)<br>4: Annual card |
-| **Pay_Scenario** <br> (Withdrawal/Pay/Subs) | Fsell_cur_type | STRING | Outgoing currency, ISO 4217 format |
-| **Pay_Scenario** <br> (Withdrawal/Pay/Subs) | Fbuy_cur_type | STRING | Incoming currency, ISO 4217 format |
-| **Pay_Scenario** <br> (Withdrawal/Pay/Subs) | Fbank_country | STRING | Destination country of funds |
-| **Pay_Scenario** <br> (Withdrawal/Pay/Subs) | Fproduct_code | STRING | Product code, used in annual card purchase |
-| **Pay_Scenario** <br> (Withdrawal/Pay/Subs) | Fbiz_fee_cur_type | STRING | Currency of transaction fee |
-| **Pay_Scenario** <br> (Withdrawal/Pay/Subs) | Fbiz_fee_amount | BIGINT | Transaction fee in original currency (unit: yuan) |
-| **Pay_Scenario** <br> (Withdrawal/Pay/Subs) | Fbiz_fee_amount_usd | BIGINT | Fee amount (USD) |
+| **Pay_Scenario** | fpayee_type | BIGINT | Domestic: 1 - Personal Bank Account, 2 - Corporate Account<br>Overseas: 1 - Same-name Account, 2 - Supplier Account |
+| **Pay_Scenario** | fbiz_type | BIGINT | 1: FX purchase inbound (domestic)<br>2: FX purchase payment (overseas)<br>3: FX payment (overseas)<br>4: Annual card |
+| **Pay_Scenario** | Fsell_cur_type | STRING | Outgoing currency, ISO 4217 format |
+| **Pay_Scenario** | Fbuy_cur_type | STRING | Incoming currency, ISO 4217 format |
+| **Pay_Scenario**  | Fbank_country | STRING | Destination country of funds |
+| **Pay_Scenario**  | Fproduct_code | STRING | Product code, used in annual card purchase |
+| **Pay_Scenario**  | Fbiz_fee_cur_type | STRING | Currency of transaction fee |
+| **Pay_Scenario**  | Fbiz_fee_amount | BIGINT | Transaction fee in original currency (unit: yuan) |
+| **Pay_Scenario**  | Fbiz_fee_amount_usd | BIGINT | Fee amount (USD) |
 | **Pay_Scenario** <br> (Withdrawal/Pay/Subs) | Fbiz_fee_amount_cny | BIGINT | Transaction fee converted to CNY |
-| General Transaction | Fcur_type | STRING | Transaction currency |
+| **General Transaction** | Fcur_type | STRING | Transaction currency |
 | General Transaction | Famount | BIGINT | Transaction amount in original currency (unit: yuan) |
 | General Transaction | Famount_usd | BIGINT | Converted amount in USD |
 | General Transaction | Famount_cny | BIGINT | Converted amount in CNY |

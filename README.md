@@ -75,9 +75,9 @@ end
 
 ## 3. ToB Business - Cross-border E-commerce Collection and Payment
 
-> Background: Under the standard collection model, Shopee currently only supports local settlement of sales proceeds—meaning funds from sold goods can only be settled into local overseas bank accounts. However, for cross-border sellers, it is generally not feasible to open overseas bank accounts due to high entry barriers and operational costs. As a result, sellers face challenges in receiving payments and difficulties in capital circulation.
+> Background: Under the standard collection model, Shopee currently only supports local settlement of sales proceeds—meaning funds from sold goods can only be settled into local overseas bank accounts. However, for **cross-border sellers**, it is not feasible to open overseas bank accounts. As a result, sellers face challenges in **receiving payments and accessing their earnings freely**.
 
-Provide offshore accounts (Shopee official wallet) and fund repatriation services for Shopee cross-border sellers based in Mainland China, Hong Kong, and South Korea.
+Provide offshore accounts (Shopee official wallet - White-label) and fund repatriation services for Shopee cross-border sellers based in Mainland China, Hong Kong, and South Korea.
 
 ```mermaid
 graph TD

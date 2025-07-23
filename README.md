@@ -190,7 +190,7 @@ graph TD
 | Description | Field Name | Type | Remarks |
 |-------------|------------|------|---------|
 | **Partition** | fdate | BIGINT | Date partition field |
-| **Primary Key** | Ftransaction_scene | BIGINT | 1: Collection Transaction Scene (Top-up to Ten-HK )<br>2: Disbursement & Withholding Scene – Disbursement and Withholding<br>3: Payment Transaction Scene (Withdrawal / Payment / Subs Plan) |
+| **Primary Key** | Ftransaction_scene | BIGINT | 1: Collection Transaction Scene (Top-up to Ten-HK )<br>2: Disbursement Scene – Disbursement <br> 3: Payment Scene (Withdrawal / Payment / Subs Plan) |
 | **Primary Key** | Flistid | STRING | Order ID |
 | transaction_scene | Ftransaction_scene_type | trans_type | 1: Collection<br> 2: Disbursement<br> 3: Withholding<br>4: Withdrawal<br>5: Payment<br>6: Subs Plan |
 | Merchant SPID | fspid | STRING | Used to join with merchant dimension table |

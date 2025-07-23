@@ -27,3 +27,11 @@ JOIN exchange_rates fx ON t.currency = fx.currency AND t.fdate = fx.fdate
 WHERE t.fdate BETWEEN '20240101' AND '20241231'
 GROUP BY t.institution, t.sender_country, t.currency;
 ```
+
+| Issue                            | Description                                                                                                               |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| Data Skew in Remitting Countries | For example, transactions from the US exceed 12 million, accounting for 40%, causing severe skew in `group by + shuffle`. |
+| Large Exchange Rate Table        | `exchange_rates` contains millions of daily records, causing high I/O during joins.                                       |
+| COUNT DISTINCT Memory Pressure   | Multi-dimensional and multiple `COUNT DISTINCT` aggregations lead to memory spills and GC issues.                         |
+| Improper Aggregate Type          | Default use of `HashAggregate` is prone to OOM under skewed data conditions.                                              |
+

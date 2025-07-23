@@ -79,10 +79,9 @@ end
 >
 > - Under the standard collection model, Shopee currently only supports local settlement of sales proceeds—meaning funds from sold goods can only be settled into local overseas bank accounts.
 > - However, for **cross-border sellers, it is not feasible to open overseas bank accounts**. As a result, sellers face challenges in **receiving payments and accessing their earnings freely**.
+> - Ten-Pay is great at getting money back to China and distributing it efficiently.
 
-Provide offshore accounts (Shopee official wallet) and **fund repatriation** services `[riːˌpætriˈeɪʃən]` for Shopee cross-border sellers based in Mainland China, Hong Kong, and South Korea.
-
-Ten-Pay is great at getting money back to China and distributing it efficiently.
+So, Provide offshore accounts (AS Shopee official wallet) and **fund repatriation** services `[riːˌpætriˈeɪʃən]` for Shopee cross-border sellers based in Mainland China, Hong Kong, and South Korea.
 
 ```mermaid
 graph TD

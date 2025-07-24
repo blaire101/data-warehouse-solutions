@@ -169,9 +169,12 @@ graph TD
 
 **Subject-Specifc Analysis model**, covering `Merchant`, `Shop`, and `Orders`.
 
+> Shopee's official wallet business leverages multi-dimensional data analysis to support merchant lifecycle management, transaction insights, and revenue optimization. From churn monitoring to cross-site transaction trend analysis, comprehensive dashboards and thematic tables provide strong data support for business growth, product experience enhancement, and precision operations.
+
 #### Merchant Subject Table
 
-> Shopee's official wallet business leverages multi-dimensional data analysis to support merchant lifecycle management, transaction insights, and revenue optimization. From churn monitoring to cross-site transaction trend analysis, comprehensive dashboards and thematic tables provide strong data support for business growth, product experience enhancement, and precision operations.
+<details>
+<summary>Merchant Subject Data Metric</summary>
 
 | --Category-- | Field Name | Data_Type | Description |
 |-----------------------------------------|--------------------------------------|-----------|-----------------------------------------------------------------------------|
@@ -206,7 +209,13 @@ graph TD
 | **Vertical - Calc** | fmax_trd_amt_year                   | DOUBLE    | Max single transaction amount this year                                    |
 | **Lifecycle Tag** | fmerchant_lifecycle_tag   | BIGINT | Merchant lifecycle status tag:<br>1. Not disbursed<br>2. New<br>3. Retained<br>4. Lost<br>5. Recovered<br>0. Default |
 
+</details>
+
+
 #### Orders Subject Table
+
+<details>
+<summary>Order Subject Data Metric</summary>
 
 | Description | Field Name | Type | Remarks |
 |-------------|------------|------|---------|
@@ -234,5 +243,7 @@ graph TD
 | **General Transaction** | Famount_usd | BIGINT | Converted amount in USD |
 | **General Transaction** | Famount_cny | BIGINT | Converted amount in CNY |
 | **General Transaction** | Ftransaction_initiation_time | STRING | Time when the transaction was initiated |
+
+</details>
 
 ### Dashboard

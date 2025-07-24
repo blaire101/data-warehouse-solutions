@@ -45,11 +45,6 @@ Updating the Data Asset Scoring framework (0–100 points) to quantify each tabl
 6. Whitelist Mechanism allows table owners to apply for temporary exemptions, preserving audit trails.
 7. Finally, together the scores from all four dimensions, applied our weighted formula, and loaded the consolidated score into the central Data Asset Score table.
 
-</details>
-
-<details>
-<summary><strong style="color:#1E90FF;">score_table</strong></summary>
-
 | Field Name    | Description          |
 | ------------- | -------------------- |
 | fdate  | Date           |
@@ -69,7 +64,7 @@ Updating the Data Asset Scoring framework (0–100 points) to quantify each tabl
 
 **📈 Results** : Average asset score improved from 77 → 86
 > Overall Health Improvement
-> On a 100‑point scale, your portfolio of tables has moved from the “C+” range up into the “B+” range—meaning that, on average, assets now meet far more of your governance criteria (naming standards, DQC coverage, security and cost controls).
+> On a 100‑point scale, portfolio of tables has moved from the “C+” range up into the “B+” range—meaning that, on average, assets now meet governance criteria (naming standards, DQC coverage, security and cost controls).
 
 🌱 Future Extensions: Incorporate data‑usage heatmaps & Add partition‑level DQC quality checks.
 

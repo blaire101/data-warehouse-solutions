@@ -17,7 +17,7 @@ Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and tra
 ## 2. Data Governance - Data Asset Score
 
 ```mermaid
-flowchart TD
+flowchart TB
  subgraph SG_DataAssetScore["4"]
     direction LR
         DAS_A(["Table Standards - 35%"])

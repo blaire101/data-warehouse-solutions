@@ -18,10 +18,6 @@ Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and tra
 
 Partner with overseas remittance providers (e.g. Panda Remit, Wise) to bring foreign currency into China  
 
-<div align="center">
-  <img src="docs/Xoom-Ten-pay-1.avif" alt="Diagram" width="400">
-</div>
-
 > This diagram provides a basic outline, — the actual **information flow** and **funds flow** is much more complex.
 
 ```mermaid

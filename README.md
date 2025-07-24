@@ -45,7 +45,7 @@ Updating the Data Asset Scoring framework (0–100 points) to quantify each tabl
 7. Finally, together the scores from all four dimensions, applied our weighted formula, and loaded the consolidated score into the central Data Asset Score table.
 
 <details>
-<summary><strong style="color:#1E90FF;">combine\_score\_table</strong></summary>
+<summary><strong style="color:#1E90FF;">score_table</strong></summary>
 
 | Field Name    | Description          |
 | ------------- | -------------------- |

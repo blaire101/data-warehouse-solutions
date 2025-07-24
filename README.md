@@ -27,14 +27,20 @@ Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and tra
 
 **🎯 Goals & Expected Benefits**
 
-Updating the Data Asset Scoring framework (0–100 points) to quantify each table’s:
+<details>
+<summary><strong>Updating the Data Asset Scoring framework (0–100 points) to quantify each table’s:</strong></summary>
 
 1. Table Standards (35%): naming, comments, dependency hygiene
 2. Data Quality Checks (35%): SLA‑driven timeliness, DQC rule coverage, alert management
 3. Security (15%): sensitive‑field encryption & owner compliance
 4. Cost (15%): compute and storage cost
 
+</details>
+  
 **⚙️ Design & Implementation**
+
+<details>
+<summary><strong>Data Asset Scoring ⚙️ Design & Implementation</strong></summary>
 
 1. Scoring Rules automated via SparkSQL jobs running daily;
 2. Table (names, comments, dependencies) extracted from Hive Meta Table.
@@ -43,6 +49,8 @@ Updating the Data Asset Scoring framework (0–100 points) to quantify each tabl
 5. Cost – Implemented by our Data Platform team via daily scans for stale/“garbage” tables and by defining table lifecycle stages. Each day’s cost evaluation output is written into a Cost_Summary table.
 6. Whitelist Mechanism allows table owners to apply for temporary exemptions, preserving audit trails.
 7. Finally, together the scores from all four dimensions, applied our weighted formula, and loaded the consolidated score into the central Data Asset Score table.
+
+</details>
 
 <details>
 <summary><strong style="color:#1E90FF;">score_table</strong></summary>

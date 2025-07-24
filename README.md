@@ -139,17 +139,17 @@ graph TD
     end
 
     %% Connections between main sections
-    ShopeeBankCard --> |E-commerce Top-up| SMA
+    ShopeeBankCard --> |Collection - E-commerce Top-up| SMA
     linkStyle 3 stroke:#333,stroke-width:1px,color:#000
 
     SMA --> |balance can be withdrawn to bank account| ShopeeBankCard
     linkStyle 4 stroke:#333,stroke-width:1px,color:#000
 
-    SA_A --> |Withdrawal| SBA_A
-    SA_A --> |Payment| SPS_A
-    SA_C --> |Subscription| SASP_C
-    SA_B --> |Withdrawal| SBA_B
-    SA_C --> |Withdrawal| SBA_C
+    SA_A --> |Payout-Withdrawal| SBA_A
+    SA_A --> |Payout-Payment| SPS_A
+    SA_C --> |Payout-Subscription| SASP_C
+    SA_B --> |Payout-Withdrawal| SBA_B
+    SA_C --> |Payout-Withdrawal| SBA_C
     linkStyle 5,6,7 stroke:#333,stroke-width:1px
 ```
 

@@ -42,9 +42,9 @@ flowchart TD
 
  subgraph DAS_Standard["TableStandard"]
     direction TB
-        ST_A(["Naming Conventions: 50%"])
-        ST_B(["Annotation Standards: 37.5%"])
-        ST_C(["Dependency Standards: 12.5%"])
+        ST_A(["Naming Conventions <br> 50%"])
+        ST_B(["Annotation Standards <br> 37.5%"])
+        ST_C(["Dependency Standards <br> 12.5%"])
  end
 
 

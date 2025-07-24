@@ -176,6 +176,14 @@ flowchart TB
   class QAM1,QAM2,QAM3,QAM4 yellowNode
 ```
 
+### 🚀 Push via Platform & Automation & Manual configuration
+
+- ✅ Enforced **naming conventions** and **dependency configuration** for all new tables through platform-level upgrades  
+- ✅ **Auto-configured** zero-record checks and primary key uniqueness constraints  
+- ✅ Enhanced **whitelist governance**, preventing exempt tables from impacting scoring  
+- ✅ **Excluded** temporary tables prefixed with `temp_`, `tmp_`, or `check_` from evaluation scope
+
+
 ## 3. ToB Business - Cross-border E-commerce Collection and Payment
 
 > Background:

@@ -210,7 +210,6 @@ graph TD
 
 </details>
 
----
 
 <details>
 <summary><strong style="color:#1E90FF;">Order Subject Table - Data Metric</strong></summary>
@@ -243,5 +242,7 @@ graph TD
 | **General Transaction** | Ftransaction_initiation_time | STRING | Time when the transaction was initiated |
 
 </details>
+
+---
 
 ### Dashboard

@@ -18,70 +18,7 @@ Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and tra
 
 ```mermaid
 flowchart TD
- subgraph SG_DataAssetScore["1"]
-    direction LR
-        DAS_A(["Table Standards - 35%"])
-        DAS_B(["Data Quality - 35%"])
-        DAS_C(["Security 15% + Cost 15%"])
-  end
-
-
- subgraph DAS_SECO["Security + Cost"]
-    direction TB
-        SECO_A(["Field Encryption <br>Owner Compliance"])
-        SECO_B(["Compute Cost <br>Storage Cost"])
- end
-
- subgraph DAS_DataQuality["DQC"]
-    direction TB
-        DQ_A(["Timely Monitoring <br> 20%"])
-        DQ_B(["DQC Coverage <br> 50%"])
-        DQ_C(["Alert Management <br> 30%"])
- end
-
-
- subgraph DAS_Standard["Standard"]
-    direction TB
-        ST_A(["Naming Conventions <br> 50%"])
-        ST_B(["Annotation Standards <br> 37.5%"])
-        ST_C(["Dependency Standards <br> 12.5%"])
- end
-
-
-    DAS(["Data_Asset_Score"]) --> DAS_A & DAS_B & DAS_C
-    DAS_A --> DAS_Standard
-    DAS_B --> DAS_DataQuality
-    DAS_C --> DAS_SECO
-
-    style ST_A fill:#F0FFF0,stroke:#333,stroke-width:2px %% Keep very pale green
-    style DAS_A fill:#F0FFF0,stroke:#333,stroke-width:2px %% Keep very pale green
-    style DAS_B fill:#F0FFF0,stroke:#333,stroke-width:2px %% Keep very pale green
-    style DAS_C fill:#F0FFF0,stroke:#333,stroke-width:2px %% Keep very pale green
-    style DQ_A fill:#F5F5DC,stroke:#333,stroke-width:2px %% Keep beige
-    style DQ_B fill:#F5F5DC,stroke:#333,stroke-width:2px %% Keep beige
-    style DQ_C fill:#F5F5DC,stroke:#333,stroke-width:2px %% Keep beige
-    style ST_A fill:#F5F5,stroke:#333,stroke-width:1px %% Keep beige
-    style ST_B fill:#F5F5,stroke:#333,stroke-width:1px %% Keep beige
-    style ST_C fill:#F5F5,stroke:#333,stroke-width:1px %% Keep beige
-    style SECO_A fill:#FF23,stroke:#333,stroke-width:2px %% Keep beige
-    style SECO_B fill:#FF23,stroke:#333,stroke-width:2px %% Keep beige
-    style DAS fill:#FFA07A,stroke:#333,stroke-width:2px %% Adjusted to comfortable orange-yellow
-    style SG_DataAssetScore fill:#98FB98,stroke:#333,stroke-width:2px %% Changed to light green
-    style DAS_Standard fill:#ADD8,stroke:#333,stroke-width:2px %% Changed to light blue
-    style DAS_DataQuality fill:#ADD8E6,stroke:#333,stroke-width:2px %% Changed to light blue
-    style DAS_SECO fill:#ADD5,stroke:#333,stroke-width:1px %% Changed to light blue
-    linkStyle 0 stroke:#333,stroke-width:1px,fill:none
-    linkStyle 1 stroke:#333,stroke-width:1px,fill:none
-    linkStyle 2 stroke:#333,stroke-width:1px,fill:none
-    linkStyle 3 stroke:#333,stroke-width:1px,color:#000,fill:none
-    linkStyle 5 stroke:#333,stroke-width:1px,fill:none
-    linkStyle 6 stroke:#333,stroke-width:1px,fill:none
-    linkStyle 8 stroke:#333,stroke-width:1px,fill:none 
-```
-
-```mermaid
-flowchart TD
- subgraph SG_DataAssetScore["1"]
+ subgraph SG_DataAssetScore
     direction LR
         DAS_A(["Table Standards - 35%"])
         DAS_B(["Data Quality - 35%"])
@@ -94,15 +31,15 @@ flowchart TD
   end
  subgraph DAS_DataQuality["DQC"]
     direction TB
-        DQ_A(["Timely Monitoring 20%"])
-        DQ_B(["DQC Coverage 50%"])
-        DQ_C(["Alert Management 30%"])
+        DQ_A(["Timely Monitoring <br>20%"])
+        DQ_B(["DQC Coverage <br>50%"])
+        DQ_C(["Alert Management <br>30%"])
   end
  subgraph DAS_Standard["Standard"]
     direction TB
-        ST_A(["Naming Conventions 50%"])
-        ST_B(["Comment Standards 37.5%"])
-        ST_C(["Dependency Standards 12.5%"])
+        ST_A(["Naming Conventions <br>50%"])
+        ST_B(["Comment Standards <br>37.5%"])
+        ST_C(["Dependency Standards <br>12.5%"])
   end
     DAS(["Data Asset Score"]) --> DAS_A & DAS_B & DAS_C
     DAS_A -- rules --> DAS_Standard

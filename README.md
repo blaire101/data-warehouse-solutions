@@ -39,10 +39,10 @@ Updating the Data Asset Scoring framework (0–100 points) to quantify each tabl
 
 1. Scoring Rules automated via SparkSQL jobs running daily;
 2. Table (names, comments, dependencies) extracted from Hive Meta Table.
-3. DQC rules stored and versioned in a rule table, evaluation output is written into a DQC_Summary table.
+3. DQC rules stored and versioned in a rule table, evaluation output is written into a DQC_Score table.
 4. Security – Perform sensitive‑field encryption checks using the scan results supplied by the data-security‑platform team
-5. Cost – Implemented by our Data Platform team via daily scans for stale/“garbage” tables and by defining table lifecycle stages. Each day’s cost evaluation output is written into a Cost_Summary table.
-6. Whitelist Mechanism allows table owners to apply for temporary exemptions, preserving audit trails.
+5. Cost – Implemented by our Data Platform team via daily scans for stale/“garbage” tables and by defining table lifecycle stages. Each day’s cost evaluation output is written into a Cost_Score table.
+6. Whitelist Mechanism allows table owners to apply for temporary exemptions.
 7. Finally, together the scores from all four dimensions, applied our weighted formula, and loaded the consolidated score into the central Data Asset Score table.
 
 | Field Name    | Description          |

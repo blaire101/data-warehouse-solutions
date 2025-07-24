@@ -462,5 +462,3 @@ end
 | 5   | Payment Collection  | Recipients collect RMB via digital wallets or linked bank-cards. |
 
 ---
-
-### Dashboard

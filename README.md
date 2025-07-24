@@ -14,7 +14,7 @@ Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and tra
   <img src="docs/dwh-1.jpg" alt="Diagram" width="700">
 </div>
 
-## Data Governance - Data Asset Score
+## 2. Data Governance - Data Asset Score
 
 ```mermaid
 flowchart TD
@@ -78,66 +78,6 @@ flowchart TD
     linkStyle 6 stroke:#333,stroke-width:1px,fill:none
     linkStyle 8 stroke:#333,stroke-width:1px,fill:none 
 ```
-
-
-## 2. ToC Business - Global Remittances to China
-
-Partner with overseas remittance providers (e.g. Panda Remit, Wise) to bring foreign currency into China  
-
-> This diagram provides a basic outline, — the actual **information flow** and **funds flow** is much more complex.
-
-```mermaid
-flowchart LR
-
-%% Node styles
-classDef user fill:#D1C4E9,stroke:#673AB7,stroke-width:2px;
-classDef product fill:#C8E6C9,stroke:#388E3C,stroke-width:2px;
-classDef infra fill:#FFF9C4,stroke:#FBC02D,stroke-width:2px;
-classDef spacer fill:none,stroke:none;
-
-%% Subgraph background styles
-style overseasBox fill:#EBF5FB,stroke:#85C1E9,stroke-width:2px
-style chinaBox fill:#FEF9E7,stroke:#F7DC6F,stroke-width:2px
-
-%% Nodes
-Sender["Sender"]:::user
-SI["Sending Institution - SI"]:::product
-API["Remittance Services - API"]:::infra
-RI["Receiving Institution - RI"]:::product
-Recipient["Recipient"]:::user
-
-%% Subgraph: Overseas
-subgraph overseasBox["Overseas or HK"]
-    direction LR
-    Sender -->|Initiate Transfer<br>Make Payment| SI
-    SI -->|Forward Transfer<br>Prefund| API
-    OV_SPACER1[" "]:::spacer
-end
-
-%% Subgraph: Onshore China
-subgraph chinaBox["Onshore China"]
-    direction LR
-    API -->|Forward Transfer<br>Settlement| RI
-    RI -.->|Notify| Recipient
-    CN_SPACER1[" "]:::spacer
-end
-```
-
-**Subject-Specifc Analysis model**
-
-> covering `Sending Institution (Remittance Providers)`, `Orders`, and `Users`.
-
-1. **Sending Institution (SI)** : Analysed key metrics (countries, currencies and transaction, user volumes, fees, FX income ...), produced reports of transaction & profits to guide improvements.
-2. **Orders** : 3 stage life-cycle funnel to measure conversion rates and bottleneck. - Order status: A: Provider order | B: Account opening process | C:  Complete fund receipt.
-3. **Users** : basic info, behaviour, life-cycle, preferences for targeted campaigns.
-
-| No. | Business Processes  | Description |
-|:---:|---------------------|-------------|
-| pre 1   | Partner Onboarding  | Partners complete a onboarding process. Risk & compliance teams perform due diligence. |
-| pre 2   | Institution Funding | Partners pre-fund a designated account to ensure sufficient liquidity for remittance. |
-| pre 3   | Currency Exchange   | Based on settlement needs, foreign currency is converted into RMB. |
-| 4   | Remittance Service | End-users initiate remittance via the provider's app by submitting sender and recipient info.<br>1. If the recipient is new, an SMS prompts setup of a receiving card.<br>2. The provider calls the remittance API to submit the order.<br>3. Funds are routed into local settlement accounts. |
-| 5   | Payment Collection  | Recipients collect RMB via digital wallets or linked bank-cards. |
 
 ## 3. ToB Business - Cross-border E-commerce Collection and Payment
 
@@ -308,6 +248,66 @@ graph TD
 | **General Transaction** | Ftransaction_initiation_time | STRING | Time when the transaction was initiated |
 
 </details>
+
+
+## 4. ToC Business - Global Remittances to China
+
+Partner with overseas remittance providers (e.g. Panda Remit, Wise) to bring foreign currency into China  
+
+> This diagram provides a basic outline, — the actual **information flow** and **funds flow** is much more complex.
+
+```mermaid
+flowchart LR
+
+%% Node styles
+classDef user fill:#D1C4E9,stroke:#673AB7,stroke-width:2px;
+classDef product fill:#C8E6C9,stroke:#388E3C,stroke-width:2px;
+classDef infra fill:#FFF9C4,stroke:#FBC02D,stroke-width:2px;
+classDef spacer fill:none,stroke:none;
+
+%% Subgraph background styles
+style overseasBox fill:#EBF5FB,stroke:#85C1E9,stroke-width:2px
+style chinaBox fill:#FEF9E7,stroke:#F7DC6F,stroke-width:2px
+
+%% Nodes
+Sender["Sender"]:::user
+SI["Sending Institution - SI"]:::product
+API["Remittance Services - API"]:::infra
+RI["Receiving Institution - RI"]:::product
+Recipient["Recipient"]:::user
+
+%% Subgraph: Overseas
+subgraph overseasBox["Overseas or HK"]
+    direction LR
+    Sender -->|Initiate Transfer<br>Make Payment| SI
+    SI -->|Forward Transfer<br>Prefund| API
+    OV_SPACER1[" "]:::spacer
+end
+
+%% Subgraph: Onshore China
+subgraph chinaBox["Onshore China"]
+    direction LR
+    API -->|Forward Transfer<br>Settlement| RI
+    RI -.->|Notify| Recipient
+    CN_SPACER1[" "]:::spacer
+end
+```
+
+**Subject-Specifc Analysis model**
+
+> covering `Sending Institution (Remittance Providers)`, `Orders`, and `Users`.
+
+1. **Sending Institution (SI)** : Analysed key metrics (countries, currencies and transaction, user volumes, fees, FX income ...), produced reports of transaction & profits to guide improvements.
+2. **Orders** : 3 stage life-cycle funnel to measure conversion rates and bottleneck. - Order status: A: Provider order | B: Account opening process | C:  Complete fund receipt.
+3. **Users** : basic info, behaviour, life-cycle, preferences for targeted campaigns.
+
+| No. | Business Processes  | Description |
+|:---:|---------------------|-------------|
+| pre 1   | Partner Onboarding  | Partners complete a onboarding process. Risk & compliance teams perform due diligence. |
+| pre 2   | Institution Funding | Partners pre-fund a designated account to ensure sufficient liquidity for remittance. |
+| pre 3   | Currency Exchange   | Based on settlement needs, foreign currency is converted into RMB. |
+| 4   | Remittance Service | End-users initiate remittance via the provider's app by submitting sender and recipient info.<br>1. If the recipient is new, an SMS prompts setup of a receiving card.<br>2. The provider calls the remittance API to submit the order.<br>3. Funds are routed into local settlement accounts. |
+| 5   | Payment Collection  | Recipients collect RMB via digital wallets or linked bank-cards. |
 
 ---
 

@@ -18,11 +18,11 @@ Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and tra
 
 ```mermaid
 flowchart TD
- subgraph SG_DataAssetScore
+ subgraph SG_DataAssetScore["4"]
     direction LR
         DAS_A(["Table Standards - 35%"])
         DAS_B(["Data Quality - 35%"])
-        DAS_C(["Security 15%+Cost 15%"])
+        DAS_C(["Security 15% + Cost 15%"])
   end
  subgraph DAS_SECO["Security + Cost"]
     direction TB
@@ -43,8 +43,8 @@ flowchart TD
   end
     DAS(["Data Asset Score"]) --> DAS_A & DAS_B & DAS_C
     DAS_A -- rules --> DAS_Standard
-    DAS_B -- rules --> DAS_DataQuality
-    DAS_C -- rules --> DAS_SECO
+    DAS_B --> DAS_DataQuality
+    DAS_C --> DAS_SECO
     style DAS_A fill:#F0FFF0,stroke:#333,stroke-width:2px
     style DAS_B fill:#F0FFF0,stroke:#333,stroke-width:2px
     style DAS_C fill:#F0FFF0,stroke:#333,stroke-width:2px
@@ -68,6 +68,8 @@ flowchart TD
     linkStyle 4 stroke:#333,stroke-width:1px,fill:none
     linkStyle 5 stroke:#333,stroke-width:1px,fill:none
 ```
+
+**Table Standards**
 
 ```mermaid
 flowchart TB
@@ -115,6 +117,8 @@ flowchart TB
   class CS1,CS2,CS3,CS4 purpleNode
   class DS1,DS2 yellowNode
 ```
+
+**Data Quality Check**
 
 ```mermaid
 flowchart TB

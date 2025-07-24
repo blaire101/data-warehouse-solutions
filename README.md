@@ -18,55 +18,54 @@ Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and tra
 
 ```mermaid
 flowchart TB
- subgraph SG_DataAssetScore["4"]
-    direction LR
-        DAS_A(["Table Standards - 35%"])
-        DAS_B(["Data Quality Check - 35%"])
-        DAS_C(["Security 15% + Cost 15%"])
-  end
- subgraph DAS_SECO["Security + Cost"]
-    direction TB
-        SECO_A(["Field Encryption <br>Owner Compliance"])
+
+    subgraph SG_DataAssetScore["4"]
+        direction LR
+        DAS_A(["Table Standards <br> 35%"])
+        DAS_B(["Data Quality Check <br> 35%"])
+        DAS_C(["Security + Cost <br> 15% + 15%"])
+    end
+
+    subgraph DAS_SECO["Security + Cost"]
+        direction TB
+        SECO_A(["Sensitive Field Encryption <br>Owner Compliance"])
         SECO_B(["Compute Cost <br>Storage Cost"])
-  end
- subgraph DAS_DataQuality["DQC"]
-    direction TB
+    end
+
+    subgraph DAS_DataQuality["DQC"]
+        direction TB
         DQ_A(["Timely Monitoring <br>20%"])
         DQ_B(["DQC Coverage <br>50%"])
         DQ_C(["Alert Management <br>30%"])
-  end
- subgraph DAS_Standard["Standard"]
-    direction TB
+    end
+
+    subgraph DAS_Standard["Standard"]
+        direction TB
         ST_A(["Naming Conventions <br>50%"])
         ST_B(["Comment Standards <br>37.5%"])
         ST_C(["Dependency Standards <br>12.5%"])
-  end
+    end
+
     DAS(["Data Asset Score"]) --> DAS_A & DAS_B & DAS_C
     DAS_A -- rules --> DAS_Standard
     DAS_B -- rules --> DAS_DataQuality
     DAS_C -- rules --> DAS_SECO
-    style DAS_A fill:#F0FFF0,stroke:#333,stroke-width:2px
-    style DAS_B fill:#F0FFF0,stroke:#333,stroke-width:2px
-    style DAS_C fill:#F0FFF0,stroke:#333,stroke-width:2px
-    style SECO_A fill:#FFE4B5,stroke:#333,stroke-width:2px
-    style SECO_B fill:#FFE4B5,stroke:#333,stroke-width:2px
-    style DQ_A fill:#F5F5DC,stroke:#333,stroke-width:2px
-    style DQ_B fill:#F5F5DC,stroke:#333,stroke-width:2px
-    style DQ_C fill:#F5F5DC,stroke:#333,stroke-width:2px
-    style ST_A fill:#F5F5DC,stroke:#333,stroke-width:1px
-    style ST_B fill:#F5F5DC,stroke:#333,stroke-width:1px
-    style ST_C fill:#F5F5DC,stroke:#333,stroke-width:1px
-    style DAS fill:#FFA07A,stroke:#333,stroke-width:2px
-    style DAS_Standard fill:#ADD8E6,stroke:#333,stroke-width:2px
-    style DAS_DataQuality fill:#ADD8E6,stroke:#333,stroke-width:2px
-    style DAS_SECO fill:#ADD8E6,stroke:#333,stroke-width:1px
-    style SG_DataAssetScore fill:#98FB98,stroke:#333,stroke-width:2px
-    linkStyle 0 stroke:#333,stroke-width:1px,fill:none
-    linkStyle 1 stroke:#333,stroke-width:1px,fill:none
-    linkStyle 2 stroke:#333,stroke-width:1px,fill:none
-    linkStyle 3 stroke:#333,stroke-width:1px,fill:none
-    linkStyle 4 stroke:#333,stroke-width:1px,fill:none
-    linkStyle 5 stroke:#333,stroke-width:1px,fill:none
+
+
+    classDef rectBox fill:#F5F5DC,stroke:#333,stroke-width:2px,rx:0,ry:0
+    classDef rectMain fill:#FFA07A,stroke:#333,stroke-width:2px,rx:0,ry:0
+    classDef rectGroup fill:#ADD8E6,stroke:#333,stroke-width:2px,rx:0,ry:0
+    classDef rectLight fill:#F0FFF0,stroke:#333,stroke-width:2px,rx:0,ry:0
+    classDef rectWarn fill:#FFE4B5,stroke:#333,stroke-width:2px,rx:0,ry:0
+    classDef rectFrame fill:#98FB98,stroke:#333,stroke-width:2px,rx:0,ry:0
+
+    class DAS rectMain
+    class DAS_A,DAS_B,DAS_C rectLight
+    class SECO_A,SECO_B rectWarn
+    class DQ_A,DQ_B,DQ_C rectBox
+    class ST_A,ST_B,ST_C rectBox
+    class SG_DataAssetScore rectFrame
+    class DAS_Standard,DAS_DataQuality,DAS_SECO rectGroup
 ```
 
 **Table Standards**

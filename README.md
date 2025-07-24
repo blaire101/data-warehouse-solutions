@@ -18,33 +18,21 @@ Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and tra
 
 ```mermaid
 flowchart TB
-  %% Style definitions
-  classDef topNode fill:#C9D7E2,stroke:#005B91,stroke-width:2px,color:#000000,font-weight:bold;
-  classDef mainCategory fill:#D8EDF2,stroke:#00A2C9,stroke-width:2px,color:#000000;
-  classDef subCategory fill:#F0F8FF,stroke:#ADD8E6,stroke-width:1px,color:#000000;
+  %% Style definitions using Shopee palette
+  classDef topNode fill:#FFA07A,stroke:#333,stroke-width:2px,color:#000000,font-weight:bold;
+  classDef mainCategory fill:#98FB98,stroke:#333,stroke-width:2px,color:#000000;
+  classDef subCategory fill:#ADD8E6,stroke:#333,stroke-width:1px,color:#000000;
 
   %% Top node
   DG["Data Governance"]:::topNode
 
-  %% Main categories aligned horizontally under DG
-  subgraph TopRow
-    direction LR
-    S["Standards (35%)"]:::mainCategory
-    DQ["Data Quality (35%)"]:::mainCategory
-    SE["Security (15%)"]:::mainCategory
-    C["Cost (15%)"]:::mainCategory
-  end
+  %% Main branches aligned horizontally under DG
+  DG --> S["Standards (35%)"]:::mainCategory
+  DG --> DQ["Data Quality (35%)"]:::mainCategory
+  DG --> SE["Security (15%)"]:::mainCategory
+  DG --> C["Cost (15%)"]:::mainCategory
 
-  %% Style the TopRow container in green border
-  style TopRow fill:transparent,stroke:#00A2C9,stroke-width:2px
-
-  %% Connections from top node to main categories
-  DG --> S
-  DG --> DQ
-  DG --> SE
-  DG --> C
-
-  %% Sub-items linked from each main category
+  %% Sub-items for each branch
   S --> NS["Naming Conventions: 50%"]:::subCategory
   S --> CS["Annotation Standards: 37.5%"]:::subCategory
   S --> DS["Dependency Standards: 12.5%"]:::subCategory

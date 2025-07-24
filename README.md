@@ -38,7 +38,7 @@ Updating the Data Asset Scoring framework (0–100 points) to quantify each tabl
 <summary><strong>⚙️ Design & Implementation</strong></summary>
 
 1. Scoring Rules automated via SparkSQL jobs running daily;
-2. Table (names, comments, dependencies) extracted from Hive Meta Table.
+2. Table (names, comments, dependencies) extracted from Hive Meta Table & Lineage Relationship Table.
 3. DQC rules stored and versioned in a rule table, evaluation output is written into a DQC_Score table.
 4. Security – Perform sensitive‑field encryption checks using the scan results supplied by the data-security‑platform team
 5. Cost – Implemented by our Data Platform team via daily scans for stale/“garbage” tables and by defining table lifecycle stages. Each day’s cost evaluation output is written into a Cost_Score table.

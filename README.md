@@ -21,7 +21,7 @@ flowchart TD
  subgraph SG_DataAssetScore["4"]
     direction LR
         DAS_A(["Table Standards - 35%"])
-        DAS_B(["Data Quality - 35%"])
+        DAS_B(["Data Quality Check - 35%"])
         DAS_C(["Security 15% + Cost 15%"])
   end
  subgraph DAS_SECO["Security + Cost"]
@@ -43,8 +43,8 @@ flowchart TD
   end
     DAS(["Data Asset Score"]) --> DAS_A & DAS_B & DAS_C
     DAS_A -- rules --> DAS_Standard
-    DAS_B --> DAS_DataQuality
-    DAS_C --> DAS_SECO
+    DAS_B -- rules --> DAS_DataQuality
+    DAS_C -- rules --> DAS_SECO
     style DAS_A fill:#F0FFF0,stroke:#333,stroke-width:2px
     style DAS_B fill:#F0FFF0,stroke:#333,stroke-width:2px
     style DAS_C fill:#F0FFF0,stroke:#333,stroke-width:2px

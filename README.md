@@ -48,10 +48,10 @@ flowchart TD
  end
 
 
-    DAS(["Data_Asset_Score"]) --> SG_DataAssetScore
-    DAS_A --> ST_A & ST_B & ST_C
-    DAS_B --> DQ_A & DQ_B & DQ_C
-    DAS_C --> SECO_A & SECO_B
+    DAS(["Data_Asset_Score"]) --> DAS_A & DAS_B & DAS_C
+    DAS_A --> DAS_Standard
+    DAS_B --> DAS_DataQuality
+    DAS_C --> DAS_SECO
 
     style ST_A fill:#F0FFF0,stroke:#333,stroke-width:2px %% Keep very pale green
     style DAS_A fill:#F0FFF0,stroke:#333,stroke-width:2px %% Keep very pale green

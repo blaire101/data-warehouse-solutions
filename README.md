@@ -79,6 +79,55 @@ flowchart TD
     linkStyle 8 stroke:#333,stroke-width:1px,fill:none 
 ```
 
+### 2.1 Standard
+
+```mermaid
+flowchart TB
+  %% Top-level: Standards
+  STD["Table Standards (35%)"]
+  STD --> NS["Naming Convention 50%"]
+  STD --> CS["Comment Standard 37.5%"]
+  STD --> DS["Dependency Standard 12.5%"]
+
+  %% Naming Convention Subgroup
+  subgraph NS-Group
+    direction TB
+    NS1["a. prefix"]
+    NS2["b. suffix"]
+    NS3["c. business domain"]
+    NS4["d. data domain"]
+  end
+  NS --> NS-Group
+
+  %% Comment Standard Subgroup
+  subgraph CS-Group
+    direction TB
+    CS1["a. table comment"]
+    CS2["b. column comment "]
+  end
+  CS --> CS-Group
+
+  %% Dependency Standard Subgroup
+  subgraph DS-Group
+    direction TB
+    DS1["a. Backward dependency <br> b. ODS-layer dependency"]
+  end
+  DS --> DS-Group
+
+  %% Styling
+  classDef topNode fill:#98FB98,stroke:#333,stroke-width:2px
+  classDef secondNode fill:#ADD8E6,stroke:#333,stroke-width:2px
+  classDef subgroupNode fill:#F5B7B1,stroke:#333,stroke-width:1px
+  classDef purpleNode fill:#A9CCE3,stroke:#333,stroke-width:1px
+  classDef yellowNode fill:#F9E79F,stroke:#333,stroke-width:1px
+
+  class STD topNode
+  class NS,CS,DS secondNode
+  class NS1,NS2,NS3,NS4 subgroupNode
+  class CS1,CS2,CS3,CS4 purpleNode
+  class DS1,DS2 yellowNode
+```
+
 ## 3. ToB Business - Cross-border E-commerce Collection and Payment
 
 > Background:

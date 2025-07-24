@@ -24,11 +24,9 @@ Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and tra
 > 
 > Table Standards (35%) & Security (15%) & Cost (15%)  **Combined with DQC (35%)**, we built a comprehensive 100-point scoring system that evaluates the usability, reliability, compliance, and cost-efficiency of data assets.
 
-
-**🎯 Goals & Expected Benefits**
-
 <details>
-<summary><strong>Updating the Data Asset Scoring framework (0–100 points) to quantify each table’s:</strong></summary>
+<summary><strong>🎯 Goals & Expected Benefits</strong></summary>  
+Updating the Data Asset Scoring framework (0–100 points) to quantify each table’s:
 
 1. Table Standards (35%): naming, comments, dependency hygiene
 2. Data Quality Checks (35%): SLA‑driven timeliness, DQC rule coverage, alert management
@@ -37,10 +35,8 @@ Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and tra
 
 </details>
   
-**⚙️ Design & Implementation**
-
 <details>
-<summary><strong>Data Asset Scoring ⚙️ Design & Implementation</strong></summary>
+<summary><strong>⚙️ Design & Implementation</strong></summary>
 
 1. Scoring Rules automated via SparkSQL jobs running daily;
 2. Table (names, comments, dependencies) extracted from Hive Meta Table.

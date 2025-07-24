@@ -11,7 +11,7 @@
 Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and transform data into fact and dimension tables. Defined data domains, granularity, metrics, and embedded business logic for subject-oriented, multi-dimensional analysis.
 
 <div align="center">
-  <img src="docs/dwh-1.jpg" alt="Diagram" width="700">
+  <img src="docs/dwh-1.jpg" alt="Diagram" width="500">
 </div>
 
 ## 2. ToC Business - Global Remittances to China

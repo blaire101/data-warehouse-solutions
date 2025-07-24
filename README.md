@@ -29,8 +29,7 @@ flowchart TB
   %% Main branches aligned horizontally under DG
   DG --> S["Standards (35%)"]:::mainCategory
   DG --> DQ["Data Quality (35%)"]:::mainCategory
-  DG --> SE["Security (15%)"]:::mainCategory
-  DG --> C["Cost (15%)"]:::mainCategory
+  DG --> SC["Security (15%) AND Cost (15%"]:::mainCategory
 
   %% Sub-items for each branch
   S --> NS["Naming Conventions: 50%"]:::subCategory
@@ -41,11 +40,10 @@ flowchart TB
   DQ --> DQC["DQC Reporting Coverage: 50%"]:::subCategory
   DQ --> QAM["Quality Alert Management: 30%"]:::subCategory
 
-  SE --> SFP["Sensitive Field Encryption: 80%"]:::subCategory
-  SE --> RPC["Responsible/Compliance: 20%"]:::subCategory
-
-  C --> CC["Compute Cost: 50%"]:::subCategory
-  C --> SC["Storage Cost: 50%"]:::subCategory
+  SC --> SFP["Sensitive Field Encryption: 80% -AND- Responsible/Compliance: 20%"]:::subCategory
+  SC --> RPC["Responsible/Compliance: 20%"]:::subCategory
+  SC --> CC["Compute Cost: 50%"]:::subCategory
+  SC --> STC["Storage Cost: 50%"]:::subCategory
 ```
 
 

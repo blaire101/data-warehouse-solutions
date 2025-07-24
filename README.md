@@ -111,7 +111,7 @@ graph TD
     end
 
     %% Right blue box - Seller Bank Accounts
-    subgraph SG_SellerBanks["Withdraw to Bank Accounts"]
+    subgraph SG_SellerBanks["Withdraw"]
         direction TB %% Internal layout is top-to-bottom
         style SG_SellerBanks fill:#ADD8E6,stroke:#333,stroke-width:2px %% Changed to light blue
         SBA_A([Seller Bank Account A])
@@ -145,11 +145,11 @@ graph TD
     SMA --> |balance can be withdrawn to bank account| ShopeeBankCard
     linkStyle 4 stroke:#333,stroke-width:1px,color:#000
 
-    SA_A --> |Payout（withd）| SBA_A
-    SA_A --> |Payout（pay）| SPS_A
-    SA_C --> |Payout（subs）| SASP_C
-    SA_B --> |Payout（withd）| SBA_B
-    SA_C --> |Payout（withd）| SBA_C
+    SA_A --> |Payout（W）| SBA_A
+    SA_A --> |Payout（P）| SPS_A
+    SA_C --> |Payout（S）| SASP_C
+    SA_B --> |Payout（W）| SBA_B
+    SA_C --> |Payout（W）| SBA_C
     linkStyle 5,6,7 stroke:#333,stroke-width:1px
 ```
 

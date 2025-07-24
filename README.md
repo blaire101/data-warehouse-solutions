@@ -26,7 +26,7 @@ flowchart TD
   end
 
 
- subgraph DAS_SECO["15% + 15%"]
+ subgraph DAS_SECO["Security + Cost"]
     direction TB
         SECO_A(["Field Encryption <br>Owner Compliance"])
         SECO_B(["Compute Cost <br>Storage Cost"])

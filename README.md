@@ -11,7 +11,7 @@
 Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and transform data into fact and dimension tables. Defined data domains, granularity, metrics, and embedded business logic for subject-oriented, multi-dimensional analysis.
 
 <div align="center">
-  <img src="docs/dwh-1.jpg" alt="Diagram" width="300">
+  <img src="docs/dwh-1.jpg" alt="Diagram" width="700">
 </div>
 
 ## 2. ToC Business - Global Remittances to China
@@ -19,7 +19,7 @@ Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and tra
 Partner with overseas remittance providers (e.g. Panda Remit, Wise) to bring foreign currency into China  
 
 <div align="center">
-  <img src="docs/Xoom-Ten-pay-1.avif" alt="Diagram" width="700">
+  <img src="docs/Xoom-Ten-pay-1.avif" alt="Diagram" width="400">
 </div>
 
 > This diagram provides a basic outline, — the actual **information flow** and **funds flow** is much more complex.

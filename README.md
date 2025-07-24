@@ -14,6 +14,53 @@ Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and tra
   <img src="docs/dwh-1.jpg" alt="Diagram" width="700">
 </div>
 
+## DG
+
+```mermaid
+flowchart TB
+  %% Style definitions
+  classDef topNode fill:#C9D7E2,stroke:#005B91,stroke-width:2px,color:#000000,font-weight:bold;
+  classDef mainCategory fill:#D8EDF2,stroke:#00A2C9,stroke-width:2px,color:#000000;
+  classDef subCategory fill:#F0F8FF,stroke:#ADD8E6,stroke-width:1px,color:#000000;
+
+  %% Top node
+  DG["Data Governance"]:::topNode
+
+  %% Main categories aligned horizontally under DG
+  subgraph TopRow
+    direction LR
+    S["Standards (35%)"]:::mainCategory
+    DQ["Data Quality (35%)"]:::mainCategory
+    SE["Security (15%)"]:::mainCategory
+    C["Cost (15%)"]:::mainCategory
+  end
+
+  %% Style the TopRow container in green border
+  style TopRow fill:transparent,stroke:#00A2C9,stroke-width:2px
+
+  %% Connections from top node to main categories
+  DG --> S
+  DG --> DQ
+  DG --> SE
+  DG --> C
+
+  %% Sub-items linked from each main category
+  S --> NS["Naming Conventions: 50%"]:::subCategory
+  S --> CS["Annotation Standards: 37.5%"]:::subCategory
+  S --> DS["Dependency Standards: 12.5%"]:::subCategory
+
+  DQ --> RM["Timely Monitoring Coverage: 20%"]:::subCategory
+  DQ --> DQC["DQC Reporting Coverage: 50%"]:::subCategory
+  DQ --> QAM["Quality Alert Management: 30%"]:::subCategory
+
+  SE --> SFP["Sensitive Field Encryption: 80%"]:::subCategory
+  SE --> RPC["Responsible/Compliance: 20%"]:::subCategory
+
+  C --> CC["Compute Cost: 50%"]:::subCategory
+  C --> SC["Storage Cost: 50%"]:::subCategory
+```
+
+
 ## 2. ToC Business - Global Remittances to China
 
 Partner with overseas remittance providers (e.g. Panda Remit, Wise) to bring foreign currency into China  

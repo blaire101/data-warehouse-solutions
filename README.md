@@ -79,7 +79,58 @@ flowchart TD
     linkStyle 8 stroke:#333,stroke-width:1px,fill:none 
 ```
 
-### 2.1 Table Standard
+```mermaid
+flowchart TD
+ subgraph SG_DataAssetScore["1"]
+    direction LR
+        DAS_A(["Table Standards - 35%"])
+        DAS_B(["Data Quality - 35%"])
+        DAS_C(["Security 15%+Cost 15%"])
+  end
+ subgraph DAS_SECO["Security + Cost"]
+    direction TB
+        SECO_A(["Field Encryption <br>Owner Compliance"])
+        SECO_B(["Compute Cost <br>Storage Cost"])
+  end
+ subgraph DAS_DataQuality["DQC"]
+    direction TB
+        DQ_A(["Timely Monitoring 20%"])
+        DQ_B(["DQC Coverage 50%"])
+        DQ_C(["Alert Management 30%"])
+  end
+ subgraph DAS_Standard["Standard"]
+    direction TB
+        ST_A(["Naming Conventions 50%"])
+        ST_B(["Comment Standards 37.5%"])
+        ST_C(["Dependency Standards 12.5%"])
+  end
+    DAS(["Data Asset Score"]) --> DAS_A & DAS_B & DAS_C
+    DAS_A -- rules --> DAS_Standard
+    DAS_B -- rules --> DAS_DataQuality
+    DAS_C -- rules --> DAS_SECO
+    style DAS_A fill:#F0FFF0,stroke:#333,stroke-width:2px
+    style DAS_B fill:#F0FFF0,stroke:#333,stroke-width:2px
+    style DAS_C fill:#F0FFF0,stroke:#333,stroke-width:2px
+    style SECO_A fill:#FFE4B5,stroke:#333,stroke-width:2px
+    style SECO_B fill:#FFE4B5,stroke:#333,stroke-width:2px
+    style DQ_A fill:#F5F5DC,stroke:#333,stroke-width:2px
+    style DQ_B fill:#F5F5DC,stroke:#333,stroke-width:2px
+    style DQ_C fill:#F5F5DC,stroke:#333,stroke-width:2px
+    style ST_A fill:#F5F5DC,stroke:#333,stroke-width:1px
+    style ST_B fill:#F5F5DC,stroke:#333,stroke-width:1px
+    style ST_C fill:#F5F5DC,stroke:#333,stroke-width:1px
+    style DAS fill:#FFA07A,stroke:#333,stroke-width:2px
+    style DAS_Standard fill:#ADD8E6,stroke:#333,stroke-width:2px
+    style DAS_DataQuality fill:#ADD8E6,stroke:#333,stroke-width:2px
+    style DAS_SECO fill:#ADD8E6,stroke:#333,stroke-width:1px
+    style SG_DataAssetScore fill:#98FB98,stroke:#333,stroke-width:2px
+    linkStyle 0 stroke:#333,stroke-width:1px,fill:none
+    linkStyle 1 stroke:#333,stroke-width:1px,fill:none
+    linkStyle 2 stroke:#333,stroke-width:1px,fill:none
+    linkStyle 3 stroke:#333,stroke-width:1px,fill:none
+    linkStyle 4 stroke:#333,stroke-width:1px,fill:none
+    linkStyle 5 stroke:#333,stroke-width:1px,fill:none
+```
 
 ```mermaid
 flowchart TB
@@ -127,8 +178,6 @@ flowchart TB
   class CS1,CS2,CS3,CS4 purpleNode
   class DS1,DS2 yellowNode
 ```
-
-### 2.2 Data Quality Check
 
 ```mermaid
 flowchart TB

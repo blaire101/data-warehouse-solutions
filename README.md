@@ -20,19 +20,19 @@ Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and tra
 flowchart TD
  subgraph SG_DataAssetScore["1"]
     direction LR
-        DAS_A(["Standards 35%"])
-        DAS_B(["Data Quality 35%"])
-        DAS_C(["Security 15% & Cost 15%"])
+        DAS_A(["Table Standards - 35%"])
+        DAS_B(["Data Quality - 35%"])
+        DAS_C(["Security 15% + Cost 15%"])
   end
 
 
- subgraph DAS_SECO["Subscription"]
+ subgraph DAS_SECO["15% + 15%"]
     direction TB
-        SECO_A(["annual membership"])
-        SECO_B(["annual membership"])
+        SECO_A(["Field Encryption <br>Owner Compliance"])
+        SECO_B(["Compute Cost <br>Storage Cost"])
  end
 
- subgraph DAS_DataQuality["Withdraw"]
+ subgraph DAS_DataQuality["DQC"]
     direction TB
         DQ_A(["Timely Monitoring <br> 20%"])
         DQ_B(["DQC Coverage <br> 50%"])
@@ -40,19 +40,18 @@ flowchart TD
  end
 
 
- subgraph DAS_Standard["Supplier"]
+ subgraph DAS_Standard["TableStandard"]
     direction TB
-        ST_A(["Product Supplier"])
-        ST_B(["Product Supplier"])
-        ST_C(["Product Supplier"])
+        ST_A(["Naming Conventions: 50%"])
+        ST_B(["Annotation Standards: 37.5%"])
+        ST_C(["Dependency Standards: 12.5%"])
  end
 
 
-    DG(["Data Governance"]) --> DAS 
-    DAS(["Data Asset Score"]) --> DAS_A & DAS_B & DAS_C
-    DAS_A -- Payout --> ST_A & ST_B & ST_C
-    DAS_B -- Payout --> DQ_A & DQ_B & DQ_C
-    DAS_C -- Payout --> SECO_A & SECO_B
+    DAS(["Data_Asset_Score"]) --> DAS_A & DAS_B & DAS_C
+    DAS_A --> ST_A & ST_B & ST_C
+    DAS_B --> DQ_A & DQ_B & DQ_C
+    DAS_C --> SECO_A & SECO_B
 
     style ST_A fill:#F0FFF0,stroke:#333,stroke-width:2px %% Keep very pale green
     style DAS_A fill:#F0FFF0,stroke:#333,stroke-width:2px %% Keep very pale green

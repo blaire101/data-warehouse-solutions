@@ -14,7 +14,7 @@ Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and tra
   <img src="docs/dwh-1.jpg" alt="Diagram" width="700">
 </div>
 
-## 2. Data Governance - Data Asset Score
+## 2. Data Governance Solutions - Data Asset Score
 
 **🔹 Background & Motivation**
 

@@ -173,7 +173,7 @@ graph TD
 
 
 <details>
-<summary><strong style="color:#1E90FF;">Merchant Subject Table - Data Metric</strong></summary>
+<summary><strong style="color:#1E90FF;">Merchant Subject Sample - Data Metric</strong></summary>
 
 | --Category-- | Field Name | Data_Type | Description |
 |-----------------------------------------|--------------------------------------|-----------|-----------------------------------------------------------------------------|
@@ -212,7 +212,7 @@ graph TD
 
 
 <details>
-<summary><strong style="color:#1E90FF;">Order Subject Table - Data Metric</strong></summary>
+<summary><strong style="color:#1E90FF;">Order Subject Sample - Data Metric</strong></summary>
 
 | Description | Field Name | Type | Remarks |
 |-------------|------------|------|---------|

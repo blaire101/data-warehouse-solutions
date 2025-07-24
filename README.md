@@ -79,7 +79,7 @@ flowchart TD
     linkStyle 8 stroke:#333,stroke-width:1px,fill:none 
 ```
 
-### 2.1 Standard
+### 2.1 Table Standard
 
 ```mermaid
 flowchart TB

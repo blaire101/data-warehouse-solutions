@@ -35,7 +35,7 @@ flowchart TD
  subgraph DAS_DataQuality["DQC"]
     direction TB
         DQ_A(["Timely Monitoring <br> 20%"])
-        DQ_B(["DQC <br> 50%"])
+        DQ_B(["DQC Coverage <br> 50%"])
         DQ_C(["Alert Management <br> 30%"])
  end
 

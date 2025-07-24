@@ -128,6 +128,54 @@ flowchart TB
   class DS1,DS2 yellowNode
 ```
 
+### 2.2 Data Quality Check
+
+```mermaid
+flowchart TB
+  %% Top-level: Data Quality
+  DQ["Data Quality (35%)"]
+  DQ --> TM["Timeliness Monitoring Coverage 20%"]
+  DQ --> DQC["DQC Coverage 50%"]
+  DQ --> QAM["Quality Alert Ticket 30%"]
+
+  %% Timeliness Monitoring Subgroup
+  subgraph TM-Group
+    direction TB
+    TM1["a. Task time > 1 day"]
+    TM2["b. Task time exceeds <br> Layer SLA commitment"]
+  end
+  TM --> TM-Group
+
+  %% DQC Assurance Subgroup
+  subgraph DQC-Group
+    direction TB
+    DQC1["a. zero records in partition"]
+    DQC2["b. Uniqueness rule"]
+  end
+  DQC --> DQC-Group
+
+  %% Quality Alert Subgroup
+  subgraph QAM-Group
+    direction TB
+    QAM1["a. ≥3 unresolved tickets"]
+    QAM2["b. ≥1 unresolved tickets"]
+  end
+  QAM --> QAM-Group
+
+  %% Styling
+  classDef topNode fill:#98FB98,stroke:#333,stroke-width:2px
+  classDef secondNode fill:#ADD8E6,stroke:#333,stroke-width:2px
+  classDef pinkNode fill:#F5B7B1,stroke:#333,stroke-width:1px
+  classDef purpleNode fill:#A9CCE3,stroke:#333,stroke-width:1px
+  classDef yellowNode fill:#F9E79F,stroke:#333,stroke-width:1px
+
+  class DQ topNode
+  class TM,DQC,QAM secondNode
+  class TM1,TM2 pinkNode
+  class DQC1,DQC2,DQC3,DQC4 purpleNode
+  class QAM1,QAM2,QAM3,QAM4 yellowNode
+```
+
 ## 3. ToB Business - Cross-border E-commerce Collection and Payment
 
 > Background:

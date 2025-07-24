@@ -16,6 +16,61 @@ Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and tra
 
 ## 2. Data Governance - Data Asset Score
 
+**🔹 Background & Motivation**
+
+> Rapid growth of payments business exposed chaos in our Hive/Spark data layer: inconsistent table names, missing comments, unmanaged dependencies, quality checks, security compliance, or cost inefficiencies.
+
+> Previously, only Data Quality Checks (DQC) were used to evaluate data assets. In this project, expansion of the Data Asset Scoring mechanism by introducing 3 new dimensions:
+> 
+> Table Standards (35%) & Security (15%) & Cost (15%)  **Combined with DQC (35%)**, we built a comprehensive 100-point scoring system that evaluates the usability, reliability, compliance, and cost-efficiency of data assets.
+
+
+**🎯 Goals & Expected Benefits**
+
+Updating the Data Asset Scoring framework (0–100 points) to quantify each table’s:
+
+1. Table Standards (35%): naming, comments, dependency hygiene
+2. Data Quality Checks (35%): SLA‑driven timeliness, DQC rule coverage, alert management
+3. Security (15%): sensitive‑field encryption & owner compliance
+4. Cost (15%): compute and storage cost
+
+**⚙️ Design & Implementation**
+
+1. Scoring Rules automated via SparkSQL jobs running daily;
+2. Table (names, comments, dependencies) extracted from Hive Meta Table.
+3. DQC rules stored and versioned in a rule table, evaluation output is written into a DQC_Summary table.
+4. Security – Perform sensitive‑field encryption checks using the scan results supplied by the data-security‑platform team
+5. Cost – Implemented by our Data Platform team via daily scans for stale/“garbage” tables and by defining table lifecycle stages. Each day’s cost evaluation output is written into a Cost_Summary table.
+6. Whitelist Mechanism allows table owners to apply for temporary exemptions, preserving audit trails.
+7. Finally, together the scores from all four dimensions, applied our weighted formula, and loaded the consolidated score into the central Data Asset Score table.
+
+<details>
+<summary><strong style="color:#1E90FF;">combine\_score\_table</strong></summary>
+
+| Field Name    | Description          |
+| ------------- | -------------------- |
+| fdate  | Date           |
+| fetl_time  | ETL time           |
+| ftable\_name  | Table name           |
+| fowner        | Table owner          |
+| fbusiness     | Business Domain   |
+| fstd\_score   | Standards score      |
+| fdqc\_score   | Data quality score   |
+| fsecu\_score  | Security score       |
+| fcost\_score  | Cost score           |
+| ftotal\_score | Total score          |
+| fscore\_time  | Scoring timestamp    |
+| fexempt\_flag | Exemption flag (Y/N) |
+
+</details>
+
+**📈 Results** : Average asset score improved from 77 → 86
+> Overall Health Improvement
+> On a 100‑point scale, your portfolio of tables has moved from the “C+” range up into the “B+” range—meaning that, on average, assets now meet far more of your governance criteria (naming standards, DQC coverage, security and cost controls).
+
+🌱 Future Extensions: Incorporate data‑usage heatmaps & Add partition‑level DQC quality checks.
+
+
 ```mermaid
 flowchart TB
 

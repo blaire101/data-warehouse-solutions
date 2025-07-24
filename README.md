@@ -59,7 +59,14 @@ Updating the Data Asset Scoring framework (0–100 points) to quantify each tabl
 | ftotal\_score | Total score          |
 | fscore\_time  | Scoring timestamp    |
 | fexempt\_flag | Exemption flag (Y/N) |
+</details>
 
+<details>
+<summary><strong>🚀 Push via Platform & Automation & Manual configuration</strong></summary>
+- ✅ Enforced **naming conventions** and **dependency configuration** for all new tables through platform-level upgrades  
+- ✅ **Auto-configured** zero-record checks and primary key uniqueness constraints  
+- ✅ Enhanced **whitelist governance**, preventing exempt tables from impacting scoring  
+- ✅ **Excluded** temporary tables prefixed with `temp_`, `tmp_`, or `check_` from evaluation scope
 </details>
 
 <details>
@@ -70,7 +77,7 @@ Updating the Data Asset Scoring framework (0–100 points) to quantify each tabl
 
 </details>
 
-🌱 Future Extensions: Incorporate data‑usage heatmaps & Add partition‑level DQC quality checks.
+> 🌱 Future Extensions: Incorporate data‑usage heatmaps & Add partition‑level DQC quality checks.
 
 
 ```mermaid
@@ -221,14 +228,6 @@ flowchart TB
   class DQC1,DQC2,DQC3,DQC4 purpleNode
   class QAM1,QAM2,QAM3,QAM4 yellowNode
 ```
-
-### 🚀 Push via Platform & Automation & Manual configuration
-
-- ✅ Enforced **naming conventions** and **dependency configuration** for all new tables through platform-level upgrades  
-- ✅ **Auto-configured** zero-record checks and primary key uniqueness constraints  
-- ✅ Enhanced **whitelist governance**, preventing exempt tables from impacting scoring  
-- ✅ **Excluded** temporary tables prefixed with `temp_`, `tmp_`, or `check_` from evaluation scope
-
 
 ## 3. ToB Business - Cross-border E-commerce Collection and Payment
 

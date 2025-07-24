@@ -111,7 +111,7 @@ graph TD
     end
 
     %% Right blue box - Seller Bank Accounts
-    subgraph SG_SellerBanks["Withdraw to Seller Bank Accounts"]
+    subgraph SG_SellerBanks["Withdraw to Bank Accounts"]
         direction TB %% Internal layout is top-to-bottom
         style SG_SellerBanks fill:#ADD8E6,stroke:#333,stroke-width:2px %% Changed to light blue
         SBA_A([Seller Bank Account A])
@@ -123,7 +123,7 @@ graph TD
     end
 
    %% Right blue box - Seller Product Supplier
-    subgraph SZ_ProductSupplier["I"]
+    subgraph SZ_ProductSupplier["Supplier"]
         direction TB %% Internal layout is top-to-bottom
         style SZ_ProductSupplier fill:#ADD8,stroke:#333,stroke-width:2px %% Changed to light blue
         SPS_A([Product Supplier])
@@ -131,7 +131,7 @@ graph TD
     end
 
     %% Right blue box - Seller Annual Subscription Plan
-    subgraph Subs["I"]
+    subgraph Subs["Subscription"]
         direction TB %% Internal layout is top-to-bottom
         style Subs fill:#ADD5,stroke:#333,stroke-width:1px %% Changed to light blue
         SASP_C([annual membership])
@@ -145,11 +145,11 @@ graph TD
     SMA --> |balance can be withdrawn to bank account| ShopeeBankCard
     linkStyle 4 stroke:#333,stroke-width:1px,color:#000
 
-    SA_A --> |Payout（withdraw）| SBA_A
+    SA_A --> |Payout（withd）| SBA_A
     SA_A --> |Payout（pay）| SPS_A
-    SA_C --> |Payout（subscription）| SASP_C
-    SA_B --> |Payout（withdraw）| SBA_B
-    SA_C --> |Payout（withdraw）| SBA_C
+    SA_C --> |Payout（subs）| SASP_C
+    SA_B --> |Payout（withd）| SBA_B
+    SA_C --> |Payout（withd）| SBA_C
     linkStyle 5,6,7 stroke:#333,stroke-width:1px
 ```
 
@@ -174,7 +174,7 @@ graph TD
 #### Merchant Subject Table
 
 <details>
-<summary>Merchant Subject Data Metric</summary>
+<summary><strong style="color:#1E90FF;">Merchant Subject Table - Data Metric</strong></summary>
 
 | --Category-- | Field Name | Data_Type | Description |
 |-----------------------------------------|--------------------------------------|-----------|-----------------------------------------------------------------------------|
@@ -215,7 +215,7 @@ graph TD
 #### Orders Subject Table
 
 <details>
-<summary>Order Subject Data Metric</summary>
+<summary><strong style="color:#1E90FF;">Order Subject Table - Data Metric</strong></summary>
 
 | Description | Field Name | Type | Remarks |
 |-------------|------------|------|---------|

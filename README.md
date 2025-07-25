@@ -18,7 +18,7 @@ Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and tra
 2. Collected data into ODS and integrated into fact and dimension tables (DIL/DIM).
 3. Organised data domains, determined data granularity, and designed key metrics.
 4. Abstracted business and data subject analyses into DML tables.
-5. Delivered reporting, supporting subject-specific and multi-dimensional an
+5. Delivered reporting, supporting subject-specific and multi-dimensional analysis
 
 ## 2. Data Governance - Data Asset Score
 

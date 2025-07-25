@@ -80,11 +80,15 @@ classDef purpleNode   fill:#EBDEF0,stroke:#884EA0,stroke-width:1px;
 classDef blueNode     fill:#D6EAF8,stroke:#2E86C1,stroke-width:1px;
 ```
 
+<details>
+<summary>⚙️data pipeline</summary>
+
 1. Defined business goals and requirements.
 2. Collected data into ODS and integrated into fact and dimension tables (DIL/DIM).
 3. Organised data domains, determined data granularity, and designed key metrics.
 4. Abstracted business and data subject analyses into DML tables.
 5. Delivered reporting, supporting subject-specific and multi-dimensional analysis
+</details>
 
 ## 2. Data Governance - Data Asset Score
 

@@ -14,6 +14,8 @@ Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and tra
   <img src="docs/dwh-1.jpg" alt="Diagram" width="700">
 </div>
 
+**End‑to‑end—from Planning → Dimension Management → Metric Layering → Physical Schema Modeling → Subject‑Area Delivery—featuring clear separation of layers and single‑responsibility.**
+
 ```mermaid
 flowchart TB
 

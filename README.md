@@ -14,6 +14,68 @@ Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and tra
   <img src="docs/dwh-1.jpg" alt="Diagram" width="700">
 </div>
 
+```mermaid
+flowchart TB
+
+%% Planning
+subgraph PL["PL"]
+  direction TB
+  Data_Warehouse_Planning["📦 Data Warehouse Planning"]:::topNode
+  PL1["Business Domains"]:::subgroupNode
+  PL2["Business Processes"]:::subgroupNode
+  PL3["Data Domains"]:::subgroupNode
+  PL5["Fact Granularity"]:::subgroupNode
+  PL6["Constraints"]:::subgroupNode
+  PL7["Load Strategy"]:::subgroupNode
+end
+
+%% Dimension Management
+subgraph DM["DM"]
+  direction TB
+  Dimension_Management["📘 Dimension Management"]:::secondNode
+  DM1["Dimension Classification"]:::yellowNode
+  DM2["Dimension Tables"]:::yellowNode
+  DM3["Dimension Attributes"]:::yellowNode
+end
+
+%% Metric Definition
+subgraph MD["MD"]
+  direction TB
+  Metric_Definition["📊 Metric Definition"]:::secondNode
+  AM["Atomic Metrics<br>(DIL / Fact Tables)"]:::purpleNode
+  DER["Derived Metrics<br>(DML / Subject Tables)"]:::purpleNode
+end
+
+%% Physical Schema Modeling
+subgraph PH["PH"]
+  direction TB
+  Schema_Physical["📐 Physical Schema Modeling"]:::secondNode
+  SM1["Dimension Tables"]:::blueNode
+  SM2["Fact Tables"]:::blueNode
+end
+
+%% Data‑Mart / Subject Modeling
+subgraph DMART["DMART"]
+  direction TB
+  Data_Mart["🎯 Data‑Mart Modeling"]:::secondNode
+  SM3["Subject Tables"]:::blueNode
+end
+
+%% End‑to‑end Flow
+Data_Warehouse_Planning --> Dimension_Management
+Dimension_Management   --> Metric_Definition
+Metric_Definition      --> Schema_Physical
+Schema_Physical        --> Data_Mart
+
+%% Styling
+classDef topNode      fill:#D1F2EB,stroke:#117A65,stroke-width:2px;
+classDef secondNode   fill:#EAF2F8,stroke:#2874A6,stroke-width:2px;
+classDef subgroupNode fill:#FCF3CF,stroke:#B7950B,stroke-width:1px;
+classDef yellowNode   fill:#FDEBD0,stroke:#CA6F1E,stroke-width:1px;
+classDef purpleNode   fill:#EBDEF0,stroke:#884EA0,stroke-width:1px;
+classDef blueNode     fill:#D6EAF8,stroke:#2E86C1,stroke-width:1px;
+```
+
 1. Defined business goals and requirements.
 2. Collected data into ODS and integrated into fact and dimension tables (DIL/DIM).
 3. Organised data domains, determined data granularity, and designed key metrics.

@@ -395,10 +395,10 @@ graph TD
 | 1   | **Merchant Onboarding**            | Merchant registers on the platform and completes kyc.   |
 | 2   | **Merchant Shop Binding**         | Merchant links their shops. |
 | 3   | **Funds Inflow (E-commerce Top-up)** | E-commerce Top-up |
-| 4   | **Funds Payout (Disbursement & Deduction)** | The platform processes payouts or automatic deductions on behalf of the merchant (e.g. platform fees, commission). |
-| 5   | **Merchant Shop Card Binding**          | Merchant binds a settlement bank card for receiving withdrawals.     |
-| 6   | **Merchant Operations (e.g., Annual Subscription Plan)** | Merchant performs business-related actions such as purchasing subscription plans or value-added services. |
-| 7   | **Withdrawal and Payment**         | Merchant initiates fund withdrawal to their own bank account or makes payments to external suppliers. |
+| 4   | **Funds Flow to Seller Account (Disbursement & Deduction)** | The platform processes payouts or automatic deductions on behalf of the merchant (e.g. platform fees, commission). |
+| 5   | **Merchant bank Card Binding**          | Merchant binds a settlement bank card for receiving withdrawals.     |
+| 6   | **Payout - Withdrawal and Payment**         | Merchant initiates fund withdrawal to their own bank account or makes payments to external suppliers. |
+| 7   | **Payout - Merchant Operations (e.g., Annual Subscription Plan)** | Merchant performs business-related actions such as purchasing subscription plans or value-added services. |
 
 ### Subject-Specifc Table
 

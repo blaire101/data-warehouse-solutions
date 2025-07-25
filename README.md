@@ -6,13 +6,19 @@
 
 ---
 
-## 1. Data Warehouse Architecture 
+## 1. Data Warehouse Architecture - Hourglass
 
 Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and transform data into fact and dimension tables. Defined data domains, granularity, metrics, and embedded business logic for subject-oriented, multi-dimensional analysis.
 
 <div align="center">
   <img src="docs/dwh-1.jpg" alt="Diagram" width="700">
 </div>
+
+1. Defined business goals and requirements.
+2. Collected data into ODS and integrated into fact and dimension tables (DIL/DIM).
+3. Organised data domains, determined data granularity, and designed key metrics.
+4. Abstracted business and data subject analyses into DML tables.
+5. Delivered reporting, supporting subject-specific and multi-dimensional an
 
 ## 2. Data Governance - Data Asset Score
 

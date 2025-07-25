@@ -79,9 +79,8 @@ classDef yellowNode   fill:#FDEBD0,stroke:#CA6F1E,stroke-width:1px;
 classDef purpleNode   fill:#EBDEF0,stroke:#884EA0,stroke-width:1px;
 classDef blueNode     fill:#D6EAF8,stroke:#2E86C1,stroke-width:1px;
 ```
-
 <details>
-<summary>⚙️data pipeline</summary>
+<summary>⚙data pipeline</summary>
 
 1. Defined business goals and requirements.
 2. Collected data into ODS and integrated into fact and dimension tables (DIL/DIM).

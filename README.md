@@ -27,10 +27,10 @@ flowchart TB
 subgraph PL["PL"]
   direction TB
   Data_Warehouse_Planning["📦 Data Warehouse Planning"]:::topNode
-  PL1["Business Domains"]:::subgroupNode
-  PL2["Business Processes"]:::subgroupNode
-  PL3["Data Domains"]:::subgroupNode
-  PL5["Fact Granularity"]:::subgroupNode
+  PL1["Business Domain"]:::subgroupNode
+  PL2["Business Processe"]:::subgroupNode
+  PL3["Data Domain"]:::subgroupNode
+  PL5["Granularity"]:::subgroupNode
   PL6["Constraints"]:::subgroupNode
   PL7["Load Strategy"]:::subgroupNode
 end

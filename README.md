@@ -32,6 +32,42 @@ Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and tra
 
 **Data Warehouse Planning :**  
 
+<details>
+<summary>Professional Term Explanation</summary>
+
+| No. | Term                            | Description                                                                 |
+|-----|---------------------------------|-----------------------------------------------------------------------------|
+| 1   | Data Warehouse Planning         | High-level planning of the warehouse, including domains, granularity, and load strategies. |
+| 2   | Business Domain                 | High-level business categories such as `HongKong Wallet` and `Cross-border Payment`, etc.         |
+| 3   | Business Process                | Specific workflows describing how data flows through business operations.   |
+| 4   | Data Domain                     | Logical grouping of data, e.g., user, product, funds, contract.             |
+| 5   | Granularity                     | Level of detail in data (e.g., per transaction, per day, per user).         |
+| 6   | Constraints                     | External requirements such as SLA, compliance, or system limitations.       |
+| 7   | Load Strategy                   | Full or incremental data ingestion approach.                                |
+| 8   | Dimension Management            | Design and governance of dimensions and their hierarchies.                  |
+| 9   | Dimension Classification        | Types of dimensions, e.g., slowly changing, static, time-based.             |
+| 10  | Dimension Tables                | Tables that describe entities used for slicing facts, such as user or time. |
+| 11  | Dimension Attributes            | Fields in dimension tables, often used in filtering or grouping.            |
+| 12  | Metric Definition               | Systematic definition and classification of metrics.                        |
+| 13  | Atomic Metrics                  | Direct metrics from raw events with no transformation (stored in DIL).      |
+| 14  | Simple Derived Metrics          | Lightly transformed fields like `age_group`, can exist in DIL or DML.       |
+| 15  | Complex Derived Metrics         | Aggregated metrics involving logic or multiple tables (mainly in DML).      |
+| 16  | Horizontal Metrics              | Time-series or milestone fields (e.g., first_payment_time), one row per entity. |
+| 17  | Vertical Metrics                | Aggregated tags or metrics stacked by type (e.g., trd_cnt_30d, trd_amt_month). |
+| 18  | Subject Table                      | Denormalized tables oriented toward a specific subject (e.g., user, shop, order). |
+| 19  | Physical Schema Modeling        | The process of creating actual dimension and fact tables in the warehouse.  |
+| 20  | Fact Tables                     | Tables that store measurable events, often with foreign keys to dimensions. |
+| 21  | Data-Mart / Subject Modeling    | Design of subject-specific analysis tables for lifecycle or behavior analysis. |
+| 22  | Subject Tables (DML Layer)      | Wide tables for specific analytical subjects like users, merchants, or orders. |
+
+data dev：
+1. Defined business goals and requirements.
+2. Collected data into ODS and integrated into fact and dimension tables (DIL/DIM).
+3. Organised data domains, determined data granularity, and designed key metrics.
+4. Abstracted business and data subject analyses into DML tables.
+5. Delivered reporting, supporting subject-specific and multi-dimensional analysis
+</details>
+
 > **End‑to‑end-from Planning → Dimension Management → Metric Definition → Physical Schema Modeling → Subject‑Area Delivery—featuring clear separation of layers and single‑responsibility.**
 
 ```mermaid
@@ -97,41 +133,6 @@ classDef yellowNode   fill:#FDEBD0,stroke:#CA6F1E,stroke-width:1px;
 classDef purpleNode   fill:#EBDEF0,stroke:#884EA0,stroke-width:1px;
 classDef blueNode     fill:#D6EAF8,stroke:#2E86C1,stroke-width:1px;
 ```
-<details>
-<summary>Professional Term Explanation</summary>
-
-| No. | Term                            | Description                                                                 |
-|-----|---------------------------------|-----------------------------------------------------------------------------|
-| 1   | Data Warehouse Planning         | High-level planning of the warehouse, including domains, granularity, and load strategies. |
-| 2   | Business Domain                 | High-level business categories such as `HongKong Wallet` and `Cross-border Payment`, etc.         |
-| 3   | Business Process                | Specific workflows describing how data flows through business operations.   |
-| 4   | Data Domain                     | Logical grouping of data, e.g., user, product, funds, contract.             |
-| 5   | Granularity                     | Level of detail in data (e.g., per transaction, per day, per user).         |
-| 6   | Constraints                     | External requirements such as SLA, compliance, or system limitations.       |
-| 7   | Load Strategy                   | Full or incremental data ingestion approach.                                |
-| 8   | Dimension Management            | Design and governance of dimensions and their hierarchies.                  |
-| 9   | Dimension Classification        | Types of dimensions, e.g., slowly changing, static, time-based.             |
-| 10  | Dimension Tables                | Tables that describe entities used for slicing facts, such as user or time. |
-| 11  | Dimension Attributes            | Fields in dimension tables, often used in filtering or grouping.            |
-| 12  | Metric Definition               | Systematic definition and classification of metrics.                        |
-| 13  | Atomic Metrics                  | Direct metrics from raw events with no transformation (stored in DIL).      |
-| 14  | Simple Derived Metrics          | Lightly transformed fields like `age_group`, can exist in DIL or DML.       |
-| 15  | Complex Derived Metrics         | Aggregated metrics involving logic or multiple tables (mainly in DML).      |
-| 16  | Horizontal Metrics              | Time-series or milestone fields (e.g., first_payment_time), one row per entity. |
-| 17  | Vertical Metrics                | Aggregated tags or metrics stacked by type (e.g., trd_cnt_30d, trd_amt_month). |
-| 18  | Subject Table                      | Denormalized tables oriented toward a specific subject (e.g., user, shop, order). |
-| 19  | Physical Schema Modeling        | The process of creating actual dimension and fact tables in the warehouse.  |
-| 20  | Fact Tables                     | Tables that store measurable events, often with foreign keys to dimensions. |
-| 21  | Data-Mart / Subject Modeling    | Design of subject-specific analysis tables for lifecycle or behavior analysis. |
-| 22  | Subject Tables (DML Layer)      | Wide tables for specific analytical subjects like users, merchants, or orders. |
-
-data pipeline：
-1. Defined business goals and requirements.
-2. Collected data into ODS and integrated into fact and dimension tables (DIL/DIM).
-3. Organised data domains, determined data granularity, and designed key metrics.
-4. Abstracted business and data subject analyses into DML tables.
-5. Delivered reporting, supporting subject-specific and multi-dimensional analysis
-</details>
 
 ## 2. Data Governance - Data Asset Score
 

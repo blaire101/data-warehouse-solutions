@@ -56,10 +56,9 @@ Dimensional Modeling
 | 15  | Vertical Metrics                | Aggregated tags or metrics stacked by type (e.g., trd_cnt_30d, trd_amt_month). |
 | 16  | Physical Schema Modeling        | The process of creating actual dimension and fact tables in the warehouse.  |
 | 17  | Fact Tables                     | Tables that store measurable events, often with foreign keys to dimensions. |
-| 18  | Data-Mart / Subject Modeling    | Design of wide analytical tables focused on a specific entity such as user, merchant, or order. |
-| 19  | Subject Tables (DML Layer)      | Denormalized wide tables used for multi-metric, multi-perspective analysis. |
+| 18  | Data-Mart / Subject Modeling    | Design of wide analytical tables for multi-metric, multi-perspective analysis, focused on a specific entity such as user, merchant, or order. |
 
-data dev：
+data development process：
 1. Defined business goals and requirements.
 2. Collected data into ODS and integrated into fact and dimension tables (DIL/DIM).
 3. Organised data domains, determined data granularity, and designed key metrics.

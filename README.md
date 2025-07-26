@@ -45,11 +45,12 @@ subgraph DM["DM"]
 end
 
 %% Metric Definition
-subgraph MD["MD"]
+subgraph MD["MD: Metric Definition"]
   direction TB
-  Metric_Definition["📊 Metric Definition"]:::secondNode
-  AM["Atomic Metrics<br>(DIL / Fact Tables)"]:::purpleNode
-  DER["Derived Metrics<br>(DML / Subject Tables)"]:::purpleNode
+  Metric_Definition["📊 Metric Layering<br><i>Define metrics by origin, purpose, and data layer</i>"]:::secondNode
+  AM["Atomic Metrics<br>(Stored in DIL / Fact Tables)<br><i>Directly sourced from raw events<br>Minimal or no transformation</i>"]:::purpleNode
+  SL["Simple Derived Metrics<br>(Optional in DIL / Fact Tables)<br><i>Lightweight transformations<br>used for common segmentation</i>"]:::purpleNode
+  DM["Complex Derived Metrics<br>(Stored in DML / Subject Tables)<br><i>Calculated via aggregation, logic<br>across multiple events/dimensions</i>"]:::purpleNode
 end
 
 %% Physical Schema Modeling

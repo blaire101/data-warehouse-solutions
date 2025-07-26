@@ -76,7 +76,7 @@ subgraph PH["PH"]
 end
 
 %% Data‑Mart / Subject Modeling
-subgraph DMART["DMART"]
+subgraph DMART["D-MART"]
   direction TB
   Data_Mart["🎯 Data‑Mart Modeling"]:::secondNode
   SM3["Subject Tables"]:::blueNode

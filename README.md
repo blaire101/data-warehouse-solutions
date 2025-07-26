@@ -32,6 +32,8 @@ Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and tra
 
 **Data Warehouse Planning :**  
 
+> **End‑to‑end-from Planning → Dimension Management → Metric Definition → Physical Schema Modeling → Subject‑Area Delivery—featuring clear separation of layers and single‑responsibility.**
+
 <details>
 <summary>Professional Term Explanation</summary>
 
@@ -67,8 +69,6 @@ data dev：
 4. Abstracted business and data subject analyses into DML tables.
 5. Delivered reporting, supporting subject-specific and multi-dimensional analysis
 </details>
-
-> **End‑to‑end-from Planning → Dimension Management → Metric Definition → Physical Schema Modeling → Subject‑Area Delivery—featuring clear separation of layers and single‑responsibility.**
 
 ```mermaid
 flowchart TB

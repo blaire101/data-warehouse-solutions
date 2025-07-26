@@ -198,9 +198,9 @@ Updating the Data Asset Scoring framework (0–100 points) to quantify each tabl
 > 🌱 Future Extensions: Incorporate data‑usage heatmaps & Add partition‑level DQC quality checks.
 
 <details>
-<summary><strong>Data Governance For 🚀 SLA (Service Level Agreement) Optimisation</strong></summary>
+<summary>Data Governance for 🚀 SLA Optimisation</summary>
 
-| No. | ✨ Optimization Area                 | 📌 Description                                                                                                          |
+| No. | ✨ Optimisation Area                 | 📌 Description                                                                                                          |
 |-----|--------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
 | 1️⃣ | 🔗 **Workflow Dependency**           | Removed non-critical and redundant dependencies to streamline DAG execution.                                           |
 | 2️⃣ | ⏱️ **Trigger-Based Scheduling**      | Replaced fixed-time triggers with dependency-based scheduling.<br>Tasks now auto-execute upon upstream success.        |

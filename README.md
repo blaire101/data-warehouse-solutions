@@ -347,6 +347,18 @@ flowchart TB
   class QAM1,QAM2,QAM3,QAM4 yellowNode
 ```
 
+<details>
+<summary><strong>🚀 SLA (Service Level Agreement) Optimisation</strong></summary>
+
+| No. | ✨ Optimization Area                 | 📌 Description                                                                                                          |
+|-----|--------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| 1️⃣ | 🔗 **Workflow Dependency**           | Removed non-critical and redundant dependencies to streamline DAG execution.                                           |
+| 2️⃣ | ⏱️ **Trigger-Based Scheduling**      | Replaced fixed-time triggers with dependency-based scheduling.<br>Tasks now auto-execute upon upstream success.        |
+| 3️⃣ | 🚨 **Monitoring & Alerting**         | Added alerting for job failures and delays, enabling early detection and faster troubleshooting.                       |
+| 4️⃣ | 🧩 **Spark Job Optimization**        | Prioritized optimization of long-running (1h+) critical path jobs and de-emphasized low-impact ones.                   |
+
+</details>
+  
 ## 3. ToB Business - Cross-border E-commerce Collection and Payment
 
 > Background:

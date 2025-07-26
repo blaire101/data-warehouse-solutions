@@ -47,7 +47,7 @@ Dimensional Modeling
 | 6   | Constraints                     | External requirements such as SLA, compliance, or system limitations.       |
 | 7   | Load Strategy                   | Full or incremental data ingestion approach.                                |
 | 8   | Dimension Management            | Design and governance of dimensions and their hierarchies.                  |
-| 9   | Dimension Tables                | Tables that describe entities used for slicing facts, such as user or time. |
+| 9   | Dimension Tables                | Tables that describe entities used for slicing facts, such as user or product. |
 | 10  | Metric Definition               | Systematic definition and classification of metrics.                        |
 | 11  | Atomic Metrics                  | Direct metrics from raw events with no transformation (stored in DIL).      |
 | 12  | Simple Derived Metrics          | Lightly transformed fields like `age_group`, can exist in DIL or DML.       |

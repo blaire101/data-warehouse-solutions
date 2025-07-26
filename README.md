@@ -66,7 +66,7 @@ subgraph DMART["DMART"]
   direction TB
   Data_Mart["🎯 Data‑Mart Modeling"]:::secondNode
   SM3["Subject Tables"]:::blueNode
-  WAT3["Wide / Aggregated Metric Tables"]:::blueNode
+  WAT3["Wide / Aggregated Tables"]:::blueNode
 end
 
 %% End‑to‑end Flow

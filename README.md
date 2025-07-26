@@ -121,7 +121,7 @@ classDef blueNode     fill:#D6EAF8,stroke:#2E86C1,stroke-width:1px;
 | 15  | Complex Derived Metrics         | Aggregated metrics involving logic or multiple tables (mainly in DML).      |
 | 16  | Horizontal Metrics              | Time-series or milestone fields (e.g., first_payment_time), one row per entity. |
 | 17  | Vertical Metrics                | Aggregated tags or metrics stacked by type (e.g., trd_cnt_30d, trd_amt_month). |
-| 18  | Wide Table                      | Denormalized tables oriented toward a specific subject (e.g., user, shop, order). |
+| 18  | Subject Table                      | Denormalized tables oriented toward a specific subject (e.g., user, shop, order). |
 | 19  | Physical Schema Modeling        | The process of creating actual dimension and fact tables in the warehouse.  |
 | 20  | Fact Tables                     | Tables that store measurable events, often with foreign keys to dimensions. |
 | 21  | Data-Mart / Subject Modeling    | Design of subject-specific analysis tables for lifecycle or behavior analysis. |

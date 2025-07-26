@@ -13,8 +13,8 @@ Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and tra
 <details>
 <summary>💡Why Layered Design?</summary>
 
-✅ **Dimensional Modeling**
-  It follows the principle of **data layering** (e.g., DIL, DML), which enables clear separation of concerns between raw data integration and subject-oriented analysis.
+✅ Dimensional Modeling
+  It follows the principle of data layering (e.g., DIL, DML), which enables clear separation of concerns between raw data integration and subject-oriented analysis.
 
 > - Clarifies responsibilities across layers (e.g., raw events vs. analysis-ready data)  
 > - Supports atomic and aggregated metrics  

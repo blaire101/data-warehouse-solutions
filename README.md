@@ -47,12 +47,12 @@ Dimensional Modeling
 | 6   | Constraints                     | External requirements such as SLA, compliance, or system limitations.       |
 | 7   | Load Strategy                   | Full or incremental data ingestion approach.                                |
 | 8   | Dimension Management            | Design and governance of dimensions and their hierarchies.                  |
-| 9   | Dimension Tables                | Tables that describe entities used for slicing facts, such as user or product. |
+| 9   | Dimension Tables                | Tables that describe entities used for slicing facts, such as user. |
 | 10  | Metric Definition               | Systematic definition and classification of metrics.                        |
 | 11  | Atomic Metrics                  | Direct metrics from raw events with no transformation (stored in DIL).      |
 | 12  | Simple Derived Metrics          | Lightly transformed fields like `age_group`, can exist in DIL or DML.       |
 | 13  | Complex Derived Metrics         | Aggregated metrics involving logic or multiple tables (mainly in DML).      |
-| 14  | Horizontal Metrics              | Time-series or milestone fields (e.g., first_payment_time), one row per entity. |
+| 14  | Horizontal Metrics              | Timepoint or milestone fields (e.g., first_payment_time), stored horizontally, one row per entity. |
 | 15  | Vertical Metrics                | Aggregated tags or metrics stacked by type (e.g., trd_cnt_30d, trd_amt_month). |
 | 16  | Physical Schema Modeling        | The process of creating actual dimension and fact tables in the warehouse.  |
 | 17  | Fact Tables                     | Tables that store measurable events, often with foreign keys to dimensions. |

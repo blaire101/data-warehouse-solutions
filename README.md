@@ -12,6 +12,7 @@ Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and tra
 
 <details>
 <summary>💡Why Layered Design?n</summary>
+
 ✅ **Dimensional Modeling**
   It follows the principle of **data layering** (e.g., DIL, DML), which enables clear separation of concerns between raw data integration and subject-oriented analysis.
 
@@ -20,7 +21,7 @@ Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and tra
 > - Improves reusability and maintainability  
 > - Enables incremental ETL development  
 > - Aligns with modern data warehouse best practices (e.g., Kimball methodology)
-> - 🧭 **Industry Terminology** The terms **DIL (Data Integration Layer)** and **DML (Data Mart Layer)** follow the same layered logic as **DWD/DWS**, commonly used in China and popularized by Alibaba.
+> - 🧭 Industry Terminology The terms DIL (Data Integration Layer) and DML (Data Mart Layer) follow the same layered logic as DWD/DWS, commonly used in China and popularized by Alibaba.
 
 </details>
 

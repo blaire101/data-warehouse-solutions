@@ -47,10 +47,10 @@ end
 %% Metric Definition
 subgraph MD["MD: Metric Definition"]
   direction TB
-  Metric_Definition["📊 Metric Layering<br><i>Define metrics by origin, purpose, and data layer</i>"]:::secondNode
-  AM["Atomic Metrics<br>(Stored in DIL / Fact Tables)<br><i>Directly sourced from raw events<br>Minimal or no transformation</i>"]:::purpleNode
-  SL["Simple Derived Metrics<br>(Optional in DIL / Fact Tables)<br><i>Lightweight transformations<br>used for common segmentation</i>"]:::purpleNode
-  DM["Complex Derived Metrics<br>(Stored in DML / Subject Tables)<br><i>Calculated via aggregation, logic<br>across multiple events/dimensions</i>"]:::purpleNode
+  Metric_Definition["📊 Metric Definition"]:::secondNode
+  AM["Atomic Metrics<br>(DIL / Fact Tables)"]:::purpleNode
+  SM["Simple Derived Metrics<br>(DIL or DML)"]:::purpleNode
+  CM["Complex Derived Metrics<br>(Mainly in DML)"]:::purpleNode
 end
 
 %% Physical Schema Modeling
@@ -66,6 +66,7 @@ subgraph DMART["DMART"]
   direction TB
   Data_Mart["🎯 Data‑Mart Modeling"]:::secondNode
   SM3["Subject Tables"]:::blueNode
+  WAT3["Wide / Aggregated Metric Tables"]:::blueNode
 end
 
 %% End‑to‑end Flow

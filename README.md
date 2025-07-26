@@ -25,12 +25,7 @@ Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and tra
 > - Improves reusability and maintainability  
 > - Enables incremental ETL development  
 > - Aligns with modern data warehouse best practices (e.g., Kimball methodology)
-
-> 🧭 **Industry Terminology**  
-> The terms **DIL** (Data Integration Layer) and **DML** (Data Mart Layer) align with common practices in the Chinese data community:  
-> - **DIL ≈ DWD** (Data Warehouse Detail Layer)  
-> - **DML ≈ DWS** (Data Warehouse Summary Layer)  
-> These terms differ in naming but share the same layered principles. Alibaba popularized DWD/DWS, and many other companies adopted similar patterns.
+> - 🧭 **Industry Terminology**  The terms **DIL** (Data Integration Layer) and **DML** (Data Mart Layer) align with common practices in the Chinese data community:  **DIL ≈ DWD** (Data Warehouse Detail Layer)   **DML ≈ DWS** (Data Warehouse Summary Layer)  These terms differ in naming but share the same layered principles. Alibaba popularized DWD/DWS, and many other companies adopted similar patterns.
 
 **Data Warehouse Planning :**  
 

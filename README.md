@@ -8,24 +8,28 @@
 
 ## 1. Data Warehouse Architecture - Hourglass
 
+> ✅ **Dimensional Modeling**.  
+> It follows the principle of **data layering** (e.g., DIL, DML), which enables clear separation of concerns between raw data integration and subject-oriented analysis.
+
 Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and transform data into fact and dimension tables. Defined data domains, granularity, metrics, and embedded business logic for subject-oriented, multi-dimensional analysis.
+
+<details>
+<summary>💡Why Layered Design?n</summary>
+  
+> - Clarifies responsibilities across layers (e.g., raw events vs. analysis-ready data)  
+> - Supports atomic and aggregated metrics  
+> - Improves reusability and maintainability  
+> - Enables incremental ETL development  
+> - Aligns with modern data warehouse best practices (e.g., Kimball methodology)
+> - 🧭 **Industry Terminology** The terms **DIL (Data Integration Layer)** and **DML (Data Mart Layer)** follow the same layered logic as **DWD/DWS**, commonly used in China and popularized by Alibaba.
+
+</details>
 
 <div align="center">
   <img src="docs/dwh-1.jpg" alt="Diagram" width="700">
 </div>
 
 ---
-
-> ✅ This is a **Dimensional Modeling** framework.  
-> It follows the principle of **data layering** (e.g., DIL, DML), which enables clear separation of concerns between raw data integration and subject-oriented analysis.
-
-> 💡 **Why Layered Design?**  
-> - Clarifies responsibilities across layers (e.g., raw events vs. analysis-ready data)  
-> - Supports atomic and aggregated metrics  
-> - Improves reusability and maintainability  
-> - Enables incremental ETL development  
-> - Aligns with modern data warehouse best practices (e.g., Kimball methodology)
-> - 🧭 **Industry Terminology**  The terms **DIL** (Data Integration Layer) and **DML** (Data Mart Layer) align with common practices in the Chinese data community:  **DIL ≈ DWD** (Data Warehouse Detail Layer)   **DML ≈ DWS** (Data Warehouse Summary Layer)  These terms differ in naming but share the same layered principles. Alibaba popularized DWD/DWS, and many other companies adopted similar patterns.
 
 **Data Warehouse Planning :**  
 

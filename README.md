@@ -103,7 +103,7 @@ classDef blueNode     fill:#D6EAF8,stroke:#2E86C1,stroke-width:1px;
 | No. | Term                            | Description                                                                 |
 |-----|---------------------------------|-----------------------------------------------------------------------------|
 | 1   | Data Warehouse Planning         | High-level planning of the warehouse, including domains, granularity, and load strategies. |
-| 2   | Business Domain                 | High-level business categories such as remittance, collection, etc.         |
+| 2   | Business Domain                 | High-level business categories such as `HongKong Wallet` and `Cross-border Payment`, etc.         |
 | 3   | Business Process                | Specific workflows describing how data flows through business operations.   |
 | 4   | Data Domain                     | Logical grouping of data, e.g., user, product, funds, contract.             |
 | 5   | Granularity                     | Level of detail in data (e.g., per transaction, per day, per user).         |

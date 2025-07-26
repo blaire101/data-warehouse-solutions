@@ -1,13 +1,13 @@
 # SLA Improvement ? 95% to 99%+.
 
-| No. | ✨ Optimization Area                     | 📌 Description                                                                                                                        |
+| No. | ✨ Optimisation Area                     | 📌 Description                                                                                                                        |
 | ---------- | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
 | 1️⃣ | **🔗 Workflow_Dependency** | Removed non-critical and redundant dependencies to streamline execution flow.                                                         |
 | 2️⃣ | **⏱️ Trigger-Based Scheduling**         |  — Replaced time-based triggers with dependency-based scheduling <br> — tasks auto-trigger upon upstream success.                             |
 | 3️⃣ | **⚙️ Spark\_Job\_Performance**     | Tuned long-running jobs (>1h): optimized `groupBy`, joins, partitioning, memory usage; reduced shuffles and improved execution speed. |
 | 4️⃣ | **🚨 Monitoring & Alerting**            | Set up alerts for job failures and delays to ensure quick response and SLA adherence.                                                 |
 
-## 🧠 SparkSQL - Optimization Case
+## 🧠 SparkSQL - Optimisation Case
 
 > **The following are simplified examples. The real situation is more complicated.**
 

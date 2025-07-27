@@ -20,7 +20,7 @@ Dimensional Modeling
 > - Supports atomic and aggregated metrics  
 > - Improves reusability and maintainability  
 > - Aligns with modern data warehouse best practices (e.g., Kimball methodology)
-> - 🧭 Industry Terminology The terms DIL (Data Integration Layer) and DML (Data Mart Layer) follow the same layered logic as DWD/DWS, commonly used in China and popularized by Alibaba.
+> - 🧭 Industry Terminology - The terms DIL (Data Integration Layer) and DML (Data Mart Layer) follow the same layered logic as DWD/DWS in other organizations. Naming conventions may vary, but the underlying methodology is consistent with Kimball-style dimensional modeling.
 
 </details>
 

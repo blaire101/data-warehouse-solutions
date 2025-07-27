@@ -377,7 +377,7 @@ graph TD
     style ShopeeBankCard fill:#ccf,stroke:#333,stroke-width:2px %% Keep light blue for the card
 
     %% Central green box - Offshore Accounts White-label Official Wallet
-    subgraph SG_Wallet_T["Offshore Accounts Wallet System"]
+    subgraph SG_Wallet_T["Offshore Accounts - Wallet System"]
         direction LR %% Internal layout is more left-to-right
         style SG_Wallet_T fill:#98FB98,stroke:#333,stroke-width:2px %% Changed to light green
         SMA([Shopee Main Account])

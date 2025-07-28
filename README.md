@@ -573,14 +573,6 @@ subgraph chinaBox["Onshore China"]
 end
 ```
 
-**Subject-Specifc Analysis model**
-
-> covering `Sending Institution (Remittance Providers)`, `Orders`, and `Users`.
-
-1. **Sending Institution (SI)** : Analysed key metrics (countries, currencies and transaction, user volumes, fees, FX income ...), produced reports of transaction & profits to guide improvements.
-2. **Orders** : 3 stage life-cycle funnel to measure conversion rates and bottleneck. - Order status: A: Provider order | B: Account opening process | C:  Complete fund receipt.
-3. **Users** : basic info, behaviour, life-cycle, preferences for targeted campaigns.
-
 | No. | Business Processes  | Description |
 |:---:|---------------------|-------------|
 | pre 1   | Partner Onboarding  | Partners complete a onboarding process. Risk & compliance teams perform due diligence. |
@@ -591,6 +583,15 @@ end
 
 ---
 
-### Regulatory Reporting 
+**Subject-Specifc Analysis model**
+
+> covering `Sending Institution (Remittance Providers)`, `Orders`, and `Users`.
+
+1. **Sending Institution (SI)** : Analysed key metrics (countries, currencies and transaction, user volumes, fees, FX income ...), produced reports of transaction & profits to guide improvements.
+2. **Orders** : 3 stage life-cycle funnel to measure conversion rates and bottleneck. - Order status: A: Provider order | B: Account opening process | C:  Complete fund receipt.
+3. **Users** : basic info, behaviour, life-cycle, preferences for targeted campaigns.
+
+
+**Regulatory Reporting** 
 
 In cross-border inbound remittance to China, each user order is recorded individually (1-to-1), but the actual funds arrive in batches. For regulatory reconciliation, especially with MAS or SAFE/PBoC, we ensure that each incoming fund batch (recorded in gather_result_list) can be matched against legitimate end-user orders (in remit_list). This prevents money laundering and ensures compliance reporting accuracy.

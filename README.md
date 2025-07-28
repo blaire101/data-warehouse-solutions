@@ -595,3 +595,20 @@ end
 **Regulatory Reporting** 
 
 In cross-border inbound remittance to China, each user order is recorded individually (1-to-1), but the actual funds arrive in batches. For regulatory reconciliation, especially with MAS or SAFE/PBoC, we ensure that each incoming fund batch (recorded in gather_result_list) can be matched against legitimate end-user orders (in remit_list). This prevents money laundering and ensures compliance reporting accuracy.
+
+<details>
+<summary><strong>DML Table:: dml_trd_kjhk_fundin_order_regulation_cft_dd</strong></summary>
+
+| Field                  | Source | Description                                                                 |
+|-----------------------|--------|-----------------------------------------------------------------------------|
+| `Flistid`              | T1     | Remittance order ID (primary key)                                           |
+| `Forg_id` / `Forg_name` | T1     | Sending institution ID / name                                              |
+| `Ftran_amt`            | T1     | Remitted amount in CNY                                                      |
+| `Ftran_ccy`            | T1     | Currency type (fixed as CNY)                                                |
+| `Ffund_inflow_time`    | T5     | Fund arrival time in China (core time field)                                |
+| `Fname_cn_fid`         | T1     | Encrypted recipient name                                                    |
+| `Fcre_type` / `Fcre_id_fid` | T1     | Recipient ID type / encrypted ID (used to identify domestic residency and deduplicate recipients) |
+| `Fpurpose_code`        | T1     | Purpose of remittance (e.g., education, salary, family support)            |
+| `Fpay_final_time`      | T1     | Final timestamp of remittance success or failure                            |
+
+</details>

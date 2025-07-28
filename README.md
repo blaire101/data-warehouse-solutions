@@ -359,7 +359,7 @@ flowchart TB
   class QAM1,QAM2,QAM3,QAM4 yellowNode
 ```
   
-## 3. ToB Business - Cross-border E-commerce Collection and Payment
+## 3. ToB Business - Cross-border E-commerce Collection and Payout
 
 > Background:
 >

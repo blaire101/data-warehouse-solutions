@@ -594,7 +594,7 @@ end
 
 **Regulatory Reporting** 
 
-In cross-border inbound remittance to China, each user order is recorded individually (1-to-1), but the actual funds arrive in batches. For regulatory reconciliation, especially with MAS or SAFE/PBoC, we ensure that each incoming fund batch (recorded in gather_result_list) can be matched against legitimate end-user orders (in remit_list). This prevents money laundering and ensures compliance reporting accuracy.
+In cross-border inbound remittance to China, user orders are recorded individually (1-to-1), while actual fund settlements arrive in batches. For regulatory reconciliation—especially under HK MSO, MAS MPI, or SAFE/PBoC oversight—we ensure each fund batch (gather_result_list) is accurately matched to valid user orders (remit_list). This ensures auditability, mitigates AML risks, and enables accurate compliance reporting.
 
 <details>
 <summary>DML：fundin_order_regulation</summary>

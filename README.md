@@ -189,7 +189,7 @@ Updating the Data Asset Scoring framework (0–100 points) to quantify each tabl
 </details>
 
 <details>
-<summary><strong>📈 Results : Average asset score improved from 76+ → 86+</strong></summary>
+<summary><strong>📈 Results : Average asset score improved from 77+ → 86+</strong></summary>
 
 > Overall Health Improvement
 > On a 100‑point scale, portfolio of tables has moved from the “C+” range up into the “B+” range—meaning that, on average, assets now meet governance criteria (naming standards, DQC coverage, security and cost controls).

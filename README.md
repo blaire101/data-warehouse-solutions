@@ -6,6 +6,8 @@
 
 ---
 
+The core purpose of a data warehouse is to integrate and store large amounts of internal and external data, providing accurate, reliable data for analysis, reporting, and decision-making, while addressing issues like fragmentation, low quality, slow queries, and difficult historical data management.
+
 ## 1. Data Warehouse Architecture - Hourglass
 
 Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and transform data into fact and dimension tables. Defined data domains, granularity, metrics, and embedded business logic for subject-oriented, multi-dimensional analysis.

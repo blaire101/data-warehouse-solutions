@@ -184,7 +184,7 @@ Updating the Data Asset Scoring framework (0–100 points) to quantify each tabl
 <details>
 <summary><strong>🚀 Push via Platform & Automation & Manual configuration</strong></summary>
 
-- ✅ Enforced **naming conventions** and **dependency configuration** for all new tables through platform-level upgrades  
+- ✅ Enforced **naming conventions** for all new tables through platform-level constraints  
 - ✅ **Auto-configured** zero-record checks and primary key uniqueness constraints  
 - ✅ Enhanced **whitelist governance**, preventing exempt tables from impacting scoring  
 - ✅ **Excluded** temporary tables prefixed with `temp_`, `tmp_`, or `check_` from evaluation scope

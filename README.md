@@ -469,7 +469,7 @@ graph TD
 
 ```mermaid
 flowchart TB
-    M["Merchant<br>(fgid / fspid)"]:::merchant
+    M["Merchant (Main VA)<br>(fgid / fspid)"]:::merchant
 
     subgraph Shops["Shops & Virtual Accounts"]
         direction TB

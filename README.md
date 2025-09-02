@@ -461,6 +461,34 @@ graph TD
 > Shopee's official wallet business leverages multi-dimensional data analysis to support merchant lifecycle management, transaction insights, and revenue optimization. From churn monitoring to cross-site transaction trend analysis, comprehensive dashboards and thematic tables provide strong data support for business growth, product experience enhancement, and precision operations.
 
 
+**Amazon**
+
+- Merchant-level subject table: total recharge, lifecycle tags, retention.
+- Shop-level subject table: site, platform, per-shop inflow/outflow, active vs inactive shops.
+- Order-level subject table: transaction-level granularity for detailed analysis.
+
+```mermaid
+flowchart TB
+    M["Merchant<br>(fgid / fspid)"]:::merchant
+
+    subgraph Shops["Shops & Virtual Accounts"]
+        direction TB
+        S1["Shop A<br>(fshop_id_A)"]:::shop --> VA1["VA_A<br>(Virtual Account)"]:::va
+        S2["Shop B<br>(fshop_id_B)"]:::shop --> VA2["VA_B<br>(Virtual Account)"]:::va
+        S3["Shop C<br>(fshop_id_C)"]:::shop --> VA3["VA_C<br>(Virtual Account)"]:::va
+    end
+
+    %% Fund flow
+    VA1 --> M
+    VA2 --> M
+    VA3 --> M
+
+    %% Styling
+    classDef merchant fill:#FFD580,stroke:#333,stroke-width:2px;
+    classDef shop fill:#98FB98,stroke:#333,stroke-width:1px;
+    classDef va fill:#ADD8E6,stroke:#333,stroke-width:1px;
+```
+
 <details>
 <summary><strong style="color:#1E90FF;">Merchant Subject Sample - Data Metric</strong></summary>
 

@@ -51,331 +51,77 @@ We follow a **business-driven layered architecture**: **ODS → DIL/DIM → DWS 
 4. Abstracted business and data subject analyses into DML tables.
 5. Delivered reporting, supporting subject-specific and multi-dimensional analysis
 
-## 2. Data Governance - Data Asset Score
 
-**🔹 Background & Motivation**
+## Amazon Standard Collection vs Shopee Official Wallet
 
-> Rapid growth of payments business exposed chaos in our Hive/Spark data layer: inconsistent table names, missing comments, unmanaged dependencies, quality checks, security compliance, or cost inefficiencies.
+### 1. Background 背景
 
-> Previously, only Data Quality Checks (DQC) were used to evaluate data assets. In this project, expansion of the Data Asset Scoring mechanism by introducing 3 new dimensions:
-> Table Standards (35%) & Security (15%) & Cost (15%)  **Combined with DQC (35%)**, we built a comprehensive 100-point scoring system that evaluates the usability, reliability, compliance, and cost-efficiency of data assets.
+#### Amazon Standard Collection (English)
+In Amazon’s standard collection model, cross-border sellers cannot easily open overseas bank accounts. Payment service providers like Tenpay issue one **main VA (real bank account)** for settlement and create **sub-VAs (child accounts with unique identifiers)** for each store bound under the merchant.  
+Amazon pays into the sub-VA (store level), which technically maps back to the main VA. This allows tracking of funds per store and per currency.  
 
-<details>
-<summary><strong>🎯 Goals & Expected Benefits</strong></summary>  
-Updating the Data Asset Scoring framework (0–100 points) to quantify each table’s:
+#### 亚马逊标准收款 (中文)
+在亚马逊标准收款模式下，跨境卖家很难在海外开立银行账户。收款服务商（如 Tenpay）会为商户开立一个 **主VA（真实银行账户）**，并在商户绑定店铺时分配 **子VA**。  
+亚马逊将货款打入子VA（每个店铺一个），而子VA最终归集到主VA，用于资金清算和提现。这样服务商可以通过子VA识别不同店铺的资金来源。
 
-1. Table Standards (35%): naming, comments, dependency hygiene
-2. Data Quality Checks (35%): SLA‑driven timeliness, DQC rule coverage, alert management
-3. Security (15%): sensitive‑field encryption & owner compliance
-4. Cost (15%): compute and storage cost
+#### Shopee Official Wallet (English)
+In Shopee’s official wallet model, Shopee itself acts as the settlement entity. After sellers onboard and bind stores, Shopee credits their **official wallet account** (white-label offshore account powered by Tenpay).  
+There is **no sub-VA per store** — store-level differentiation comes from Shopee’s internal transaction system. Funds can be disbursed (fees, supplier payments, subscription plans) or withdrawn to bank accounts.  
 
-</details>
-  
-<details>
-<summary><strong>⚙️ Design & Implementation</strong></summary>
+#### Shopee 官方钱包 (中文)
+在 Shopee 官方钱包模式下，Shopee 与 Tenpay 深度合作，Shopee 自身作为结算主体。商户入驻并绑定店铺后，货款直接进入商户的 **Shopee 官方钱包账户**。  
+这里 **没有子VA**，店铺的区分由 Shopee 内部交易系统完成。资金可以用于平台代扣（佣金、年卡）、供应商付款，或提现至银行账户。
 
-1. Scoring Rules automated via SparkSQL jobs running daily;
-2. Table (names, comments, dependencies) extracted from Hive Meta Table & Lineage Relationship Table.
-3. DQC rules stored and versioned in a rule table, evaluation output is written into a DQC_Score table.
-4. Security – Perform sensitive‑field encryption checks using the scan results supplied by the data-security‑platform team
-5. Cost – Implemented by our Data Platform team via daily scans for stale/“garbage” tables and by defining table lifecycle stages. Each day’s cost evaluation output is written into a Cost_Score table.
-6. Whitelist Mechanism allows table owners to apply for temporary exemptions.
-7. Finally, together the scores from all four dimensions, applied our weighted formula, and loaded the consolidated score into the central Data Asset Score table.
+### 2. Comparison 表格对比
 
-| Field Name    | Description          |
-| ------------- | -------------------- |
-| fdate  | Date           |
-| fetl_time  | ETL time           |
-| ftable\_name  | Table name           |
-| fowner        | Table owner          |
-| fbusiness     | Business Domain   |
-| fstd\_score   | Standards score      |
-| fdqc\_score   | Data quality score   |
-| fsecu\_score  | Security score       |
-| fcost\_score  | Cost score           |
-| ftotal\_score | Total score          |
-| fscore\_time  | Scoring timestamp    |
-| fexempt\_flag | Exemption flag (Y/N) |
-</details>
+| Aspect / 维度         | Amazon Standard Collection (English) | 亚马逊标准收款 (中文)                   | Shopee Official Wallet (English)      | Shopee 官方钱包 (中文)               |
+|-----------------------|--------------------------------------|-----------------------------------------|---------------------------------------|--------------------------------------|
+| **Account Structure / 账户结构** | Main VA + sub-VA per store          | 主VA + 店铺子VA                          | One official wallet per merchant       | 每个商户一个官方钱包账户              |
+| **Fund Inflow / 资金入账**       | Amazon pays into sub-VA (per store) | 亚马逊打款到子VA（店铺维度）             | Shopee credits merchant wallet directly| Shopee 直接打款到商户钱包             |
+| **Store Differentiation / 区分店铺** | By sub-VA number                     | 通过子VA编号区分                         | By Shopee transaction system           | 通过 Shopee 内部交易系统区分          |
+| **Settlement / 清算归集**        | Sub-VA → Main VA → Withdrawal        | 子VA → 主VA → 商户提现                   | Wallet balance → Deduction → Withdrawal| 钱包余额 → 扣费 → 提现               |
+| **Complexity / 模式复杂度**      | Higher (need VA management per store)| 较高（需为每个店铺管理VA）               | Lower (platform internal accounting)   | 较低（平台内部记账）                  |
 
-<details>
-<summary><strong>🚀 Push via Platform & Automation & Manual configuration</strong></summary>
+---
 
-- ✅ Enforced **naming conventions** for all new tables through platform-level **constraints** in the visual table-creation process
-- ✅ **Auto-configured** zero-record checks and primary key uniqueness constraints  
-- ✅ Enhanced **whitelist governance**, preventing exempt tables from impacting scoring  
-- ✅ **Excluded** temporary tables prefixed with `temp_`, `tmp_`, or `check_` from evaluation scope
+### 3. Data Warehouse Construction 数仓建设
 
-</details>
+### Amazon Standard Collection
+**Business Process / 业务过程**  
+1. Merchant onboarding (商户入驻)  
+2. VA assignment (主VA开户)  
+3. Store authorization & binding & sub-VA assignment (店铺绑定 + 子VA发放)  
+4. Amazon pays store VA (亚马逊打款 → 子VA)  
+5. Transaction details via API (获取交易明细)  
+6. Merchant card binding (商户绑卡)  
+7. Withdrawal & payout (提现/付款)  
 
-<details>
-<summary><strong>📈 Results : Average asset score improved from 77+ → 86+</strong></summary>
+**Modeling / 建模**  
+- **Fact tables**: 收款订单事实表、提现订单事实表  
+- **Dimension tables**: 商户维度、店铺维度、币种维度、账户维度  
+- **DML subject tables**: Merchant-centric + Store-centric tables with  
+  - Horizontal timeline fields (first recharge, first withdrawal)  
+  - Vertical tags (active stores, total inflow, retention metrics)  
 
-> Overall Health Improvement
-> On a 100‑point scale, portfolio of tables has moved from the “C+” range up into the “B+” range—meaning that, on average, assets now meet governance criteria (naming standards, DQC coverage, security and cost controls).
+---
 
-</details>
+### Shopee Official Wallet
+**Business Process / 业务过程**  
+1. Merchant onboarding (商户入驻)  
+2. Store binding (店铺绑定)  
+3. Funds inflow (资金入账)  
+4. Disbursement & deduction (代发代扣)  
+5. Merchant card binding (商户绑卡)  
+6. Merchant operations (年卡/增值服务)  
+7. Withdrawal & payout (提现/付款)  
 
-> 🌱 Future Extensions: Incorporate data‑usage heatmaps & Add partition‑level DQC quality checks.
-
-<details>
-<summary>Data Governance for 🚀 SLA Optimisation</summary>
-
-| No. | ✨ Optimisation Area                 | 📌 Description                                                                                                          |
-|-----|--------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
-| 1️⃣ | 🔗 **Workflow Dependency**           | Removed non-critical and redundant dependencies to streamline DAG execution.                                           |
-| 2️⃣ | ⏱️ **Trigger-Based Scheduling**      | Replaced fixed-time triggers with dependency-based scheduling.<br>Tasks now auto-execute upon upstream success.        |
-| 3️⃣ | 🚨 **Monitoring & Alerting**         | Added alerting for job failures and delays, enabling early detection and faster troubleshooting.                       |
-| 4️⃣ | 🧩 **Spark Job Optimization**        | Prioritized optimization of long-running (1h+) critical path jobs and de-emphasized low-impact ones.                   |
-
-</details>
-
-```mermaid
-flowchart TB
-
-    subgraph SG_DataAssetScore["4"]
-        direction LR
-        DAS_A(["Table Standards <br> 35%"])
-        DAS_B(["Data Quality Check <br> 35%"])
-        DAS_C(["Security + Cost <br> 15% + 15%"])
-    end
-
-    subgraph DAS_SECO["Security + Cost"]
-        direction TB
-        SECO_A(["Sensitive Field Encryption <br>Owner Compliance"])
-        SECO_B(["Compute Cost <br>Storage Cost"])
-    end
-
-    subgraph DAS_DataQuality["DQC"]
-        direction TB
-        DQ_A(["Timely Monitoring <br>20%"])
-        DQ_B(["DQC Coverage <br>50%"])
-        DQ_C(["Alert Management <br>30%"])
-    end
-
-    subgraph DAS_Standard["Standard"]
-        direction TB
-        ST_A(["Naming Conventions <br>50%"])
-        ST_B(["Comment Standards <br>37.5%"])
-        ST_C(["Dependency Standards <br>12.5%"])
-    end
-
-    DAS(["Data Asset Score"]) --> DAS_A & DAS_B & DAS_C
-    DAS_A -- rules --> DAS_Standard
-    DAS_B -- rules --> DAS_DataQuality
-    DAS_C -- rules --> DAS_SECO
-
-
-    classDef rectBox fill:#F5F5DC,stroke:#333,stroke-width:2px,rx:0,ry:0
-    classDef rectMain fill:#FFA07A,stroke:#333,stroke-width:2px,rx:0,ry:0
-    classDef rectGroup fill:#ADD8E6,stroke:#333,stroke-width:2px,rx:0,ry:0
-    classDef rectLight fill:#F0FFF0,stroke:#333,stroke-width:2px,rx:0,ry:0
-    classDef rectWarn fill:#FFE4B5,stroke:#333,stroke-width:2px,rx:0,ry:0
-    classDef rectFrame fill:#98FB98,stroke:#333,stroke-width:2px,rx:0,ry:0
-
-    class DAS rectMain
-    class DAS_A,DAS_B,DAS_C rectLight
-    class SECO_A,SECO_B rectWarn
-    class DQ_A,DQ_B,DQ_C rectBox
-    class ST_A,ST_B,ST_C rectBox
-    class SG_DataAssetScore rectFrame
-    class DAS_Standard,DAS_DataQuality,DAS_SECO rectGroup
-```
-
-**Table Standards**
-
-```mermaid
-flowchart TB
-  %% Top-level: Standards
-  STD["Table Standards (35%)"]
-  STD --> NS["Naming Convention 50%"]
-  STD --> CS["Comment Standard 37.5%"]
-  STD --> DS["Dependency Standard 12.5%"]
-
-  %% Naming Convention Subgroup
-  subgraph NS-Group
-    direction TB
-    NS1["a. prefix"]
-    NS2["b. suffix"]
-    NS3["c. business domain"]
-    NS4["d. data domain"]
-  end
-  NS --> NS-Group
-
-  %% Comment Standard Subgroup
-  subgraph CS-Group
-    direction TB
-    CS1["a. table comment"]
-    CS2["b. column comment "]
-  end
-  CS --> CS-Group
-
-  %% Dependency Standard Subgroup
-  subgraph DS-Group
-    direction TB
-    DS1["a. Backward dependency <br> b. ODS-layer dependency"]
-  end
-  DS --> DS-Group
-
-  %% Styling
-  classDef topNode fill:#98FB98,stroke:#333,stroke-width:2px
-  classDef secondNode fill:#ADD8E6,stroke:#333,stroke-width:2px
-  classDef subgroupNode fill:#F5B7B1,stroke:#333,stroke-width:1px
-  classDef purpleNode fill:#A9CCE3,stroke:#333,stroke-width:1px
-  classDef yellowNode fill:#F9E79F,stroke:#333,stroke-width:1px
-
-  class STD topNode
-  class NS,CS,DS secondNode
-  class NS1,NS2,NS3,NS4 subgroupNode
-  class CS1,CS2,CS3,CS4 purpleNode
-  class DS1,DS2 yellowNode
-```
-
-**Data Quality Check**
-
-```mermaid
-flowchart TB
-  %% Top-level: Data Quality
-  DQ["Data Quality (35%)"]
-  DQ --> TM["Timeliness Monitoring Coverage 20%"]
-  DQ --> DQC["DQC Coverage 50%"]
-  DQ --> QAM["Quality Alert Ticket 30%"]
-
-  %% Timeliness Monitoring Subgroup
-  subgraph TM-Group
-    direction TB
-    TM1["a. Task time > 1 day"]
-    TM2["b. Task time exceeds <br> Layer SLA commitment"]
-  end
-  TM --> TM-Group
-
-  %% DQC Assurance Subgroup
-  subgraph DQC-Group
-    direction TB
-    DQC1["a. zero records in partition"]
-    DQC2["b. Uniqueness rule"]
-  end
-  DQC --> DQC-Group
-
-  %% Quality Alert Subgroup
-  subgraph QAM-Group
-    direction TB
-    QAM1["a. ≥3 unresolved tickets"]
-    QAM2["b. ≥1 unresolved tickets"]
-  end
-  QAM --> QAM-Group
-
-  %% Styling
-  classDef topNode fill:#98FB98,stroke:#333,stroke-width:2px
-  classDef secondNode fill:#ADD8E6,stroke:#333,stroke-width:2px
-  classDef pinkNode fill:#F5B7B1,stroke:#333,stroke-width:1px
-  classDef purpleNode fill:#A9CCE3,stroke:#333,stroke-width:1px
-  classDef yellowNode fill:#F9E79F,stroke:#333,stroke-width:1px
-
-  class DQ topNode
-  class TM,DQC,QAM secondNode
-  class TM1,TM2 pinkNode
-  class DQC1,DQC2,DQC3,DQC4 purpleNode
-  class QAM1,QAM2,QAM3,QAM4 yellowNode
-```
-  
-## 3. ToB Business - Cross-border E-commerce Collection and Payout
-
-> Background:
->
-> - Under the standard collection model, Shopee currently only supports local settlement of sales proceeds—meaning funds from sold goods can only be settled into local overseas bank accounts.
-> - However, for **cross-border sellers, it is not feasible to open overseas bank accounts**. As a result, sellers face challenges in **receiving payments and accessing their earnings freely**.
-> - Ten-Pay is great at getting money back to China and distributing it efficiently.
-
-So, Provide offshore accounts (AS Shopee official wallet) and **fund repatriation** services `[riːˌpætriˈeɪʃən]` for Shopee cross-border sellers based in Mainland China, Hong Kong, and South Korea.
-
-```mermaid
-graph TD
-    %% Left side entities - Shopee above Shopee Bank Card
-    Shopee(S Shopee)
-    style Shopee fill:#FFA07A,stroke:#333,stroke-width:2px %% Adjusted to comfortable orange-yellow
-    ShopeeBankCard([Shopee Bank Card])
-    style ShopeeBankCard fill:#ccf,stroke:#333,stroke-width:2px %% Keep light blue for the card
-
-    %% Central green box - Offshore Accounts White-label Official Wallet
-    subgraph SG_Wallet_T["Offshore Accounts - Wallet System"]
-        direction LR %% Internal layout is more left-to-right
-        style SG_Wallet_T fill:#98FB98,stroke:#333,stroke-width:2px %% Changed to light green
-        SMA([Shopee Main Account])
-        style SMA fill:#F0FFF0,stroke:#333,stroke-width:2px %% Keep very pale green
-        SA_A([Seller Account A])
-        style SA_A fill:#F0FFF0,stroke:#333,stroke-width:2px %% Keep very pale green
-        SA_B([Seller Account B])
-        style SA_B fill:#F0FFF0,stroke:#333,stroke-width:2px %% Keep very pale green
-        SA_C([Seller Account C])
-        style SA_C fill:#F0FFF0,stroke:#333,stroke-width:2px %% Keep very pale green
-
-        SMA -- "Funds distribute" --> SA_A
-        SMA -- "Funds distribute" --> SA_B
-        SMA -- "Funds distribute" --> SA_C
-        linkStyle 0,1,2 stroke:#333,stroke-width:1px
-    end
-
-    %% Right blue box - Seller Bank Accounts
-    subgraph SG_SellerBanks["Withdraw"]
-        direction TB %% Internal layout is top-to-bottom
-        style SG_SellerBanks fill:#ADD8E6,stroke:#333,stroke-width:2px %% Changed to light blue
-        SBA_A([Seller Bank Account A])
-        style SBA_A fill:#F5F5DC,stroke:#333,stroke-width:2px %% Keep beige
-        SBA_B([Seller Bank Account B])
-        style SBA_B fill:#F5F5DC,stroke:#333,stroke-width:2px %% Keep beige
-        SBA_C([Seller Bank Account C])
-        style SBA_C fill:#F5F5DC,stroke:#333,stroke-width:2px %% Keep beige
-    end
-
-   %% Right blue box - Seller Product Supplier
-    subgraph SZ_ProductSupplier["Supplier"]
-        direction TB %% Internal layout is top-to-bottom
-        style SZ_ProductSupplier fill:#ADD8,stroke:#333,stroke-width:2px %% Changed to light blue
-        SPS_A([Product Supplier])
-        style SPS_A fill:#FF23,stroke:#333,stroke-width:2px %% Keep beige
-    end
-
-    %% Right blue box - Seller Annual Subscription Plan
-    subgraph Subs["Subscription"]
-        direction TB %% Internal layout is top-to-bottom
-        style Subs fill:#ADD5,stroke:#333,stroke-width:1px %% Changed to light blue
-        SASP_C([annual membership])
-        style SASP_C fill:#F5F5,stroke:#333,stroke-width:1px %% Keep beige
-    end
-
-    %% Connections between main sections
-    ShopeeBankCard --> |Collection - E-commerce Top-up| SMA
-    linkStyle 3 stroke:#333,stroke-width:1px,color:#000
-
-    SMA --> |balance can be withdrawn to bank account| ShopeeBankCard
-    linkStyle 4 stroke:#333,stroke-width:1px,color:#000
-
-    SA_A --> |Payout| SBA_A
-    SA_A --> |Payout| SPS_A
-    SA_C --> |Payout| SASP_C
-    SA_B --> |Payout| SBA_B
-    SA_C --> |Payout| SBA_C
-    linkStyle 5,6,7 stroke:#333,stroke-width:1px
-```
-
-### Business Process 
-
-| No. | Business Process                    | Description                                                                                  |
-|-----|-------------------------------------|----------------------------------------------------------------------------------------------|
-| 1   | **Merchant Onboarding**            | Merchant registers on the platform and completes kyc.   |
-| 2   | **Merchant Shop Binding**         | Merchant links their shops. |
-| 3   | **Funds Inflow (E-commerce Top-up)** | E-commerce Top-up |
-| 4   | **Funds Flow to Seller Account (Disbursement & Deduction)** | The platform processes payouts or automatic deductions on behalf of the merchant (e.g. platform fees, commission). |
-| 5   | **Merchant bank Card Binding**          | Merchant binds a settlement bank card for receiving withdrawals.     |
-| 6   | **Payout - Withdrawal and Payment**         | Merchant initiates fund withdrawal to their own bank account or makes payments to external suppliers. |
-| 7   | **Payout - Merchant Operations (e.g., Annual Subscription Plan)** | Merchant performs business-related actions such as purchasing subscription plans or value-added services. |
-
-### Subject-Specifc Table
-
-**Subject-Specifc Analysis model**, covering `Merchant`, `Shop`, and `Orders`.
-
-> Shopee's official wallet business leverages multi-dimensional data analysis to support merchant lifecycle management, transaction insights, and revenue optimization. From churn monitoring to cross-site transaction trend analysis, comprehensive dashboards and thematic tables provide strong data support for business growth, product experience enhancement, and precision operations.
+**Modeling / 建模**  
+- **Fact tables**: 钱包入账事实表、代发代扣事实表  
+- **Dimension tables**: 商户维度、店铺维度、产品维度  
+- **DML subject tables**: Merchant-wallet centric  
+  - Support inflow/outflow metrics  
+  - Lifecycle tagging  
+  - Retention & churn analysis  
 
 
 <details>

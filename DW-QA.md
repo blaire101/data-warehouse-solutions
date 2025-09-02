@@ -18,10 +18,9 @@ We follow a **business-driven layered architecture**: **ODS → DIL/DIM → DWS 
 
 - **ODS**: Ingest raw data via binlog subscription with hourly batch loading.  
 - **DIL/DIM**: Clean, deduplicate, and normalize data; build fact and dimension tables.  
-- **DML (Data Mart Layer)**: Perform subject-oriented modeling for business processes such as payment, settlement, and withdrawal, producing reusable wide tables and metrics.  
+- **DML (Data Mart Layer)**: Perform <mark>subject-oriented</mark> modeling around <mark>business entities</mark> (e.g., Merchant, Order) and processes (e.g., Top-up, settlement, payment/withdrawal), delivering reusable wide tables and standardized metrics for **<mark>multi-dimensional and thematic analysis.</mark>**
 - **ADS (Application Data Service Layer)**: Deliver application-level wide tables to support Finance, Risk, and BI reporting.  
 
----
 
 ### 2. Modeling
 
@@ -39,8 +38,6 @@ We follow a **business-driven layered architecture**: **ODS → DIL/DIM → DWS 
 - **Entity-oriented**: Build subject tables around sending institutions, remittance orders (3 lifecycle stages), recipients, and senders.  
   Design metrics to support funnel analysis, compliance monitoring, and business insights.  
 
----
-
 ### 3. Governance
 
 - **Data Asset Scoring**: Evaluate each table across four dimensions: standards, data quality (DQC), security, and cost.  
@@ -54,72 +51,6 @@ We follow a **business-driven layered architecture**: **ODS → DIL/DIM → DWS 
 3. Organised data domains, determined data granularity, and designed key metrics.
 4. Abstracted business and data subject analyses into DML tables.
 5. Delivered reporting, supporting subject-specific and multi-dimensional analysis
-
-
-
-```mermaid
-flowchart TB
-
-%% Planning
-subgraph PL["PL"]
-  direction TB
-  Data_Warehouse_Planning["📦 Data Warehouse Planning"]:::topNode
-  PL1["Business Domain"]:::subgroupNode
-  PL2["Business Processe"]:::subgroupNode
-  PL3["Data Domain"]:::subgroupNode
-  PL5["Granularity"]:::subgroupNode
-  PL6["Constraints"]:::subgroupNode
-  PL7["Load Strategy"]:::subgroupNode
-end
-
-%% Dimension Management
-subgraph DM["DM"]
-  direction TB
-  Dimension_Management["📘 Dimension Management"]:::secondNode
-  DM1["Dimension Classification"]:::yellowNode
-  DM2["Dimension Tables"]:::yellowNode
-  DM3["Dimension Attributes"]:::yellowNode
-end
-
-%% Metric Definition
-subgraph MD["MD: Metric Definition"]
-  direction TB
-  Metric_Definition["📊 Metric Definition"]:::secondNode
-  AM["Atomic Metrics<br>(DIL / Fact Tables)"]:::purpleNode
-  SM["Simple Derived Metrics<br>(DIL or DML)"]:::purpleNode
-  CM["Complex Derived Metrics<br>(Mainly in DML)"]:::purpleNode
-end
-
-%% Physical Schema Modeling
-subgraph PH["PH"]
-  direction TB
-  Schema_Physical["📐 Physical Schema Modeling"]:::secondNode
-  SM1["Dimension Tables"]:::blueNode
-  SM2["Fact Tables"]:::blueNode
-end
-
-%% Data‑Mart / Subject Modeling
-subgraph DMART["D-MART"]
-  direction TB
-  Data_Mart["🎯 Data‑Mart Modeling"]:::secondNode
-  SM3["Subject Tables"]:::blueNode
-  WAT3["Wide / Aggregated Tables"]:::blueNode
-end
-
-%% End‑to‑end Flow
-Data_Warehouse_Planning --> Dimension_Management
-Dimension_Management   --> Metric_Definition
-Metric_Definition      --> Schema_Physical
-Schema_Physical        --> Data_Mart
-
-%% Styling
-classDef topNode      fill:#D1F2EB,stroke:#117A65,stroke-width:2px;
-classDef secondNode   fill:#EAF2F8,stroke:#2874A6,stroke-width:2px;
-classDef subgroupNode fill:#FCF3CF,stroke:#B7950B,stroke-width:1px;
-classDef yellowNode   fill:#FDEBD0,stroke:#CA6F1E,stroke-width:1px;
-classDef purpleNode   fill:#EBDEF0,stroke:#884EA0,stroke-width:1px;
-classDef blueNode     fill:#D6EAF8,stroke:#2E86C1,stroke-width:1px;
-```
 
 ## 2. Data Governance - Data Asset Score
 

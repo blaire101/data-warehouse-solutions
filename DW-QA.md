@@ -98,12 +98,12 @@ There is **no sub-VA per store** — store-level differentiation comes from Shop
 
 **Modeling / 建模**  
 - **Fact tables**: 收款订单事实表、提现订单事实表  
-- **Dimension tables**: 商户维度、店铺维度、币种维度、账户维度  
-- **DML subject tables**: Merchant-centric + Store-centric tables with  
+- **Dimension tables**: 商户维度、店铺维度、收款人维度、账户维度  
+- **DML subject tables**: Merchant， Shop， Order
   - Horizontal timeline fields (first recharge, first withdrawal)  
   - Vertical tags (active stores, total inflow, retention metrics)  
 
----
+> 收款订单事实表 : 电商平台打款 → 店铺 VA → 主账户 的资金入账交易
 
 ### Shopee Official Wallet
 **Business Process / 业务过程**  
@@ -116,7 +116,7 @@ There is **no sub-VA per store** — store-level differentiation comes from Shop
 7. Withdrawal & payout (提现/付款)  
 
 **Modeling / 建模**  
-- **Fact tables**: 钱包入账事实表、代发代扣事实表  
+- **Fact tables**: 钱包入账事实表、代发代扣事实表、提现付款事实表  
 - **Dimension tables**: 商户维度、店铺维度、产品维度  
 - **DML subject tables**: Merchant-wallet centric  
   - Support inflow/outflow metrics  

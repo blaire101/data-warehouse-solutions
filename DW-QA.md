@@ -17,7 +17,7 @@ Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and tra
 We follow a **business-driven layered architecture**: **ODS → DIL/DIM → DWS → ADS**.
 
 - **ODS**: Ingest raw data via binlog subscription with hourly batch loading.  
-- **DIL/DIM**: Clean, deduplicate, and normalize data; build fact and dimension tables.  
+- **DIL**: Clean, deduplicate, and normalize data; build fact tables.  same dim table
 - **DML (Data Mart Layer)**: Perform subject-oriented modeling for business processes such as payment, settlement, and withdrawal, producing reusable wide tables and metrics.  
 - **ADS (Application Data Service Layer)**: Deliver application-level wide tables to support Finance, Risk, and BI reporting.  
 

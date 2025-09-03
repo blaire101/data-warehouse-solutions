@@ -30,9 +30,8 @@ We follow a **business-driven layered architecture**: **ODS → DIL/DIM → DWS 
 - **Entity-oriented**: Build subject tables around merchants, shops, and orders.  
   Design metrics to enable multi-dimensional analysis, subject-area analytics, and monitoring of core business KPIs.  
 
-
 <details>
-<summary><strong style="color:#1E90FF;">Amazon - Cross-border E-commerce Collection - Data Warehouse Modeling</strong></summary>
+<summary><strong style="color:#1E90FF;"><mark>Amazon - Cross-border E-commerce Collection - Data Warehouse Modeling</mark></strong></summary>
 
 **Core idea:** Amazon settles **per shop** into **sub-VA** (real bank sub-account); provider internally aggregates to **main VA** for the merchant. We model **settlement** and **cash-out/payments**; the internal sub-VA→main-VA aggregation is automatic and **not** a business fact.
 
@@ -48,7 +47,7 @@ We follow a **business-driven layered architecture**: **ODS → DIL/DIM → DWS 
 | Layer | What we build | Examples |
 |------|----------------|----------|
 | **ODS** | Raw pulls from Amazon/shop-binding/KYC/account systems | shop binding logs, settlement raw, payout raw |
-| **DIL / FACT** | Cleaned **facts** (atomic events) + standard dims | `FCT_SETTLEMENT`, `FCT_WITHDRAWAL`, `FCT_PAYMENT`; `DIM_MERCHANT`, `DIM_SHOP` |
+| **DIL/FACT + DIM** | Cleaned **facts** (atomic events) + standard dims | `FCT_SETTLEMENT`, `FCT_WITHDRAWAL`, `FCT_PAYMENT`; `DIM_MERCHANT`, `DIM_SHOP` |
 | **DML / Subject** | Subject-oriented wide tables & metrics | `DML_MERCHANT_SUBJECT`, `DML_SHOP_SUBJECT`, `DML_ORDER_SUBJECT` |
 | **ADS** | App/report views & cubes | Finance/Risk/Product dashboards |
 

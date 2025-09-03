@@ -364,6 +364,50 @@ flowchart TB
   
 ## 3. ToB Business - Cross-border E-commerce Collection and Payout
 
+### 3.1 Amazon Standard Collection
+
+> Background:
+> - Amazon’s standard collection model, cross-border sellers cannot easily open overseas bank accounts. **Payment service providers** like (Lianlian, WorldFirst, Tenpay) issue one main VA (real bank account) for settlement and create sub-VAs (child accounts with unique identifiers) for each store bound under the merchant.
+> - Amazon pays into the sub-VA (store level), which technically maps back to the main VA. This allows tracking of funds per store and per currency.
+
+```mermaid
+flowchart TB
+    M["Merchant (Main VA)<br>(fgid / fspid)"]:::merchant
+
+    subgraph Shops["Shops & Virtual Accounts"]
+        direction TB
+        S1["Shop A<br>(fshop_id_A)"]:::shop --> VA1["VA_A<br>(Virtual Account)"]:::va
+        S2["Shop B<br>(fshop_id_B)"]:::shop --> VA2["VA_B<br>(Virtual Account)"]:::va
+        S3["Shop C<br>(fshop_id_C)"]:::shop --> VA3["VA_C<br>(Virtual Account)"]:::va
+    end
+
+    %% Fund flow
+    VA1 --> M
+    VA2 --> M
+    VA3 --> M
+
+    %% Styling
+    classDef merchant fill:#FFD580,stroke:#333,stroke-width:2px;
+    classDef shop fill:#98FB98,stroke:#333,stroke-width:1px;
+    classDef va fill:#ADD8E6,stroke:#333,stroke-width:1px;
+```
+
+**Business Process**
+
+1. Merchant onboarding (商户入驻)
+2. VA assignment (主VA开户)
+3. Shop authorization & binding & sub-VA assignment (店铺绑定 + 子VA发放)
+4. Amazon pays store VA (亚马逊打款 → 子VA)
+5. Transaction details via API (获取交易明细)
+6. Merchant card binding (商户绑卡)
+7. Withdrawal & payout (提现/付款)
+
+- Merchant-level subject table: Merchant, total recharge, lifecycle tags.
+- Shop-level subject table: site, platform, per-shop inflow/outflow, lifecycle tags.
+- Order-level subject table: transaction-level granularity for detailed analysis.
+
+### 3.2 Shopee Official Wallet 
+
 > Background:
 >
 > - Under the standard collection model, Shopee currently only supports local settlement of sales proceeds—meaning funds from sold goods can only be settled into local overseas bank accounts.
@@ -459,35 +503,6 @@ graph TD
 **Subject-Specifc Analysis model**, covering `Merchant`, `Shop`, and `Orders`.
 
 > Shopee's official wallet business leverages multi-dimensional data analysis to support merchant lifecycle management, transaction insights, and revenue optimization. From churn monitoring to cross-site transaction trend analysis, comprehensive dashboards and thematic tables provide strong data support for business growth, product experience enhancement, and precision operations.
-
-
-**Amazon**
-
-- Merchant-level subject table: total recharge, lifecycle tags, retention.
-- Shop-level subject table: site, platform, per-shop inflow/outflow, active vs inactive shops.
-- Order-level subject table: transaction-level granularity for detailed analysis.
-
-```mermaid
-flowchart TB
-    M["Merchant (Main VA)<br>(fgid / fspid)"]:::merchant
-
-    subgraph Shops["Shops & Virtual Accounts"]
-        direction TB
-        S1["Shop A<br>(fshop_id_A)"]:::shop --> VA1["VA_A<br>(Virtual Account)"]:::va
-        S2["Shop B<br>(fshop_id_B)"]:::shop --> VA2["VA_B<br>(Virtual Account)"]:::va
-        S3["Shop C<br>(fshop_id_C)"]:::shop --> VA3["VA_C<br>(Virtual Account)"]:::va
-    end
-
-    %% Fund flow
-    VA1 --> M
-    VA2 --> M
-    VA3 --> M
-
-    %% Styling
-    classDef merchant fill:#FFD580,stroke:#333,stroke-width:2px;
-    classDef shop fill:#98FB98,stroke:#333,stroke-width:1px;
-    classDef va fill:#ADD8E6,stroke:#333,stroke-width:1px;
-```
 
 <details>
 <summary><strong style="color:#1E90FF;">Merchant Subject Sample - Data Metric</strong></summary>

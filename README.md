@@ -366,11 +366,26 @@ flowchart TB
 
 ### 3.1 Background (Amazon Standard Collection)
 
-> - In Amazon’s standard collection scenario, cross-border sellers often face difficulties opening overseas bank accounts due to regulatory and cost barriers.  
-> - To solve this, **payment service providers** (e.g., Lianlian, WorldFirst, Tenpay) open a **main VA (Virtual Account, which is a real bank account)** for each merchant as the settlement and fund aggregation account.  
-> - For every shop that the merchant binds on Amazon, the provider allocates a **sub-VA** (a child account with a unique identifier).  
-> - Amazon disburses payments into the sub-VA (shop level), which is technically linked back to the merchant’s main VA.  
-> - This mechanism enables the provider to track and reconcile **fund inflows per shop and per currency**, while the main VA handles the actual clearing and withdrawal.
+### Amazon Standard Collection Model (VA-based)
+
+In Amazon’s cross-border collection scenario, sellers from Mainland China or Hong Kong face strict requirements and high costs to open overseas bank accounts.  
+To solve this, **payment service providers** (e.g., Lianlian, WorldFirst, Tenpay) create a **virtual account system**:
+
+- **Main VA (real bank account):**  
+  Each merchant receives a main VA, which is a real bank account used for settlement, aggregation, and withdrawals.
+
+- **Sub-VA (per shop):**  
+  When the merchant binds shops on Amazon, the provider issues sub-VAs — child accounts with unique identifiers linked to the main VA.
+
+- **Fund flow:**  
+  Amazon pays each shop’s proceeds into the corresponding sub-VA. These sub-VAs map back to the merchant’s main VA, ensuring funds are aggregated but still traceable.
+
+- **Purpose:**  
+  This design allows the provider to **distinguish inflows by shop and currency**, while merchants only need to manage one settlement account (the main VA) for withdrawals and payments.
+
+👉 In short: *Amazon pays → sub-VA (shop-level tracking) → main VA (aggregation & settlement)*.  
+This balances compliance, transparency, and ease of use for both merchants and providers.
+
 
 ```mermaid
 flowchart TB

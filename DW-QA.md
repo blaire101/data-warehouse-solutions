@@ -30,6 +30,143 @@ We follow a **business-driven layered architecture**: **ODS → DIL/DIM → DWS 
 - **Entity-oriented**: Build subject tables around merchants, shops, and orders.  
   Design metrics to enable multi-dimensional analysis, subject-area analytics, and monitoring of core business KPIs.  
 
+# Amazon Standard Collection — Data Warehouse Modeling
+
+> **Core idea:** Amazon settles **per shop** into **sub-VA** (real bank sub-account); provider internally aggregates to **main VA** for the merchant. We model **settlement** and **cash-out/payments**; the internal sub-VA→main-VA aggregation is automatic and **not** a business fact.
+
+</details>
+<summary><strong style="color:#1E90FF;">Cross-border E-commerce Collection - DMH Modeling</strong></summary>
+
+## 1) Business Process (for context)
+1. **Merchant onboarding** → register, KYC pass  
+2. **Shop authorization & binding** →
+3. **Amazon settlement** → **Amazon → sub-VA (shop-level)**  
+4. *(Internal aggregation)* sub-VA → main VA *(system auto, non-analytical)*  
+5. **Cash-out / payment** → main VA → bank account / supplier
+
+---
+
+## 2) Layered Architecture Mapping
+
+| Layer | What we build | Examples |
+|------|----------------|----------|
+| **ODS** | Raw pulls from Amazon/shop-binding/KYC/account systems | shop binding logs, settlement raw, payout raw |
+| **DIL / FACT** | Cleaned **facts** (atomic events) + standard dims | `FCT_SETTLEMENT`, `FCT_WITHDRAWAL`, `FCT_PAYMENT`; `DIM_MERCHANT`, `DIM_SHOP` |
+| **DML / Subject** | Subject-oriented wide tables & metrics | `DML_MERCHANT_SUBJECT`, `DML_SHOP_SUBJECT`, `DML_ORDER_SUBJECT` |
+| **ADS** | App/report views & cubes | Finance/Risk/Product dashboards |
+
+> Naming note: DIL≈DWD, DML≈DWS in other orgs.
+
+---
+
+## 3) Fact Tables (Process-oriented)
+
+### 3.1 `FCT_SETTLEMENT` — *Amazon → sub-VA (shop-level settlement)*
+- **Grain:** one **settlement line** per **shop × currency × settlement_id**
+- **Keys:** `settlement_id`, `shop_id`, `merchant_id (fspid)`, `sub_va_id`
+- **Core fields:**  
+  - `fdate` (partition), `settlement_time`  
+  - `currency`, `amount_settled`, `fx_to_cnh`, `amount_cnh`, `amount_usd`  
+  - `platform_id='amazon'`, `site_id`  
+- **Notes:** True external inflow; **drives revenue KPIs** at shop & merchant.
+
+### 3.2 `FCT_WITHDRAWAL` — *main VA → merchant bank account*
+- **Grain:** one withdrawal order
+- **Keys:** `withdraw_order_id`, `merchant_id`, `bank_account_id`
+- **Core fields:** `withdraw_time`, `currency`, `amount`, `fee`, `status`
+
+### 3.3 `FCT_PAYMENT` — *main VA → supplier / subscription / fees*
+- **Grain:** one payment order
+- **Keys:** `payment_order_id`, `merchant_id`, `payee_id`, `biz_type`
+- **Core fields:** `payment_time`, `currency`, `amount`, `fee`, `biz_type` *(supplier / subscription / platform fee)*
+
+> 🚫 **No `FCT_DISTRIBUTION`** for sub-VA→main-VA: it’s internal aggregation; usually not modeled as a business fact.
+
+---
+
+## 4) Dimension Tables (Entity-oriented)
+
+### 4.1 `DIM_MERCHANT`
+- **Keys:** `merchant_id (fspid)`, `fgid`
+- **Attrs:** register channel, KYC status, country/region, wallet type, lifecycle flags
+- **Timestamps (merchant funnel):** `create_time_enter`, `register_time`, `kyc_apply_time`, `kyc_approve_time`, …
+
+### 4.2 `DIM_SHOP`
+- **Keys:** `shop_id`
+- **Attrs:** platform (`amazon`), `site_id` (e.g., `amzNA`, `amzEU`), country, default currency, status
+- **Timestamps (shop funnel):**  
+  - **`shop_apply_time`**: merchant **applied** in provider console to bind this shop  
+  - **`shop_auth_time`**: mid-state (API authorization / token ready)  
+  - **`shop_bind_time`**: **binding completed** (ownership verified, sub-VA allocated)  
+  - **`first_settlement_time`** (first inflow), **`first_withdrawal_time`**
+
+### 4.3 Other Dims
+- `DIM_CURRENCY`, `DIM_ACCOUNT` (main/sub-VA), `DIM_PAYEE`, `DIM_DATE`, …
+
+---
+
+## 5) Subject Tables (DML / Wide models)
+
+### 5.1 `DML_MERCHANT_SUBJECT` — *Merchant-centric KPIs*
+- **Keys:** `merchant_id`, `fdate`
+- **Horizontal (funnel timestamps):** registration/KYC times, **first_settlement_time**, **first_withdrawal_time**
+- **Vertical (rolling metrics & tags):**  
+  - Totals: `total_settlement_amt_usd/cnh`, `total_settlement_cnt`  
+  - Recent 28d: `settl_amt_28d`, `settl_cnt_28d`  
+  - Shops: `shop_cnt`, `active_shop_cnt_28d`  
+  - Lifecycle tag: *1 Unfunded / 2 New / 3 Retained / 4 Lost / 5 Recovered / 0 Default*  
+    - **Lost rule (example):** *first_settlement exists* AND *no settlement in last 28 days*.
+
+### 5.2 `DML_SHOP_SUBJECT` — *Shop-centric KPIs*
+- **Keys:** `shop_id`, `fdate`
+- **Funnel timestamps (shop-level):** `shop_apply_time`, `shop_auth_time`, `shop_bind_time`, `first_settlement_time`, `first_withdrawal_time`
+- **Metrics:**  
+  - Totals: `total_settlement_amt_usd/cnh`, `total_settlement_cnt`  
+  - 28d: `settl_amt_28d`, `settl_cnt_28d`  
+  - Activity tag: *active if 28d has settlement; else inactive*  
+  - Site/platform breakdown via `platform_id`, `site_id`
+
+### 5.3 `DML_ORDER_SUBJECT` — *Order/transaction lens*
+- Join across facts to trace **settlement → (internal aggregation) → cash-out/payment**  
+- Use for **lag analysis**, **amount bucket distributions**, **anomaly checks**.
+
+---
+
+## 6) Typical KPIs
+
+- **Merchant level:** total inflow (USD/CNH), **active shops**, 28-day settlement, lifecycle tag, cash-out ratio  
+- **Shop level:** first settlement latency (bind→first inflow), monthly settlement, 28-day activity, site mix  
+- **Operational:** settlement frequency, long-tail shops, withdrawal cadence, fee rate trends
+
+---
+
+## 7) Data Quality (examples)
+- **Timeliness:** partitions landed by SLA; alert if delayed  
+- **Integrity:** `settlement_id` uniqueness; **shop_id/merchant_id** FK valid  
+- **Consistency:** currency FX conversion reproducible; totals match finance reconciliation  
+- **Security:** sensitive identifiers encrypted; access controlled
+
+---
+
+## 8) Field Name Alignment (mapping highlights)
+- **Merchant funnel:**  
+  - `fcreate_time_enter` → entry time  
+  - `fcreate_time_register` → register time  
+  - `fcreate_time_kyc_apply` / `fcreate_time_kyc_info` / `fcreate_time_kyc_reject` / `fkyc_first_approved_time`
+- **Shop funnel:**  
+  - `fcreate_time_shop_apply` → **shop_apply_time**  
+  - `fcreate_time_shop_auth` → **shop_auth_time**  
+  - `fcreate_time_shop_bind` → **shop_bind_time**  
+  - `ffirst_recharge_time` *(rename)* → **first_settlement_time**  
+  - `ffirst_withdrawal_time` → **first_withdrawal_time**
+- **Rolling metrics:**  
+  - `Ftotal_recharge_amount_usd/cnh` → **total_settlement_amt_usd/cnh**  
+  - `Flast_recharge_amount_*_28d` → **settl_amt_28d / settl_cnt_28d**
+
+> ✅ Replace legacy “recharge” naming with **settlement** to reflect Amazon→sub-VA semantics.
+
+</details>
+
 #### Business Case 2 – Cross-border Remittances
 
 - **Process-oriented**: Model fact tables around the remittance lifecycle:  

@@ -364,19 +364,7 @@ flowchart TB
   
 ## 3. ToB Business - Cross-border E-commerce Collection and Payout
 
-| No. | Amazon Standard Collection                           | Shopee Official Wallet                                      |
-|-----|------------------------------------------------------|-------------------------------------------------------------|
-| 1   | **Merchant Onboarding** – Merchant registers and KYC | **Merchant Onboarding** – Merchant registers and KYC        |
-| 2   | **VA Assignment** – Main VA created, sub-VA per shop | **Shop Binding** – Merchant links their shops               |
-| 3   | **Shop Authorization & Binding** – Sub-VA assigned   | **Funds Inflow (Top-up)** – Shopee credits merchant wallet  |
-| 4   | **Amazon Pays Store VA** – Funds flow into sub-VA    | **Funds Flow & Deduction** – Payouts/deductions processed   |
-| 5   | **Transaction Details via API** – Collect order data | **Merchant Card Binding** – Bank card linked for withdrawal |
-| 6   | **Merchant Card Binding** – Settlement card binding  | **Payout - Withdrawal/Payment** – Merchant withdraws/pays   |
-| 7   | **Withdrawal & Payout** – From Main VA to bank/supplier | **Payout - Merchant Ops** – e.g., annual subscription plan   |
-
-### 3.1 Amazon Standard Collection
-
-#### Background
+### 3.1 Background (Amazon Standard Collection)
 
 > - In Amazon’s standard collection scenario, cross-border sellers often face difficulties opening overseas bank accounts due to regulatory and cost barriers.  
 > - To solve this, **payment service providers** (e.g., Lianlian, WorldFirst, Tenpay) open a **main VA (Virtual Account, which is a real bank account)** for each merchant as the settlement and fund aggregation account.  
@@ -406,21 +394,25 @@ flowchart TB
     classDef va fill:#ADD8E6,stroke:#333,stroke-width:1px;
 ```
 
-#### Business Process
+### 3.2 Business Process
 
-1. Merchant onboarding 
-2. VA assignment 
-3. Shop authorization & binding & sub-VA assignment
-4. Amazon pays store VA 
-5. Transaction details via API
-6. Merchant card binding
-7. Withdrawal & payout
+| No. | Amazon Standard Collection                           | Shopee Official Wallet                                      |
+|-----|------------------------------------------------------|-------------------------------------------------------------|
+| 1   | **Merchant Onboarding** – Merchant registers and KYC | **Merchant Onboarding** – Merchant registers and KYC        |
+| 2   | **VA Assignment** – Main VA created, sub-VA per shop | **Shop Binding** – Merchant links their shops               |
+| 3   | **Shop Authorization & Binding** – Sub-VA assigned   | **Funds Inflow (Top-up)** – Shopee credits merchant wallet  |
+| 4   | **Amazon Pays Store VA** – Funds flow into sub-VA    | **Funds Flow & Deduction** – Payouts/deductions processed   |
+| 5   | **Transaction Details via API** – Collect order data | **Merchant Card Binding** – Bank card linked for withdrawal |
+| 6   | **Merchant Card Binding** – Settlement card binding  | **Payout - Withdrawal/Payment** – Merchant withdraws/pays   |
+| 7   | **Withdrawal & Payout** – From Main VA to bank/supplier | **Payout - Merchant Ops** – e.g., annual subscription plan   |
 
-#### DML - Subject Table
+### 3.3 DML - Subject Table
 
 - Merchant-level subject table: Merchant, total recharge, lifecycle tags.
 - Shop-level subject table: site, platform, per-shop inflow/outflow, lifecycle tags.
 - Order-level subject table: transaction-level granularity for detailed analysis.
+
+### 3.4 Other info
 
 <details>
 <summary><strong style="color:#1E90FF;">Shopee Official Wallet</strong></summary>

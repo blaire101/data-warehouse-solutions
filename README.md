@@ -412,7 +412,8 @@ flowchart TB
 - Shop-level subject table: site, platform, per-shop inflow/outflow, lifecycle tags.
 - Order-level subject table: transaction-level granularity for detailed analysis.
 
-### 3.2 Shopee Official Wallet 
+<details>
+<summary><strong style="color:#1E90FF;">Shopee Official Wallet</strong></summary>
 
 > Background:
 >
@@ -509,6 +510,8 @@ graph TD
 **Subject-Specifc Analysis model**, covering `Merchant`, `Shop`, and `Orders`.
 
 > Shopee's official wallet business leverages multi-dimensional data analysis to support merchant lifecycle management, transaction insights, and revenue optimization. From churn monitoring to cross-site transaction trend analysis, comprehensive dashboards and thematic tables provide strong data support for business growth, product experience enhancement, and precision operations.
+
+</details>
 
 <details>
 <summary><strong style="color:#1E90FF;">Merchant Subject Sample - Data Metric</strong></summary>

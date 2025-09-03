@@ -172,39 +172,29 @@ We follow a **business-driven layered architecture**: **ODS → DIL/DIM → DWS 
 4. Abstracted business and data subject analyses into DML tables.
 5. Delivered reporting, supporting subject-specific and multi-dimensional analysis
 
+### 5. Background 
 
-## Amazon Standard Collection vs Shopee Official Wallet
+**Amazon Standard Collection**
 
-### 1. Background 背景
-
-#### Amazon Standard Collection (English)
-In Amazon’s standard collection model, cross-border sellers cannot easily open overseas bank accounts. Payment service providers like Tenpay issue one **main VA (real bank account)** for settlement and create **sub-VAs (child accounts with unique identifiers)** for each store bound under the merchant.  
+> In Amazon’s standard collection model, cross-border sellers cannot easily open overseas bank accounts. Payment service providers like Tenpay issue one **main VA (real bank account)** for settlement and create **sub-VAs (child accounts with unique identifiers)** for each store bound under the merchant.  
 Amazon pays into the sub-VA (store level), which technically maps back to the main VA. This allows tracking of funds per store and per currency.  
 
-#### 亚马逊标准收款 (中文)
-在亚马逊标准收款模式下，跨境卖家很难在海外开立银行账户。收款服务商（如 Tenpay）会为商户开立一个 **主VA（真实银行账户）**，并在商户绑定店铺时分配 **子VA**。  
-亚马逊将货款打入子VA（每个店铺一个），而子VA最终归集到主VA，用于资金清算和提现。这样服务商可以通过子VA识别不同店铺的资金来源。
+**Shopee Official Wallet**
 
-#### Shopee Official Wallet (English)
-In Shopee’s official wallet model, Shopee itself acts as the settlement entity. After sellers onboard and bind stores, Shopee credits their **official wallet account** (white-label offshore account powered by Tenpay).  
+> In Shopee’s official wallet model, Shopee itself acts as the settlement entity. After sellers onboard and bind stores, Shopee credits their **official wallet account** (white-label offshore account powered by Tenpay).  
 There is **no sub-VA per store** — store-level differentiation comes from Shopee’s internal transaction system. Funds can be disbursed (fees, supplier payments, subscription plans) or withdrawn to bank accounts.  
-
-#### Shopee 官方钱包 (中文)
-在 Shopee 官方钱包模式下，Shopee 与 Tenpay 深度合作，Shopee 自身作为结算主体。商户入驻并绑定店铺后，货款直接进入商户的 **Shopee 官方钱包账户**。  
-这里 **没有子VA**，店铺的区分由 Shopee 内部交易系统完成。资金可以用于平台代扣（佣金、年卡）、供应商付款，或提现至银行账户。
-
 
 ### 3. Data Warehouse Construction 
 
 ### Amazon Standard Collection
 **Business Process**  
-1. Merchant onboarding (商户入驻)  
-2. VA assignment (主VA开户)  
-3. Store authorization & binding & sub-VA assignment (店铺绑定 + 子VA发放)  
-4. Amazon pays store VA (亚马逊打款 → 子VA)  
-5. Transaction details via API (获取交易明细)  
-6. Merchant card binding (商户绑卡)  
-7. Withdrawal & payout (提现/付款)  
+1. Merchant onboarding 
+2. VA assignment
+3. Store authorization & binding & sub-VA assignment
+4. Amazon pays store VA 
+5. Transaction details via API 
+6. Merchant card binding 
+7. Withdrawal & payout
 
 **Modeling / 建模**  
 - **Fact tables**: 收款订单事实表、提现订单事实表  

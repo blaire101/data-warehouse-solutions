@@ -26,12 +26,12 @@ We follow a **business-driven layered architecture**: **ODS → DIL/DIM → DWS 
 #### Business Case 1 – Cross-border E-commerce Collection
 
 - **Process-oriented**: Model fact tables around fund flow processes:  
-  *Top-up → Distribution → Withdrawal/Payment/Subscription.*  
+  *Settlement(Fund Distribution) → Withdrawal/Payment/Subscription.*  
 - **Entity-oriented**: Build subject tables around merchants, shops, and orders.  
   Design metrics to enable multi-dimensional analysis, subject-area analytics, and monitoring of core business KPIs.  
 
 <details>
-<summary><strong style="color:#1E90FF;"><mark>Amazon - Cross-border E-commerce Collection - Data Warehouse Modeling</mark></strong></summary>
+<summary><strong><mark>Amazon - Cross-border E-commerce Collection - Data Warehouse Modeling</mark></strong></summary>
 
 **Core idea:** Amazon settles **per shop** into **sub-VA** (real bank sub-account); provider internally aggregates to **main VA** for the merchant. We model **settlement** and **cash-out/payments**; the internal sub-VA→main-VA aggregation is automatic and **not** a business fact.
 

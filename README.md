@@ -368,24 +368,16 @@ flowchart TB
 
 ### Amazon Standard Collection Model (VA-based)
 
-In Amazon’s cross-border collection scenario, sellers from Mainland China or Hong Kong face strict requirements and high costs to open overseas bank accounts.  
-To solve this, **payment service providers** (e.g., Lianlian, WorldFirst, Tenpay) create a **virtual account system**:
+> In the Amazon standard collection scenario, Chinese/HK sellers cannot easily open overseas bank accounts. To address this, payment service providers (e.g., Ant/WorldFirst, Tenpay, LianLian) offer an offshore account system:
 
-- **Main VA (real bank account):**  
-  Each merchant receives a main VA, which is a real bank account used for settlement, aggregation, and withdrawals.
+- **A main VA (a real bank account)** is opened for settlement and fund aggregation.
+- Sub-VAs are assigned per shop to receive Amazon disbursements.
+- Funds automatically flow from each shop’s sub-VA into the main VA.
 
-- **Sub-VA (per shop):**  
-  When the merchant binds shops on Amazon, the provider issues sub-VAs — child accounts with unique identifiers linked to the main VA.
-
-- **Fund flow:**  
-  Amazon pays each shop’s proceeds into the corresponding sub-VA. These sub-VAs map back to the merchant’s main VA, ensuring funds are aggregated but still traceable.
-
-- **Purpose:**  
-  This design allows the provider to **distinguish inflows by shop and currency**, while merchants only need to manage one settlement account (the main VA) for withdrawals and payments.
+Merchants can then withdraw from the **main VA** to domestic RMB bank accounts, or overseas FX accounts. 👉 This design enables sellers to legally receive Amazon proceeds, track inflows per shop, and efficiently repatriate capital back to China.
 
 👉 In short: *Amazon pays → sub-VA (shop-level tracking) → main VA (aggregation & settlement)*.  
 This balances compliance, transparency, and ease of use for both merchants and providers.
-
 
 ```mermaid
 flowchart TB

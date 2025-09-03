@@ -366,9 +366,12 @@ flowchart TB
 
 ### 3.1 Amazon Standard Collection
 
-> Background:
-> - Amazon’s standard collection model, cross-border sellers cannot easily open overseas bank accounts. **Payment service providers** like (Lianlian, WorldFirst, Tenpay) issue one main VA (real bank account) for settlement and create sub-VAs (child accounts with unique identifiers) for each store bound under the merchant.
-> - Amazon pays into the sub-VA (store level), which technically maps back to the main VA. This allows tracking of funds per store and per currency.
+> **Background**
+> - In Amazon’s standard collection scenario, cross-border sellers often face difficulties opening overseas bank accounts due to regulatory and cost barriers.  
+> - To solve this, **payment service providers** (e.g., Lianlian, WorldFirst, Tenpay) open a **main VA (Virtual Account, which is a real bank account)** for each merchant as the settlement and fund aggregation account.  
+> - For every shop that the merchant binds on Amazon, the provider allocates a **sub-VA** (a child account with a unique identifier).  
+> - Amazon disburses payments into the sub-VA (shop level), which is technically linked back to the merchant’s main VA.  
+> - This mechanism enables the provider to track and reconcile **fund inflows per shop and per currency**, while the main VA handles the actual clearing and withdrawal.
 
 ```mermaid
 flowchart TB
@@ -394,12 +397,12 @@ flowchart TB
 
 **Business Process**
 
-1. Merchant onboarding (商户入驻)
-2. VA assignment (主VA开户)
-3. Shop authorization & binding & sub-VA assignment (店铺绑定 + 子VA发放)
-4. Amazon pays store VA (亚马逊打款 → 子VA)
-5. Transaction details via API (获取交易明细)
-6. Merchant card binding (商户绑卡)
+1. Merchant onboarding 
+2. VA assignment 
+3. Shop authorization & binding & sub-VA assignment
+4. Amazon pays store VA 
+5. Transaction details via API
+6. Merchant card binding
 7. Withdrawal & payout (提现/付款)
 
 - Merchant-level subject table: Merchant, total recharge, lifecycle tags.

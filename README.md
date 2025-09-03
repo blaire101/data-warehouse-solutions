@@ -366,7 +366,8 @@ flowchart TB
 
 ### 3.1 Amazon Standard Collection
 
-> **Background**
+#### Background
+
 > - In Amazon’s standard collection scenario, cross-border sellers often face difficulties opening overseas bank accounts due to regulatory and cost barriers.  
 > - To solve this, **payment service providers** (e.g., Lianlian, WorldFirst, Tenpay) open a **main VA (Virtual Account, which is a real bank account)** for each merchant as the settlement and fund aggregation account.  
 > - For every shop that the merchant binds on Amazon, the provider allocates a **sub-VA** (a child account with a unique identifier).  
@@ -395,7 +396,7 @@ flowchart TB
     classDef va fill:#ADD8E6,stroke:#333,stroke-width:1px;
 ```
 
-**Business Process**
+#### Business Process
 
 1. Merchant onboarding 
 2. VA assignment 
@@ -403,7 +404,9 @@ flowchart TB
 4. Amazon pays store VA 
 5. Transaction details via API
 6. Merchant card binding
-7. Withdrawal & payout (提现/付款)
+7. Withdrawal & payout
+
+#### DML - Subject Table
 
 - Merchant-level subject table: Merchant, total recharge, lifecycle tags.
 - Shop-level subject table: site, platform, per-shop inflow/outflow, lifecycle tags.
@@ -489,7 +492,7 @@ graph TD
     linkStyle 5,6,7 stroke:#333,stroke-width:1px
 ```
 
-### Business Process 
+#### Business Process 
 
 | No. | Business Process                    | Description                                                                                  |
 |-----|-------------------------------------|----------------------------------------------------------------------------------------------|
@@ -501,7 +504,7 @@ graph TD
 | 6   | **Payout - Withdrawal and Payment**         | Merchant initiates fund withdrawal to their own bank account or makes payments to external suppliers. |
 | 7   | **Payout - Merchant Operations (e.g., Annual Subscription Plan)** | Merchant performs business-related actions such as purchasing subscription plans or value-added services. |
 
-### Subject-Specifc Table
+#### Subject-Specifc Table
 
 **Subject-Specifc Analysis model**, covering `Merchant`, `Shop`, and `Orders`.
 

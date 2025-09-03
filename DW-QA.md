@@ -193,22 +193,11 @@ There is **no sub-VA per store** — store-level differentiation comes from Shop
 在 Shopee 官方钱包模式下，Shopee 与 Tenpay 深度合作，Shopee 自身作为结算主体。商户入驻并绑定店铺后，货款直接进入商户的 **Shopee 官方钱包账户**。  
 这里 **没有子VA**，店铺的区分由 Shopee 内部交易系统完成。资金可以用于平台代扣（佣金、年卡）、供应商付款，或提现至银行账户。
 
-### 2. Comparison 表格对比
 
-| Aspect / 维度         | Amazon Standard Collection (English) | 亚马逊标准收款 (中文)                   | Shopee Official Wallet (English)      | Shopee 官方钱包 (中文)               |
-|-----------------------|--------------------------------------|-----------------------------------------|---------------------------------------|--------------------------------------|
-| **Account Structure / 账户结构** | Main VA + sub-VA per store          | 主VA + 店铺子VA                          | One official wallet per merchant       | 每个商户一个官方钱包账户              |
-| **Fund Inflow / 资金入账**       | Amazon pays into sub-VA (per store) | 亚马逊打款到子VA（店铺维度）             | Shopee credits merchant wallet directly| Shopee 直接打款到商户钱包             |
-| **Store Differentiation / 区分店铺** | By sub-VA number                     | 通过子VA编号区分                         | By Shopee transaction system           | 通过 Shopee 内部交易系统区分          |
-| **Settlement / 清算归集**        | Sub-VA → Main VA → Withdrawal        | 子VA → 主VA → 商户提现                   | Wallet balance → Deduction → Withdrawal| 钱包余额 → 扣费 → 提现               |
-| **Complexity / 模式复杂度**      | Higher (need VA management per store)| 较高（需为每个店铺管理VA）               | Lower (platform internal accounting)   | 较低（平台内部记账）                  |
-
----
-
-### 3. Data Warehouse Construction 数仓建设
+### 3. Data Warehouse Construction 
 
 ### Amazon Standard Collection
-**Business Process / 业务过程**  
+**Business Process**  
 1. Merchant onboarding (商户入驻)  
 2. VA assignment (主VA开户)  
 3. Store authorization & binding & sub-VA assignment (店铺绑定 + 子VA发放)  
@@ -224,11 +213,8 @@ There is **no sub-VA per store** — store-level differentiation comes from Shop
   - Horizontal timeline fields (first recharge, first withdrawal)  
   - Vertical tags (active stores, total inflow, retention metrics)  
 
-> 收款订单事实表 : 电商平台打款 → 店铺 VA → 主账户 的资金入账交易
-
-
 <details>
-<summary><strong style="color:#1E90FF;">Merchant Subject Sample - Data Metric</strong></summary>
+<summary><strong>Merchant Subject Sample - Data Metric</strong></summary>
 
 | --Category-- | Field Name | Data_Type | Description |
 |-----------------------------------------|--------------------------------------|-----------|-----------------------------------------------------------------------------|

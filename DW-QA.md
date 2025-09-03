@@ -34,7 +34,7 @@ We follow a **business-driven layered architecture**: **ODS → DIL/DIM → DWS 
 <details>
 <summary><strong style="color:#1E90FF;">Amazon - Cross-border E-commerce Collection - Data Warehouse Modeling</strong></summary>
 
-> **Core idea:** Amazon settles **per shop** into **sub-VA** (real bank sub-account); provider internally aggregates to **main VA** for the merchant. We model **settlement** and **cash-out/payments**; the internal sub-VA→main-VA aggregation is automatic and **not** a business fact.
+**Core idea:** Amazon settles **per shop** into **sub-VA** (real bank sub-account); provider internally aggregates to **main VA** for the merchant. We model **settlement** and **cash-out/payments**; the internal sub-VA→main-VA aggregation is automatic and **not** a business fact.
 
 ### 1) Business Process (for context)
 1. **Merchant onboarding** → register, KYC pass  
@@ -53,8 +53,6 @@ We follow a **business-driven layered architecture**: **ODS → DIL/DIM → DWS 
 | **ADS** | App/report views & cubes | Finance/Risk/Product dashboards |
 
 > Naming note: DIL≈DWD, DML≈DWS in other orgs.
-
----
 
 ### 3) Fact Tables (Process-oriented)
 
@@ -79,7 +77,6 @@ We follow a **business-driven layered architecture**: **ODS → DIL/DIM → DWS 
 
 > 🚫 **No `FCT_DISTRIBUTION`** for sub-VA→main-VA: it’s internal aggregation; usually not modeled as a business fact.
 
-
 ### 4) Dimension Tables (Entity-oriented)
 
 #### 4.1 `DIM_MERCHANT`
@@ -98,8 +95,6 @@ We follow a **business-driven layered architecture**: **ODS → DIL/DIM → DWS 
 
 #### 4.3 Other Dims
 - `DIM_CURRENCY`, `DIM_ACCOUNT` (main/sub-VA), `DIM_PAYEE`, `DIM_DATE`, …
-
----
 
 ### 5) Subject Tables (DML / Wide models)
 

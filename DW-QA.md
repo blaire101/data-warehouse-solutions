@@ -20,6 +20,11 @@ Defined data domains, granularity, metrics, aggregated into subject-oriented DWS
   <img src="docs/dwh-1.jpg" alt="Diagram" width="600">
 </div>
 
+- **ODS — (Operational Data Store)**: Ingest raw data via binlog subscription with hourly batch loading.  
+- **DIL/DIM — (Data Integration)**: Clean, <mark>deduplicate /diːˈdjuːplɪkeɪt/</mark>, and normalize data; build fact and dimension tables.  
+- **DWS — (Data Warehouse Service)**: Perform <mark>subject-oriented OR-ee-en-tid</mark> modeling around <mark>business entities</mark> (e.g., Merchant, Order) and processes (e.g., Top-up, settlement, payment/withdrawal), delivering reusable wide tables and standardized metrics for **<mark>multi-dimensional and thematic analysis.</mark>**
+- **ADS (Application Data Service Layer)**: Deliver application-level wide tables to support Finance, Risk, and BI reporting.
+
 ## Q2. How is your data warehouse built?
 
 ### 2.1 DWH Architecture
@@ -152,11 +157,6 @@ flowchart TB
 ### 2.4 👉 Summary
 
 This “Main VA + Sub-VA” model solves the key challenges of **receiving, withdrawing, and paying** for Chinese cross-border sellers, while ensuring funds are traceable, compliant, and easy to manage.
-
-- **ODS — (Operational Data Store)**: Ingest raw data via binlog subscription with hourly batch loading.  
-- **DIL/DIM — (Data Integration)**: Clean, <mark>deduplicate /diːˈdjuːplɪkeɪt/</mark>, and normalize data; build fact and dimension tables.  
-- **DWS — (Data Warehouse Service)**: Perform <mark>subject-oriented OR-ee-en-tid</mark> modeling around <mark>business entities</mark> (e.g., Merchant, Order) and processes (e.g., Top-up, settlement, payment/withdrawal), delivering reusable wide tables and standardized metrics for **<mark>multi-dimensional and thematic analysis.</mark>**
-- **ADS (Application Data Service Layer)**: Deliver application-level wide tables to support Finance, Risk, and BI reporting.
 
 <details>
 <summary><strong><mark>Amazon - Cross-border E-commerce Collection - Data Warehouse Modeling</mark></strong></summary>

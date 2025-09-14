@@ -295,16 +295,6 @@ This “Main VA + Sub-VA” model solves the key challenges of **receiving, with
 
 ### 4. Data Warehouse Construction 
 
-### Amazon Standard Collection
-**Business Process**  
-1. Merchant onboarding 
-2. VA assignment
-3. Store authorization & binding & sub-VA assignment
-4. Amazon pays store VA 
-5. Transaction details via API 
-6. Merchant card binding 
-7. Withdrawal & payout
-
 **Modeling / 建模**  
 - **Fact tables**: 收款订单事实表、提现订单事实表  
 - **Dimension tables**: 商户维度、店铺维度、收款人维度、账户维度  
@@ -313,7 +303,7 @@ This “Main VA + Sub-VA” model solves the key challenges of **receiving, with
   - Vertical tags (active stores, total inflow, retention metrics)  
 
 <details>
-<summary><strong>Merchant Subject Sample - Data Metric</strong></summary>
+<summary><strong>Shopee > Merchant Subject Sample - Data Metric</strong></summary>
 
 | --Category-- | Field Name | Data_Type | Description |
 |-----------------------------------------|--------------------------------------|-----------|-----------------------------------------------------------------------------|
@@ -352,7 +342,7 @@ This “Main VA + Sub-VA” model solves the key challenges of **receiving, with
 
 
 <details>
-<summary><strong style="color:#1E90FF;">Order Subject Sample - Data Metric</strong></summary>
+<summary><strong style="color:#1E90FF;">Shopee > Order Subject Sample - Data Metric</strong></summary>
 
 | Description | Field Name | Type | Remarks |
 |-------------|------------|------|---------|

@@ -4,7 +4,11 @@ The core purpose of a data warehouse is to integrate and store large amounts of 
 
 ## Q1. Data Warehouse Architecture - Hourglass
 
-Built a layered data warehouse (ODS > DIL > DML > DAL) to ingest, clean, and transform data into fact and dimension tables. Defined data domains, granularity, metrics, and embedded business logic for subject-oriented, multi-dimensional analysis
+
+
+We use a business-driven layered architecture (ODS > DIL > DWS > ADS). ingest Raw data lands in ODS, , clean, and transform data into (DIL) fact and dimension tables.  
+
+Defined data domains, granularity, metrics, aggregated into subject-oriented DWS, and finally served via ADS, with end-to-end DQ, lineage, and SLAs.  for subject-oriented, multi-dimensional analysis
 
 <div align="center">
   <img src="docs/dwh-1.jpg" alt="Diagram" width="600">

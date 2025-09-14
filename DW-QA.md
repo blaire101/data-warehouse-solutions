@@ -65,7 +65,7 @@ flowchart TB
 
   %% ============ DWS ============
   subgraph DWS["DWS - Subject Tables"]
-    direction LR
+    direction TB
     DWS_M[Merchant Subject]:::dws
     DWS_S[Store Subject]:::dws
     DWS_O[Order Subject]:::dws

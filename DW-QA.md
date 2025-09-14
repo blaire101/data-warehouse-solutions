@@ -22,17 +22,6 @@ Defined data domains, granularity, metrics, aggregated into subject-oriented DWS
 
 ## Q2. How is your data warehouse built?
 
-### 1. Architecture
-
-We follow a **business-driven layered architecture**: **ODS → DIL/DIM → DWS → ADS**.
-
-We use a business-driven layered architecture. Raw data lands in ODS, is cleansed and modeled in DIL/DIM, aggregated into subject-oriented DWS, and finally served via low-latency ADS, with end-to-end DQ, lineage, access control, and SLAs.
-
-- **ODS — (Operational Data Store)**: Ingest raw data via binlog subscription with hourly batch loading.  
-- **DIL/DIM — (Data Integration)**: Clean, <mark>deduplicate /diːˈdjuːplɪkeɪt/</mark>, and normalize data; build fact and dimension tables.  
-- **DWS — (Data Warehouse Service)**: Perform <mark>subject-oriented OR-ee-en-tid</mark> modeling around <mark>business entities</mark> (e.g., Merchant, Order) and processes (e.g., Top-up, settlement, payment/withdrawal), delivering reusable wide tables and standardized metrics for **<mark>multi-dimensional and thematic analysis.</mark>**
-- **ADS (Application Data Service Layer)**: Deliver application-level wide tables to support Finance, Risk, and BI reporting.
-
 ```mermaid
 flowchart TB
   %% ============ Business Entities ============
@@ -72,18 +61,10 @@ flowchart TB
   end
 
   %% ============ ADS ============
-  ADS["ADS - Reports\n(multiple tables for BI & dashboards)"]:::ads
+  ADS["ADS - Reports<br>(multiple tables for BI & dashboards)"]:::ads
 
   %% ============ Mappings ============
-  M-->ODS
-  S-->ODS
-  O-->ODS
-  VAM-->ODS
-  VAS-->ODS
-  FF-->ODS
-  SUP-->ODS
-  CNBK-->ODS
-
+  BIZ-->ODS
   ODS-->DIL
   ODS-->DIM
   DIL-->DWS
@@ -99,6 +80,17 @@ flowchart TB
   classDef dws fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#166534;  %% green
   classDef ads fill:#ffedd5,stroke:#ea580c,stroke-width:2px,color:#7c2d12;  %% orange
 ```
+
+### 1. Architecture
+
+We follow a **business-driven layered architecture**: **ODS → DIL/DIM → DWS → ADS**.
+
+We use a business-driven layered architecture. Raw data lands in ODS, is cleansed and modeled in DIL/DIM, aggregated into subject-oriented DWS, and finally served via low-latency ADS, with end-to-end DQ, lineage, access control, and SLAs.
+
+- **ODS — (Operational Data Store)**: Ingest raw data via binlog subscription with hourly batch loading.  
+- **DIL/DIM — (Data Integration)**: Clean, <mark>deduplicate /diːˈdjuːplɪkeɪt/</mark>, and normalize data; build fact and dimension tables.  
+- **DWS — (Data Warehouse Service)**: Perform <mark>subject-oriented OR-ee-en-tid</mark> modeling around <mark>business entities</mark> (e.g., Merchant, Order) and processes (e.g., Top-up, settlement, payment/withdrawal), delivering reusable wide tables and standardized metrics for **<mark>multi-dimensional and thematic analysis.</mark>**
+- **ADS (Application Data Service Layer)**: Deliver application-level wide tables to support Finance, Risk, and BI reporting.
 
 ### 2. Modeling
 

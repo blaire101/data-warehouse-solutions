@@ -45,6 +45,73 @@ We use a business-driven layered architecture. Raw data lands in ODS, is cleanse
 <details>
 <summary><strong><mark>Amazon - Cross-border E-commerce Collection - Data Warehouse Modeling</mark></strong></summary>
 
+```mermaid
+flowchart TB
+  %% ============ Business Entities ============
+  subgraph BIZ["Business Entities"]
+    direction TB
+    M[Merchant]:::biz
+    S[Store]:::biz
+    O[Order or Transaction]:::biz
+    VAM[Main VA - Real Bank Account]:::biz
+    VAS[Sub-VA - Store and Currency]:::biz
+    FF[Fund Flow]:::biz
+    SUP[Supplier]:::biz
+    CNBK[Bank Card in China]:::biz
+  end
+
+  %% ============ ODS ============
+  ODS[ODS Layer]:::ods
+
+  %% ============ DIL ============
+  subgraph DIL["DIL Layer"]
+    direction TB
+    FACT[Fact Table]:::fact
+  end
+
+  %% ============ DIM ============
+  subgraph DIM["DIM Layer"]
+    direction TB
+    DIM_T[Dim Table]:::dim
+  end
+
+  %% ============ DWS ============
+  subgraph DWS["DWS - Subject Tables"]
+    direction LR
+    DWS_M[Merchant Subject]:::dws
+    DWS_S[Store Subject]:::dws
+    DWS_O[Order Subject]:::dws
+  end
+
+  %% ============ ADS ============
+  ADS["ADS - Reports\n(multiple tables for BI & dashboards)"]:::ads
+
+  %% ============ Mappings ============
+  M-->ODS
+  S-->ODS
+  O-->ODS
+  VAM-->ODS
+  VAS-->ODS
+  FF-->ODS
+  SUP-->ODS
+  CNBK-->ODS
+
+  ODS-->DIL
+  ODS-->DIM
+  DIL-->DWS
+  DIM-->DWS
+  DWS-->ADS
+
+  %% ============ Styles ============
+  classDef biz fill:#e0f2fe,stroke:#0284c7,stroke-width:2px,color:#075985;   %% light blue
+  classDef ods fill:#f5f5f5,stroke:#424242,stroke-width:2px,color:#212121;   %% gray
+  classDef dil fill:#ede9fe,stroke:#7c3aed,stroke-width:2px,color:#4c1d95;   %% purple
+  classDef fact fill:#ddd6fe,stroke:#5b21b6,stroke-width:2px,color:#3730a3; %% darker purple
+  classDef dim fill:#ccfbf1,stroke:#14b8a6,stroke-width:2px,color:#0f766e;  %% teal
+  classDef dws fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#166534;  %% green
+  classDef ads fill:#ffedd5,stroke:#ea580c,stroke-width:2px,color:#7c2d12;  %% orange
+```
+
 **Core idea:** Amazon settles **per shop** into **sub-VA** (real bank sub-account); provider internally aggregates to **main VA** for the merchant. We model **settlement** and **cash-out/payments**; the internal sub-VA→main-VA aggregation is automatic and **not** a business fact.
 
 ### 1) Business Process (for context)

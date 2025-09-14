@@ -105,7 +105,7 @@ flowchart TB
 
 **Core idea:** Amazon settles **per shop** into **sub-VA** (real bank sub-account); provider internally aggregates to **main VA** for the merchant. We model **settlement** and **cash-out/payments**; the internal sub-VA→main-VA aggregation is automatic and **not** a business fact.
 
-### 1) Business Process (for context)
+### 1) Business Process (for context) 
 1. **Merchant onboarding** → register, KYC pass  
 2. **Shop authorization & binding** →
 3. **Amazon settlement** → **Amazon → sub-VA (shop-level)**  

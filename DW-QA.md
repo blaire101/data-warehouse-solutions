@@ -30,7 +30,7 @@ We use a business-driven layered architecture. Raw data lands in ODS, is cleanse
 
 ### 2.2 Business Case 1 – Cross-border E-commerce Collection
 
-**<mark>Solution by Payment Service Providers</mark>** (e.g., Lianlian， WorldFirst， Tenpay, Pingpong)
+**<mark>Solution by Payment Service Providers</mark>** (e.g., Lianlian，WorldFirst，Tenpay，Pingpong)
 
 ```mermaid
 flowchart TB

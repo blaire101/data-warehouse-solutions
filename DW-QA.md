@@ -31,19 +31,7 @@ We use a business-driven layered architecture. Raw data lands in ODS, is cleanse
 - **ODS — (Operational Data Store)**: Ingest raw data via binlog subscription with hourly batch loading.  
 - **DIL/DIM — (Data Integration)**: Clean, <mark>deduplicate /diːˈdjuːplɪkeɪt/</mark>, and normalize data; build fact and dimension tables.  
 - **DWS — (Data Warehouse Service)**: Perform <mark>subject-oriented OR-ee-en-tid</mark> modeling around <mark>business entities</mark> (e.g., Merchant, Order) and processes (e.g., Top-up, settlement, payment/withdrawal), delivering reusable wide tables and standardized metrics for **<mark>multi-dimensional and thematic analysis.</mark>**
-- **ADS (Application Data Service Layer)**: Deliver application-level wide tables to support Finance, Risk, and BI reporting.  
-
-### 2. Modeling
-
-#### Business Case 1 – Cross-border E-commerce Collection
-
-- **Process-oriented**: Model fact tables around fund flow processes:  
-  *Settlement(Fund Distribution) → Withdrawal/Payment/Subscription.*  
-- **Entity-oriented**: Build subject tables around merchants, shops, and orders.  
-  Design metrics to enable multi-dimensional analysis, subject-area analytics, and monitoring of core business KPIs.  
-
-<details>
-<summary><strong><mark>Amazon - Cross-border E-commerce Collection - Data Warehouse Modeling</mark></strong></summary>
+- **ADS (Application Data Service Layer)**: Deliver application-level wide tables to support Finance, Risk, and BI reporting.
 
 ```mermaid
 flowchart TB
@@ -52,7 +40,7 @@ flowchart TB
     direction TB
     M[Merchant]:::biz
     S[Store]:::biz
-    O[Order or Transaction]:::biz
+    O[Order]:::biz
     VAM[Main VA - Real Bank Account]:::biz
     VAS[Sub-VA - Store and Currency]:::biz
     FF[Fund Flow]:::biz
@@ -111,6 +99,18 @@ flowchart TB
   classDef dws fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#166534;  %% green
   classDef ads fill:#ffedd5,stroke:#ea580c,stroke-width:2px,color:#7c2d12;  %% orange
 ```
+
+### 2. Modeling
+
+#### Business Case 1 – Cross-border E-commerce Collection
+
+- **Process-oriented**: Model fact tables around fund flow processes:  
+  *Settlement(Fund Distribution) → Withdrawal/Payment/Subscription.*  
+- **Entity-oriented**: Build subject tables around merchants, shops, and orders.  
+  Design metrics to enable multi-dimensional analysis, subject-area analytics, and monitoring of core business KPIs.  
+
+<details>
+<summary><strong><mark>Amazon - Cross-border E-commerce Collection - Data Warehouse Modeling</mark></strong></summary>
 
 **Core idea:** Amazon settles **per shop** into **sub-VA** (real bank sub-account); provider internally aggregates to **main VA** for the merchant. We model **settlement** and **cash-out/payments**; the internal sub-VA→main-VA aggregation is automatic and **not** a business fact.
 

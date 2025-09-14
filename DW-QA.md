@@ -30,9 +30,7 @@ We use a business-driven layered architecture. Raw data lands in ODS, is cleanse
 
 ### 2.2 Business Case 1 – Cross-border E-commerce Collection
 
-**<mark>Background:</mark>**
-
-#### Amazon Standard Collection Model (VA-based)
+**<mark>Background - Amazon Standard Collection Model (VA-based)</mark>**
 
 > In the Amazon standard collection scenario, Chinese/HK sellers cannot easily open overseas bank accounts. To address this, payment service providers (e.g., Ant/WorldFirst, Tenpay, LianLian) offer an offshore account system:
 
@@ -42,10 +40,8 @@ We use a business-driven layered architecture. Raw data lands in ODS, is cleanse
   - Fund tracking by store and by currency.
   - Consolidation of revenue under one main account.
 - Merchants can then:
-  - Withdraw to RMB accounts in China (after FX conversion).
+  - Withdraw from the **main VA** to China RMB bank accounts (after FX conversion).
   - Directly pay suppliers.
-
-Merchants can then withdraw from the **main VA** to domestic RMB bank accounts, or overseas FX accounts. 👉 This design enables sellers to legally receive Amazon proceeds, track inflows per shop, and efficiently repatriate capital back to China.
 
 👉 In short: *Amazon pays → sub-VA (store-level tracking) → main VA (aggregation & settlement)*.  
 This balances compliance, transparency, and ease of use for both merchants and providers.

@@ -32,6 +32,46 @@ We use a business-driven layered architecture. Raw data lands in ODS, is cleanse
 
 **<mark>Background:</mark>**
 
+#### Amazon Standard Collection Model (VA-based)
+
+> In the Amazon standard collection scenario, Chinese/HK sellers cannot easily open overseas bank accounts. To address this, payment service providers (e.g., Ant/WorldFirst, Tenpay, LianLian) offer an offshore account system:
+
+- Amazon pays each store’s revenue into its assigned Sub-VA.  
+- All Sub-VAs technically map back to the Main VA for settlement.  
+- The system enables:  
+  - Fund tracking by store and by currency.
+  - Consolidation of revenue under one main account.
+- Merchants can then:
+  - Withdraw to RMB accounts in China (after FX conversion).
+  - Directly pay suppliers.
+
+Merchants can then withdraw from the **main VA** to domestic RMB bank accounts, or overseas FX accounts. 👉 This design enables sellers to legally receive Amazon proceeds, track inflows per shop, and efficiently repatriate capital back to China.
+
+👉 In short: *Amazon pays → sub-VA (store-level tracking) → main VA (aggregation & settlement)*.  
+This balances compliance, transparency, and ease of use for both merchants and providers.
+
+```mermaid
+flowchart TB
+    M["Merchant (Main VA)<br>(fgid / fspid)"]:::merchant
+
+    subgraph Shops["Shops & Virtual Accounts"]
+        direction TB
+        S1["Shop A<br>(fshop_id_A)"]:::shop --> VA1["VA_A<br>(Virtual Account)"]:::va
+        S2["Shop B<br>(fshop_id_B)"]:::shop --> VA2["VA_B<br>(Virtual Account)"]:::va
+        S3["Shop C<br>(fshop_id_C)"]:::shop --> VA3["VA_C<br>(Virtual Account)"]:::va
+    end
+
+    %% Fund flow
+    VA1 --> M
+    VA2 --> M
+    VA3 --> M
+
+    %% Styling
+    classDef merchant fill:#FFD580,stroke:#333,stroke-width:2px;
+    classDef shop fill:#98FB98,stroke:#333,stroke-width:1px;
+    classDef va fill:#ADD8E6,stroke:#333,stroke-width:1px;
+```
+
 **Amazon Standard Collection**
 
 > In Amazon’s standard collection model, cross-border sellers cannot easily open overseas bank accounts. Payment service providers like Tenpay issue one **main VA (real bank account)** for settlement and create **sub-VAs (child accounts with unique identifiers)** for each store bound under the merchant.  
@@ -42,7 +82,17 @@ Amazon pays into the sub-VA (store level), which technically maps back to the ma
 > In Shopee’s official wallet model, Shopee itself acts as the settlement entity. After sellers onboard and bind stores, Shopee credits their **official wallet account** (white-label offshore account powered by Tenpay).  
 There is **no sub-VA per store** — store-level differentiation comes from Shopee’s internal transaction system. Funds can be disbursed (fees, supplier payments, subscription plans) or withdrawn to bank accounts.  
 
-**<mark>Solution by Payment Service Providers</mark>** (e.g., Lianlian，WorldFirst，Tenpay，Pingpong)
+### 2.3 Business Process
+
+| No. | Amazon Standard Collection                           | Shopee Official Wallet                                      |
+|-----|------------------------------------------------------|-------------------------------------------------------------|
+| 1   | **Merchant Onboarding** – Merchant registers and KYC | **Merchant Onboarding** – Merchant registers and KYC        |
+| 2   | **VA Assignment** – Main VA created, sub-VA per shop | **Shop Binding** – Merchant links their shops               |
+| 3   | **Shop Authorization & Binding** – Sub-VA assigned   | **Funds Inflow (Top-up)** – Shopee credits merchant wallet  |
+| 4   | **Amazon Pays Store VA** – Funds flow into sub-VA    | **Funds Flow & Deduction** – Payouts/deductions processed   |
+| 5   | **Transaction Details via API** – Collect order data | **Merchant Card Binding** – Bank card linked for withdrawal |
+| 6   | **Merchant Card Binding** – Settlement card binding  | **Payout - Withdrawal/Payment** – Merchant withdraws/pays   |
+| 7   | **Withdrawal & Payout** – From Main VA to bank/supplier | **Payout - Merchant Ops** – e.g., annual subscription plan   |
 
 ```mermaid
 flowchart TB
@@ -102,34 +152,6 @@ flowchart TB
   classDef dws fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#166534;  %% green
   classDef ads fill:#ffedd5,stroke:#ea580c,stroke-width:2px,color:#7c2d12;  %% orange
 ```
-
-### 2.2 DWH Data Flow
-
-- Amazon pays each store’s revenue into its assigned Sub-VA.  
-- All Sub-VAs technically map back to the Main VA for settlement.  
-- The system enables:  
-  - Fund tracking by store and by currency.
-  - Consolidation of revenue under one main account.
-- Merchants can then:
-  - Withdraw to RMB accounts in China (after FX conversion).
-  - Directly pay suppliers.
-
-### 2.3 Modeling
-
-#### Business Process (for context) 
-
-1. **Merchant onboarding** → register, KYC pass  
-2. **Shop authorization & binding** →
-3. **Amazon settlement** → **Amazon → sub-VA (shop-level)**  
-4. *(Internal aggregation)* sub-VA → main VA *(system auto, non-analytical)*  
-5. **Cash-out / payment** → main VA → bank account / supplier
-
-#### Business Case 1 – Cross-border E-commerce Collection
-
-- **Process-oriented**: Model fact tables around fund flow processes:  
-  *Settlement(Fund Distribution) → Withdrawal/Payment/Subscription.*  
-- **Entity-oriented**: Build subject tables around merchants, shops, and orders.  
-  Design metrics to enable multi-dimensional analysis, subject-area analytics, and monitoring of core business KPIs.
 
 ### 2.4 👉 Summary
 

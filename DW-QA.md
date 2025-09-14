@@ -22,17 +22,15 @@ Defined data domains, granularity, metrics, aggregated into subject-oriented DWS
 
 ## Q2. How is your data warehouse built?
 
-### 2.1 Architecture
+### 2.1 DWH Architecture
 
 We follow a **business-driven layered architecture**: **ODS → DIL/DIM → DWS → ADS**.
 
 We use a business-driven layered architecture. Raw data lands in ODS, is cleansed and modeled in DIL/DIM, aggregated into subject-oriented DWS, and finally served **ADS Layer** (multiple tables for BI & dashboards, with end-to-end lineage, access control, and SLAs.
 
+### 2.2 Business Case 1 – Cross-border E-commerce Collection
+
 **<mark>Solution by Payment Service Providers</mark>** (e.g., Lianlian， WorldFirst， Tenpay, Pingpong)
-
-**Virtual Account (VA) system**
-
-### 2.2 DWH Data Flow
 
 ```mermaid
 flowchart TB
@@ -92,19 +90,33 @@ flowchart TB
   classDef ads fill:#ffedd5,stroke:#ea580c,stroke-width:2px,color:#7c2d12;  %% orange
 ```
 
-### 2.3 How it Works
+### 2.2 DWH Data Flow
 
-* Amazon pays each store’s revenue into its assigned Sub-VA.
-* All Sub-VAs technically map back to the Main VA for settlement.
-* The system enables:
+- Amazon pays each store’s revenue into its assigned Sub-VA.  
+- All Sub-VAs technically map back to the Main VA for settlement.  
+- The system enables:  
+  - Fund tracking by store and by currency.
+  - Consolidation of revenue under one main account.
+- Merchants can then:
+  - Withdraw to RMB accounts in China (after FX conversion).
+  - Directly pay suppliers.
 
-  * Fund tracking by store and by currency.
-  * Consolidation of revenue under one main account.
-* Merchants can then:
+### 2.3 Modeling
 
-  * Withdraw to RMB accounts in China (after FX conversion).
-  * Withdraw to other foreign accounts.
-  * Directly pay suppliers or service providers abroad.
+#### Business Process (for context) 
+
+1. **Merchant onboarding** → register, KYC pass  
+2. **Shop authorization & binding** →
+3. **Amazon settlement** → **Amazon → sub-VA (shop-level)**  
+4. *(Internal aggregation)* sub-VA → main VA *(system auto, non-analytical)*  
+5. **Cash-out / payment** → main VA → bank account / supplier
+
+#### Business Case 1 – Cross-border E-commerce Collection
+
+- **Process-oriented**: Model fact tables around fund flow processes:  
+  *Settlement(Fund Distribution) → Withdrawal/Payment/Subscription.*  
+- **Entity-oriented**: Build subject tables around merchants, shops, and orders.  
+  Design metrics to enable multi-dimensional analysis, subject-area analytics, and monitoring of core business KPIs.
 
 ### 2.4 👉 Summary
 
@@ -115,21 +127,13 @@ This “Main VA + Sub-VA” model solves the key challenges of **receiving, with
 - **DWS — (Data Warehouse Service)**: Perform <mark>subject-oriented OR-ee-en-tid</mark> modeling around <mark>business entities</mark> (e.g., Merchant, Order) and processes (e.g., Top-up, settlement, payment/withdrawal), delivering reusable wide tables and standardized metrics for **<mark>multi-dimensional and thematic analysis.</mark>**
 - **ADS (Application Data Service Layer)**: Deliver application-level wide tables to support Finance, Risk, and BI reporting.
 
-### 2.5 Modeling
-
-#### Business Case 1 – Cross-border E-commerce Collection
-
-- **Process-oriented**: Model fact tables around fund flow processes:  
-  *Settlement(Fund Distribution) → Withdrawal/Payment/Subscription.*  
-- **Entity-oriented**: Build subject tables around merchants, shops, and orders.  
-  Design metrics to enable multi-dimensional analysis, subject-area analytics, and monitoring of core business KPIs.  
-
 <details>
 <summary><strong><mark>Amazon - Cross-border E-commerce Collection - Data Warehouse Modeling</mark></strong></summary>
 
 **Core idea:** Amazon settles **per store** into **sub-VA** (real bank sub-account); provider internally aggregates to **main VA** for the merchant. We model **settlement** and **cash-out/payments**; the internal sub-VA→main-VA aggregation is automatic and **not** a business fact.
 
 ### 1) Business Process (for context) 
+
 1. **Merchant onboarding** → register, KYC pass  
 2. **Shop authorization & binding** →
 3. **Amazon settlement** → **Amazon → sub-VA (shop-level)**  

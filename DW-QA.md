@@ -85,7 +85,7 @@ flowchart TB
   DIL-->DWS
   DIM-->DWS
   DWS-->ADS
-  DIM2-->ADS
+  DIM-->ADS
 
   %% ============ Styles ============
   classDef biz fill:#e0f2fe,stroke:#0284c7,stroke-width:2px,color:#075985;   %% light blue

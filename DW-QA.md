@@ -22,6 +22,12 @@ Defined data domains, granularity, metrics, aggregated into subject-oriented DWS
 
 ## Q2. How is your data warehouse built?
 
+### 1. Architecture
+
+We follow a **business-driven layered architecture**: **ODS → DIL/DIM → DWS → ADS**.
+
+We use a business-driven layered architecture. Raw data lands in ODS, is cleansed and modeled in DIL/DIM, aggregated into subject-oriented DWS, and finally served via low-latency ADS, with end-to-end DQ, lineage, access control, and SLAs.
+
 ```mermaid
 flowchart TB
   %% ============ Business Entities ============
@@ -80,12 +86,6 @@ flowchart TB
   classDef dws fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#166534;  %% green
   classDef ads fill:#ffedd5,stroke:#ea580c,stroke-width:2px,color:#7c2d12;  %% orange
 ```
-
-### 1. Architecture
-
-We follow a **business-driven layered architecture**: **ODS → DIL/DIM → DWS → ADS**.
-
-We use a business-driven layered architecture. Raw data lands in ODS, is cleansed and modeled in DIL/DIM, aggregated into subject-oriented DWS, and finally served via low-latency ADS, with end-to-end DQ, lineage, access control, and SLAs.
 
 - **ODS — (Operational Data Store)**: Ingest raw data via binlog subscription with hourly batch loading.  
 - **DIL/DIM — (Data Integration)**: Clean, <mark>deduplicate /diːˈdjuːplɪkeɪt/</mark>, and normalize data; build fact and dimension tables.  

@@ -61,7 +61,7 @@ flowchart TB
   end
 
   %% ============ ADS ============
-  ADS["ADS - Reports<br>(multiple tables for BI & dashboards)"]:::ads
+  ADS["ADS Layer<br>(multiple-tables for dashboards)"]:::ads
 
   %% ============ Mappings ============
   BIZ-->ODS

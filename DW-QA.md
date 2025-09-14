@@ -30,6 +30,18 @@ We use a business-driven layered architecture. Raw data lands in ODS, is cleanse
 
 ### 2.2 Business Case 1 – Cross-border E-commerce Collection
 
+**<mark>Background:</mark>**
+
+**Amazon Standard Collection**
+
+> In Amazon’s standard collection model, cross-border sellers cannot easily open overseas bank accounts. Payment service providers like Tenpay issue one **main VA (real bank account)** for settlement and create **sub-VAs (child accounts with unique identifiers)** for each store bound under the merchant.  
+Amazon pays into the sub-VA (store level), which technically maps back to the main VA. This allows tracking of funds per store and per currency.  
+
+**Shopee Official Wallet**
+
+> In Shopee’s official wallet model, Shopee itself acts as the settlement entity. After sellers onboard and bind stores, Shopee credits their **official wallet account** (white-label offshore account powered by Tenpay).  
+There is **no sub-VA per store** — store-level differentiation comes from Shopee’s internal transaction system. Funds can be disbursed (fees, supplier payments, subscription plans) or withdrawn to bank accounts.  
+
 **<mark>Solution by Payment Service Providers</mark>** (e.g., Lianlian，WorldFirst，Tenpay，Pingpong)
 
 ```mermaid
@@ -263,20 +275,7 @@ This “Main VA + Sub-VA” model solves the key challenges of **receiving, with
 - **Data Quality Monitoring (DQC)**: Enforce rules for completeness, uniqueness, timeliness, and reconciliation.  
 - **Security & Compliance**: Detect unencrypted sensitive fields and enforce ownership accountability.  
 
-
-### 5. Background 
-
-**Amazon Standard Collection**
-
-> In Amazon’s standard collection model, cross-border sellers cannot easily open overseas bank accounts. Payment service providers like Tenpay issue one **main VA (real bank account)** for settlement and create **sub-VAs (child accounts with unique identifiers)** for each store bound under the merchant.  
-Amazon pays into the sub-VA (store level), which technically maps back to the main VA. This allows tracking of funds per store and per currency.  
-
-**Shopee Official Wallet**
-
-> In Shopee’s official wallet model, Shopee itself acts as the settlement entity. After sellers onboard and bind stores, Shopee credits their **official wallet account** (white-label offshore account powered by Tenpay).  
-There is **no sub-VA per store** — store-level differentiation comes from Shopee’s internal transaction system. Funds can be disbursed (fees, supplier payments, subscription plans) or withdrawn to bank accounts.  
-
-### 3. Data Warehouse Construction 
+### 4. Data Warehouse Construction 
 
 ### Amazon Standard Collection
 **Business Process**  

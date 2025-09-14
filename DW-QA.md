@@ -69,12 +69,6 @@ flowchart TB
     DWS_O[Order Subject]:::dws
   end
 
-  %% ============ DIM 2============
-  subgraph DIM2["DIM Layer"]
-    direction TB
-    DIM_T[Dim Table]:::dim
-  end
-
   %% ============ ADS ============
   ADS["ADS Layer<br>(multiple-tables for dashboards)"]:::ads
 
@@ -92,8 +86,7 @@ flowchart TB
   classDef ods fill:#f5f5f5,stroke:#424242,stroke-width:2px,color:#212121;   %% gray
   classDef dil fill:#ede9fe,stroke:#7c3aed,stroke-width:2px,color:#4c1d95;   %% purple
   classDef fact fill:#ddd6fe,stroke:#5b21b6,stroke-width:2px,color:#3730a3; %% darker purple
-  classDef dim fill:#ccfbf1,stroke:#14b8a6,stroke-width:2px,color:#0f766e;  %% teal
-  classDef dim2 fill:#ccfbf1,stroke:#14b8a6,stroke-width:2px,color:#0f766e;  %% teal
+  classDef dim fill:#ccfbf1,stroke:#14b8a6,stroke-width:2px,color:#0f766e;  %% purple
   classDef dws fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#166534;  %% green
   classDef ads fill:#ffedd5,stroke:#ea580c,stroke-width:2px,color:#7c2d12;  %% orange
 ```

@@ -22,7 +22,7 @@ Defined data domains, granularity, metrics, aggregated into subject-oriented DWS
 
 ## Q2. How is your data warehouse built?
 
-### 1. Architecture
+### 2.1 Architecture
 
 We follow a **business-driven layered architecture**: **ODS → DIL/DIM → DWS → ADS**.
 
@@ -30,28 +30,9 @@ We use a business-driven layered architecture. Raw data lands in ODS, is cleanse
 
 **<mark>Solution by Payment Service Providers</mark>** (e.g., Lianlian， WorldFirst， Tenpay, Pingpong)
 
-* Introduce a **Virtual Account (VA) system**:
+**Virtual Account (VA) system**
 
-  * **Main VA** → A real overseas settlement account.
-  * **Sub-VAs** → Virtual child accounts, each mapped to a specific store and currency.
-
-**How it Works**
-
-* Amazon pays each store’s revenue into its assigned Sub-VA.
-* All Sub-VAs technically map back to the Main VA for settlement.
-* The system enables:
-
-  * Fund tracking by store and by currency.
-  * Consolidation of revenue under one main account.
-* Merchants can then:
-
-  * Withdraw to RMB accounts in China (after FX conversion).
-  * Withdraw to other foreign accounts.
-  * Directly pay suppliers or service providers abroad.
-
-**👉 Summary:**
-This “Main VA + Sub-VA” model solves the key challenges of **receiving, withdrawing, and paying** for Chinese cross-border sellers, while ensuring funds are traceable, compliant, and easy to manage.
-
+### 2.2 DWH Data Flow
 
 ```mermaid
 flowchart TB
@@ -111,12 +92,30 @@ flowchart TB
   classDef ads fill:#ffedd5,stroke:#ea580c,stroke-width:2px,color:#7c2d12;  %% orange
 ```
 
+### 2.3 How it Works
+
+* Amazon pays each store’s revenue into its assigned Sub-VA.
+* All Sub-VAs technically map back to the Main VA for settlement.
+* The system enables:
+
+  * Fund tracking by store and by currency.
+  * Consolidation of revenue under one main account.
+* Merchants can then:
+
+  * Withdraw to RMB accounts in China (after FX conversion).
+  * Withdraw to other foreign accounts.
+  * Directly pay suppliers or service providers abroad.
+
+### 2.4 👉 Summary
+
+This “Main VA + Sub-VA” model solves the key challenges of **receiving, withdrawing, and paying** for Chinese cross-border sellers, while ensuring funds are traceable, compliant, and easy to manage.
+
 - **ODS — (Operational Data Store)**: Ingest raw data via binlog subscription with hourly batch loading.  
 - **DIL/DIM — (Data Integration)**: Clean, <mark>deduplicate /diːˈdjuːplɪkeɪt/</mark>, and normalize data; build fact and dimension tables.  
 - **DWS — (Data Warehouse Service)**: Perform <mark>subject-oriented OR-ee-en-tid</mark> modeling around <mark>business entities</mark> (e.g., Merchant, Order) and processes (e.g., Top-up, settlement, payment/withdrawal), delivering reusable wide tables and standardized metrics for **<mark>multi-dimensional and thematic analysis.</mark>**
 - **ADS (Application Data Service Layer)**: Deliver application-level wide tables to support Finance, Risk, and BI reporting.
 
-### 2. Modeling
+### 2.5 Modeling
 
 #### Business Case 1 – Cross-border E-commerce Collection
 
@@ -128,7 +127,7 @@ flowchart TB
 <details>
 <summary><strong><mark>Amazon - Cross-border E-commerce Collection - Data Warehouse Modeling</mark></strong></summary>
 
-**Core idea:** Amazon settles **per shop** into **sub-VA** (real bank sub-account); provider internally aggregates to **main VA** for the merchant. We model **settlement** and **cash-out/payments**; the internal sub-VA→main-VA aggregation is automatic and **not** a business fact.
+**Core idea:** Amazon settles **per store** into **sub-VA** (real bank sub-account); provider internally aggregates to **main VA** for the merchant. We model **settlement** and **cash-out/payments**; the internal sub-VA→main-VA aggregation is automatic and **not** a business fact.
 
 ### 1) Business Process (for context) 
 1. **Merchant onboarding** → register, KYC pass  

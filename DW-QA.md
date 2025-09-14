@@ -16,6 +16,48 @@ Defined data domains, granularity, metrics, aggregated into subject-oriented DWS
 4. Abstracted business and data subject analyses into DML tables.
 5. Delivered reporting, supporting subject-oriented and multi-dimensional analysis
 
+---
+---
+
+**1. Background**
+
+* Most cross-border goods come from China.
+* Chinese merchants often operate multiple Amazon stores across different countries.
+* It is very difficult for these merchants to open local bank accounts in each country.
+
+**2. Problem**
+
+* Multi-store, multi-currency operations create complex settlement needs.
+* Without local accounts, sellers face difficulties in:
+
+  * Receiving payments from Amazon.
+  * Repatriating funds back to China.
+  * Paying suppliers and logistics providers.
+
+**3. Solution by Payment Service Providers (e.g., Tenpay)**
+
+* Introduce a **Virtual Account (VA) system**:
+
+  * **Main VA** → A real overseas settlement account.
+  * **Sub-VAs** → Virtual child accounts, each mapped to a specific store and currency.
+
+**4. How it Works**
+
+* Amazon pays each store’s revenue into its assigned Sub-VA.
+* All Sub-VAs technically map back to the Main VA for settlement.
+* The system enables:
+
+  * Fund tracking by store and by currency.
+  * Consolidation of revenue under one main account.
+* Merchants can then:
+
+  * Withdraw to RMB accounts in China (after FX conversion).
+  * Withdraw to other foreign accounts.
+  * Directly pay suppliers or service providers abroad.
+
+**👉 Summary:**
+This “Main VA + Sub-VA” model solves the key challenges of **receiving, withdrawing, and paying** for Chinese cross-border sellers, while ensuring funds are traceable, compliant, and easy to manage.
+
 <div align="center">
   <img src="docs/dwh-1.jpg" alt="Diagram" width="600">
 </div>

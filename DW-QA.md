@@ -38,7 +38,6 @@ flowchart TB
     O[Order]:::biz
     VAM[Main VA - Real Bank Account]:::biz
     VAS[Sub-VA - Store and Currency]:::biz
-    FF[Fund Flow]:::biz
     SUP[Supplier]:::biz
     CNBK[Bank Card in China]:::biz
   end

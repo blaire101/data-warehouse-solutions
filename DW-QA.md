@@ -33,11 +33,9 @@ We follow a **business-driven layered architecture**: **ODS → DIL/DIM → DWS 
 
 We use a business-driven layered architecture. Raw data lands in ODS, is cleansed and modeled in DIL/DIM, aggregated into subject-oriented DWS, and finally served **ADS Layer** (tables for BI & dashboards, with end-to-end lineage, access control, and SLAs.
 
-### 2.2 Business Case 1 – Cross-border E-commerce Collection
+### 2.2 Business Case 1 – Cross-border E-commerce Collection (Cross-Border Sellers)
 
 **<mark>Background - Amazon Standard Collection Model (VA-based)</mark>**
-
-### Amazon Standard Collection Model (Cross-Border Sellers)
 
 1. **Background / Problem**
 

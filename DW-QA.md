@@ -31,7 +31,7 @@ Defined data domains, granularity, metrics, aggregated into subject-oriented DWS
 
 We follow a **business-driven layered architecture**: **ODS → DIL/DIM → DWS → ADS**.
 
-We use a business-driven layered architecture. Raw data lands in ODS, is cleansed and modeled in DIL/DIM, aggregated into subject-oriented DWS, and finally served **ADS Layer** (multiple tables for BI & dashboards, with end-to-end lineage, access control, and SLAs.
+We use a business-driven layered architecture. Raw data lands in ODS, is cleansed and modeled in DIL/DIM, aggregated into subject-oriented DWS, and finally served **ADS Layer** (tables for BI & dashboards, with end-to-end lineage, access control, and SLAs.
 
 ### 2.2 Business Case 1 – Cross-border E-commerce Collection
 
@@ -133,7 +133,7 @@ flowchart TB
   end
 
   %% ============ ADS ============
-  ADS["ADS Layer<br>(multiple-tables for dashboards)"]:::ads
+  ADS["ADS Layer<br>(tables for dashboards)"]:::ads
 
   %% ============ Mappings ============
   BIZ-->ODS

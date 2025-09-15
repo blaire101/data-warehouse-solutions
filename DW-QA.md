@@ -51,17 +51,12 @@ We use a business-driven layered architecture. Raw data lands in ODS, is cleanse
 
 * **Step 1: Payout**
   Amazon pays each store’s revenue into its assigned **Sub-VA** (store level).
-
 * **Step 2: Mapping**
   All Sub-VAs are linked back to a single **Main VA** for settlement.
-
 * **Step 3: Benefits**
-
   * **Tracking**: Funds are separated by store and currency for transparency.
   * **Consolidation**: All revenues flow into one main account, simplifying management.
   * **Flexibility**: Merchants can withdraw to RMB bank accounts in China (after FX conversion) or use the balance to directly pay suppliers.
-
-
 
 👉 In short: *Amazon pays → sub-VA (store-level tracking) → main VA (aggregation & settlement)*.  
 This balances compliance, transparency, and ease of use for both merchants and providers.

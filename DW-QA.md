@@ -49,6 +49,34 @@ We use a business-driven layered architecture. Raw data lands in ODS, is cleanse
 
 3. **How it Works**
 
+```mermaid
+flowchart TB
+    A["1️⃣ **Merchant Registration & KYC**"] 
+    B["2️⃣ **Shop Authorization & Binding**<br>Amazon store linked"]
+    C["3️⃣ **Sub-VA Assigned**<br>per shop / currency"]
+    D["4️⃣ **Amazon Payout**<br>Funds → Sub-VA"]
+    E["5️⃣ **Main VA Settlement**<br>Funds consolidated"]
+    F["6️⃣ **Withdrawal / Supplier Payment**<br>RMB bank / FX payout"]
+
+    A --> B --> C --> D --> E --> F
+
+    %% === Color classes ===
+    classDef reg fill:#e6f0ff,stroke:#333,stroke-width:1.5px;
+    classDef bind fill:#d5f5e3,stroke:#333,stroke-width:1.5px;
+    classDef subva fill:#fff2cc,stroke:#333,stroke-width:1.5px;
+    classDef payout fill:#ffd580,stroke:#333,stroke-width:1.5px;
+    classDef mainva fill:#f9c0c0,stroke:#333,stroke-width:1.5px;
+    classDef withdraw fill:#d5b3ff,stroke:#333,stroke-width:1.5px;
+
+    %% === Assign classes ===
+    class A reg;
+    class B bind;
+    class C subva;
+    class D payout;
+    class E mainva;
+    class F withdraw;
+```
+
 * **Step 1: Payout**
   Amazon pays each store’s revenue into its assigned **Sub-VA** (store level).
 * **Step 2: Mapping**

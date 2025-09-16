@@ -1,4 +1,4 @@
-## 🎯 Core Purpose
+## 🎯 DWH Core Purpose
 
 The **<mark>core purpose</mark>** of a Data Warehouse (DWH) is to **<mark>integrate and store data</mark>** from multiple sources, providing **<mark>accurate, reliable, and consistent data</mark>** for analysis, reporting, and decision-making.
 

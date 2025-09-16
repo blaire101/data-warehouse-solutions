@@ -19,7 +19,7 @@ We follow a **<mark>business-driven layered architecture</mark>**:
 * **ODS (Operational Data Store):** Ingest **<mark>raw data</mark>** (e.g., binlog subscription, hourly batch).
 * **DIL/DIM (Integration Layer):** **<mark>Clean, deduplicate, normalize</mark>**; build **<mark>fact</mark>** and **<mark>dimension tables</mark>**.
 * **DWS (Warehouse Service):** Model around **<mark>business entities & processes</mark>** (Merchant, Store, Order, Settlement), delivering **<mark>subject-oriented wide tables</mark>**.
-* **ADS (Application Layer):** Serve **<mark>BI, Finance, and Risk dashboards</mark>** with **<mark>end-to-end lineage, access control, and SLA</mark>**.
+* **ADS (Application Layer):** Serve **<mark>BI, dashboards</mark>**.
 
 **Development Process**
 

@@ -53,7 +53,7 @@ We follow a **<mark>business-driven layered architecture</mark>**:
 ### 🔹 Core Process
 
 ```mermaid
-flowchart TB
+flowchart LR
     A["1️⃣ **<mark>Merchant Registration & KYC</mark>**"]:::step1
     B["2️⃣ **<mark>Store Authorization & Binding</mark>**"]:::step2
     C["3️⃣ **<mark>Sub-VA Assigned</mark>**<br>(per store / currency)"]:::step3

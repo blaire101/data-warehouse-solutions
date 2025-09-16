@@ -161,8 +161,8 @@ flowchart TB
 > In Shopee’s official wallet model, Shopee itself acts as the settlement entity. After sellers onboard and bind stores, Shopee credits their **official wallet account** (white-label offshore account powered by Tenpay).  
 There is **no sub-VA per store** — store-level differentiation comes from Shopee’s internal transaction system. Funds can be disbursed (fees, supplier payments, subscription plans) or withdrawn to bank accounts.  
 
-| No. | Amazon Standard Collection                           | Shopee Official Wallet                                      |
-|-----|------------------------------------------------------|-------------------------------------------------------------|
+| No. | Amazon Standard Collection       | Shopee Official Wallet                                      |
+|-----|--------------------------------|--------------------------------------|
 | 1   | **Merchant Onboarding** – Merchant registers and KYC | **Merchant Onboarding** – Merchant registers and KYC        |
 | 2   | **VA Assignment** – Main VA created, sub-VA per shop | **Shop Binding** – Merchant links their shops               |
 | 3   | **Shop Authorization & Binding** – Sub-VA assigned   | **Funds Inflow (Top-up)** – Shopee credits merchant wallet  |
@@ -171,7 +171,7 @@ There is **no sub-VA per store** — store-level differentiation comes from Shop
 | 6   | **Merchant Card Binding** – Settlement card binding  | **Payout - Withdrawal/Payment** – Merchant withdraws/pays   |
 | 7   | **Withdrawal & Payout** – From Main VA to bank/supplier | **Payout - Merchant Ops** – e.g., annual subscription plan   |
 
-### Subject-Specifc Table
+### Subject-Specifc Table (Standard Collection)
 
 <details>
 <summary><strong style="color:#1E90FF;">Merchant Subject Sample - Data Metric</strong></summary>
@@ -181,35 +181,33 @@ There is **no sub-VA per store** — store-level differentiation comes from Shop
 #### Partition & Keys
 
 | Field       | Type   | Description                            | Source/Notes                                                                |
-| ----------- | ------ | -------------------------------------- | --------------------------------------------------------------------------- |
-| `fdate`     | BIGINT | Partition date                         | Partition column                                                            |
-| `fetl_time` | BIGINT | ETL timestamp                          |                                                                             |
-| `fgid`      | STRING | Merchant GID (created at registration) | One of the business keys; `dil_evt_kjzf_mer_login_id_fx_userinfo_db_mso_dd` |
-| `fspid`     | STRING | Merchant ID (Boss side)                | Maps to `fgid`; `dim_kjhk_t_merchant_info_bossdb_mso_d`                     |
+| ----------- | ------ | -------------------------------------- | -------------- |
+| `fdate`     | BIGINT | Partition date     | Partition column                                                            |
+| `fetl_time` | BIGINT | ETL timestamp   |                                                                             |
+| `fgid`      | STRING | Merchant GID (created at registration) | business keys; `dil_evt_mer_login` |
+| `fspid`     | STRING | Merchant ID | Maps to `fgid`; `dim_merchant_info`                     |
 
 #### Merchant Basic Attributes (Horizontal)
 
 | Field                       | Type   | Description                       | Source/Notes                                                           |
-| --------------------------- | ------ | --------------------------------- | ---------------------------------------------------------------------- |
-| `fregister_channel_source`  | STRING | Registration channel (PC/H5/MP)   | Parse from operator JSON; `dim_kjzf_mer_operator_fx_userinfo_db_mso_d` |
-| `fbusiness_att_1`           | STRING | Acquisition channel (ads/BD/etc.) | From operator profile                                                  |
-| `fchannel_name`             | STRING | Marketing channel name            | Added 2024-08-20                                                       |
-| `fname_verification_status` | BIGINT | Real-name/KYC status (1–6)        | Approval task (Boss)                                                   |
+| ------------------- | ------ | ------------- | ------------------- |
+| `fregister_channel_source`  | STRING | Registration channel (PC/H5/MP)   | Parse from operator JSON; `mer_operator` |
+
 
 #### Key Time Funnel (Horizontal)
 
 | Field                        | Type   | Description                  | Key Rules / Source                                     |
 | ---------------------------- | ------ | ---------------------------- | ------------------------------------------------------ |
 | `fcreate_time_enter`         | STRING | Entry/first seen time        | Login external ID integration                          |
-| `fcreate_time_register`      | STRING | Registration time            | `Portal=3 & Lstate=1`                                  |
+| `fcreate_time_register`      | STRING | Registration time            |                                 |
 | `fcreate_time_register_info` | STRING | Profile completion time      | From operator/approval trail                           |
-| `fcreate_time_kyc_apply`     | STRING | KYC application time         | ApprovalType=1; scene∈(3,4,5,6)                        |
-| `fcreate_time_kyc_info`      | STRING | KYC info completion time     | Same scenes; latest valid                              |
-| `fcreate_time_kyc_reject`    | STRING | KYC rejection time           | Status=4                                               |
-| `fcreate_time_store_apply`   | STRING | **Store apply** time         | Channel=102                                            |
+| `fcreate_time_kyc_apply`     | STRING | KYC application time         |                         |
+| `fcreate_time_kyc_info`      | STRING | KYC info completion time     |                               |
+| `fcreate_time_kyc_reject`    | STRING | KYC rejection time           |                                               |
+| `fcreate_time_store_apply`   | STRING | **Store apply** time         |                                         |
 | `fcreate_time_store_auth`    | STRING | **Store authorization** time | Event `AUTH_SHOP_SUCCESS`                              |
 | `fcreate_time_store_bind`    | STRING | **Store binding** time       | Event `AUDIT_SHOP_SUCCESS`                             |
-| `ffirst_recharge_time`       | STRING | **First settlement** time    | Earliest in `dil_trd_recharge_list_ia_exc_zwdb_mso_dd` |
+| `ffirst_recharge_time`       | STRING | **First settlement** time    | Earliest in `dil_trd_recharge` |
 
 > Optional milestones to add later: time when cumulative settlement reaches **10/100/500 USD**.
 
@@ -217,18 +215,17 @@ There is **no sub-VA per store** — store-level differentiation comes from Shop
 
 | Field                           | Type   | Description                      | Notes                  |
 | ------------------------------- | ------ | -------------------------------- | ---------------------- |
-| `ftotal_recharge_amount_usd`    | DOUBLE | Cumulative settlement (USD)      | After FX conversion    |
-| `ftotal_recharge_amount_rmb`    | DOUBLE | Cumulative settlement (CNH)      | After FX conversion    |
+| `ftotal_recharge_amount_usd`    | DOUBLE | Cumulative settlement (USD)      | After    |
+| `ftotal_recharge_amount_rmb`    | DOUBLE | Cumulative settlement (CNH)      | After    |
 | `ftotal_recharge_cnt`           | BIGINT | Cumulative number of settlements | Distinct `Fbilling_id` |
-| `flast_recharge_amount_usd_28d` | DOUBLE | Last 28-day settlement (USD)     | Activity/volume        |
+| `flast_recharge_amount_usd_28d` | DOUBLE | Last 28-day settlement (USD)     | Activity       |
 | `flast_recharge_amount_rmb_28d` | DOUBLE | Last 28-day settlement (CNH)     |                        |
 | `flast_recharge_amount_cnt_28d` | BIGINT | Last 28-day settlement count     |                        |
 
 #### Lifecycle & Tags
 
 | Field                     | Type   | Description                         | Rule Highlights                                                      |
-| ------------------------- | ------ | ----------------------------------- | -------------------------------------------------------------------- |
-| `fwas_merchant_lost_p1d`  | BIGINT | Was merchant “lost” yesterday (1/0) | Has historical settlement **and** no settlement in last 28 days      |
+| ------------------------- | ------ | -------------------- | ----------------------------- |
 | `fmerchant_lifecycle_tag` | BIGINT | Lifecycle tag                       | 1 No-funding / 2 New / 3 Retained / 4 Lost / 5 Recovered / 0 Default |
 
 </details>
@@ -244,30 +241,22 @@ There is **no sub-VA per store** — store-level differentiation comes from Shop
 | ----------- | ------ | -------------------------- | -------------------------------------------- |
 | `fdate`     | BIGINT | Partition date             |                                              |
 | `fetl_time` | BIGINT | ETL timestamp              |                                              |
-| `fshop_id`  | STRING | **Store ID** (primary key) | From `dim_kjhk_t_shop_info_collshopdb_mso_d` |
+| `fshop_id`  | STRING | **Store ID** (primary key) | From `dim_shop_info` |
 | `fspid`     | STRING | Merchant ID                |                                              |
 | `fgid`      | STRING | Merchant GID               | Map via merchant dim                         |
 
-#### Store Attributes (Horizontal)
+#### Store Attributes (Horizontal, Try link from dim)
 
 | Field                                                   | Type   | Description                          | Notes                                     |
-| ------------------------------------------------------- | ------ | ------------------------------------ | ----------------------------------------- |
-| `fshop_name`                                            | STRING | Store name                           |                                           |
-| `fshop_state`                                           | BIGINT | State: 10/11/20/21/22/30/31          | Pending/Reviewing/Approved/Failed/Cancel… |
-| `fplatform_id`                                          | STRING | Platform code: `amz`, `shopee`       | Standard collection platforms             |
-| `fsite_id`                                              | STRING | Site code: `amzNA`, `amzEU`, …       |                                           |
-| `fcountry_id`                                           | STRING | Country/region (US, CA, …)           |                                           |
-| `fcur_type`                                             | STRING | Settlement currency (ISO-4217 alpha) | Single currency per store                 |
-| `fbank_type`, `fshop_type`, `fmanage_state`             | BIGINT | Bank/type/centralized-mgmt flags     | Reserved/To be backfilled                 |
-| `fmanage_shop_id`, `fmanage_fspid`, `fmanage_shop_name` | STRING | Parent store/merchant/name           | Centralized management relation           |
-| `fplat_shop_id`, `fplat_shop_name`                      | STRING | Platform store ID/name               |                                           |
-| `fplat_shop_url`, `frefresh_token`                      | STRING | URL / refresh token (encrypted)      | Sensitive                                 |
+| ----------------------------- | ------ | ------------------------------------ | ----------------------------------------- |
+| `fplat_shop_id` <br> `fplat_shop_name`                                            | STRING | Store name                           |                                           |
+| `fplatform_id` <br> `fsite_id` <br> `fcountry_id` <br> `fcur_type`                                         | STRING |       | Standard collection platforms             |
 
 #### Key Time Funnel (Horizontal)
 
 | Field                     | Type   | Description                   | Rule / Source                     |
 | ------------------------- | ------ | ----------------------------- | --------------------------------- |
-| `fcreate_time_shop_apply` | STRING | Store apply time              | Channel=102                       |
+| `fcreate_time_shop_apply` | STRING | Store apply time              |                        |
 | `fcreate_time_shop_auth`  | STRING | Store authorization time      | `AUTH_SHOP_SUCCESS`               |
 | `fcreate_time_shop_bind`  | STRING | Store binding (approved)      | `AUDIT_SHOP_SUCCESS`              |
 | `ffirst_recharge_time`    | STRING | First settlement time         | From recharge list                |
@@ -287,8 +276,7 @@ There is **no sub-VA per store** — store-level differentiation comes from Shop
 #### Lifecycle & Tags
 
 | Field                     | Type   | Description                | Rule Highlights                        |
-| ------------------------- | ------ | -------------------------- | -------------------------------------- |
-| `fwas_merchant_lost_p1d`  | BIGINT | Was store “lost” yesterday | Same 28-day rule                       |
+| ------------------- | ------ | -------------------------- | ----------------- |
 | `fmerchant_lifecycle_tag` | BIGINT | Store lifecycle tag        | No-funding/New/Retained/Lost/Recovered |
 
 </details>
@@ -314,15 +302,15 @@ There is **no sub-VA per store** — store-level differentiation comes from Shop
 | ---------- | ------ | ------------ | -------------------------------------------- |
 | `fgid`     | STRING | Merchant GID | From merchant dim                            |
 | `fspid`    | STRING | Merchant ID  |                                              |
-| `fshop_id` | STRING | **Store ID** | In inflow: from `Fbusi_uniq_id` (if present) |
+| `fshop_id` | STRING | **Store ID** | In inflow |
 
 #### Amounts & Currencies
 
 | Field                     | Type   | Description                | Notes                            |
 | ------------------------- | ------ | -------------------------- | -------------------------------- |
-| `Ftransaction_cur_type`   | STRING | Currency (ISO-4217 alpha)  | Map from numeric; handle 156→CNH |
-| `Ftransaction_amount`     | DOUBLE | Amount (original currency) | `Famount / 100`                  |
-| `Ftransaction_amount_usd` | DOUBLE | Amount (USD)               | FX table; USD passthrough        |
+| `Ftransaction_cur_type`   | STRING |   | Map from numeric; handle 156→CNH |
+| `Ftransaction_amount`     | DOUBLE | Amount (original currency) |                  |
+| `Ftransaction_amount_usd` | DOUBLE | Amount (USD)               | FX table;         |
 | `Ftransaction_amount_cnh` | DOUBLE | Amount (CNH)               | FX table                         |
 
 #### Outflow-only Fields (NULL for inflow)
@@ -332,10 +320,9 @@ There is **no sub-VA per store** — store-level differentiation comes from Shop
 | `fbuy_type`   | STRING | Buy/credit currency | From `Fbuy_cur_type`                        |
 | `fpayee_id`   | STRING | Payee ID            | For withdrawals/payments                    |
 | `fpayee_type` | BIGINT | Payee type          | Your enum rules                             |
-| `fbiz_type`   | BIGINT | Biz type            | 1 FX-inbound / 2 FX-purchase / 3 FX-payment |
 | `fsell_type`  | STRING | Sell currency       | Payment scene                               |
 
-#### Business Enhancements (for BI)
+#### Payee Other Info
 
 | Field                    | Type   | Description                                    | Notes                     |
 | ------------------------ | ------ | ---------------------------------------------- | ------------------------- |

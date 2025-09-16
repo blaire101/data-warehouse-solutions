@@ -76,84 +76,11 @@ flowchart LR
 
 👉 **Amazon pays → <mark>Sub-VA</mark> (store-level) → <mark>Main VA</mark> (aggregation & settlement) → <mark>Bank/Supplier payout</mark>**
 
----
-
 ### 🔹 Benefits
 
-* **<mark>Tracking</mark>**: per store & currency
-* **<mark>Consolidation</mark>**: simplified management under one Main VA
-* **<mark>Flexibility</mark>**: withdraw to RMB or pay suppliers directly
-
-
-
-- **ODS — (Operational Data Store)**: Ingest raw data via binlog subscription with hourly batch loading.  
-- **DIL/DIM — (Data Integration)**: Clean, <mark>deduplicate /diːˈdjuːplɪkeɪt/</mark>, and normalize data; build fact and dimension tables.  
-- **DWS — (Data Warehouse Service)**: Perform <mark>subject-oriented OR-ee-en-tid</mark> modeling around <mark>business entities</mark> (e.g., Merchant, Order) and processes (e.g., Top-up, settlement, payment/withdrawal), delivering reusable wide tables and standardized metrics for **<mark>multi-dimensional and thematic analysis.</mark>**
-- **ADS (Application Data Service Layer)**: Deliver application-level wide tables to support Finance, Risk, and BI reporting.
-
-## Q2. How is your data warehouse built?
-
-### 2.1 DWH Architecture
-
-We follow a **business-driven layered architecture**: **ODS → DIL/DIM → DWS → ADS**.
-
-We use a business-driven layered architecture. Raw data lands in ODS, is cleansed and modeled in DIL/DIM, aggregated into subject-oriented DWS, and finally served **ADS Layer** (tables for BI & dashboards, with end-to-end lineage, access control, and SLAs.
-
-### 2.2 Business Case 1 – Cross-border E-commerce Collection (Cross-Border Sellers)
-
-**<mark>Background - Amazon Standard Collection Model (VA-based)</mark>**
-
-1. **Background / Problem**
-
-- Chinese/HK cross-border sellers often operate **multiple Amazon stores across countries**.
-- Sellers cannot easily open bank accounts abroad, so they struggle to receive money from Amazon, withdraw cash, or pay their suppliers.
-
-2. **Solution by Payment Service Providers**
-
-   * Providers like **Ant/WorldFirst, Tenpay, LianLian** introduce an **offshore virtual account (VA) system**.
-   * They create one **Main VA** (a real bank account) for settlement and **Sub-VAs** (child accounts with unique identifiers) for each store/currency under the merchant.
-
-3. **How it Works**
-
-```mermaid
-flowchart LR
-    A["1️⃣ **Merchant Registration & KYC**"] 
-    B["2️⃣ **Shop Authorization & Binding**<br>Amazon store linked"]
-    C["3️⃣ **Sub-VA Assigned**<br>per shop / currency"]
-    D["4️⃣ **Amazon Payout**<br>Funds → Sub-VA"]
-    E["5️⃣ **Main VA Settlement**<br>Funds consolidated"]
-    F["6️⃣ **Withdrawal / Supplier Payment**<br>RMB bank / FX payout"]
-
-    A --> B --> C --> D --> E --> F
-
-    %% === Color classes ===
-    classDef reg fill:#e6f0ff,stroke:#333,stroke-width:1.5px;
-    classDef bind fill:#d5f5e3,stroke:#333,stroke-width:1.5px;
-    classDef subva fill:#fff2cc,stroke:#333,stroke-width:1.5px;
-    classDef payout fill:#ffd580,stroke:#333,stroke-width:1.5px;
-    classDef mainva fill:#f9c0c0,stroke:#333,stroke-width:1.5px;
-    classDef withdraw fill:#d5b3ff,stroke:#333,stroke-width:1.5px;
-
-    %% === Assign classes ===
-    class A reg;
-    class B bind;
-    class C subva;
-    class D payout;
-    class E mainva;
-    class F withdraw;
-```
-
-* **Step 1: Payout**
-  Amazon pays each store’s revenue into its assigned **Sub-VA** (store level).
-* **Step 2: Mapping**
-  All Sub-VAs are linked back to a single **Main VA** for settlement.
-* **Step 3: Benefits**
-  * **Tracking**: Funds are separated by store and currency for transparency.
-  * **Consolidation**: All revenues flow into one main account, simplifying management.
-  * **Flexibility**: Merchants can withdraw to RMB bank accounts in China (after FX conversion) or use the balance to directly pay suppliers.
-
-👉 In short: *Amazon pays → sub-VA (store-level tracking) → main VA (aggregation & settlement)*.  
-This balances compliance, transparency, and ease of use for both merchants and providers.
+- **<mark>Tracking</mark>**: per store & currency
+- **<mark>Consolidation</mark>**: simplified management under one Main VA
+- **<mark>Flexibility</mark>**: withdraw to RMB or pay suppliers directly
 
 ```mermaid
 flowchart TB

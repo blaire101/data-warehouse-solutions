@@ -13,8 +13,6 @@ It addresses:
 * Difficulty in **<mark>historical data management</mark>**
 * Lack of **<mark>traceability and reliability</mark>** for compliance & BI
 
----
-
 ## 1. DWH Architecture – Hourglass Model
 
 We follow a **<mark>business-driven layered architecture</mark>**:
@@ -53,6 +51,28 @@ We follow a **<mark>business-driven layered architecture</mark>**:
 * Each **<mark>store/currency</mark>** is assigned a **<mark>Sub-VA</mark>** (virtual ledger accounts (not real bank accounts), mapped to a Main VA).
 * The system automatically aggregates **<mark>Sub-VA balances</mark>** into the **<mark>Main VA</mark>**, ensuring transaction-level traceability and regulatory compliance.
 
+```mermaid
+flowchart TB
+    M["Merchant (Main VA)<br>(fgid / fspid)"]:::merchant
+
+    subgraph Stores["Stores & Virtual Accounts"]
+        direction TB
+        S1["Store A<br>(fshop_id_A)"]:::store --> VA1["VA_A<br>(Virtual Account)"]:::va
+        S2["Store B<br>(fshop_id_B)"]:::store --> VA2["VA_B<br>(Virtual Account)"]:::va
+        S3["Store C<br>(fshop_id_C)"]:::store --> VA3["VA_C<br>(Virtual Account)"]:::va
+    end
+
+    %% Fund flow
+    VA1 --> M
+    VA2 --> M
+    VA3 --> M
+
+    %% Styling
+    classDef merchant fill:#FFD580,stroke:#333,stroke-width:2px;
+    classDef store fill:#98FB98,stroke:#333,stroke-width:1px;
+    classDef va fill:#ADD8E6,stroke:#333,stroke-width:1px;
+```
+
 ### 🔹 Business Process
 
 ```mermaid
@@ -82,28 +102,7 @@ flowchart LR
 - **<mark>Consolidation</mark>**: simplified management under one Main VA
 - **<mark>Flexibility</mark>**: withdraw to RMB or pay suppliers directly
 
-```mermaid
-flowchart TB
-    M["Merchant (Main VA)<br>(fgid / fspid)"]:::merchant
-
-    subgraph Stores["Stores & Virtual Accounts"]
-        direction TB
-        S1["Store A<br>(fshop_id_A)"]:::store --> VA1["VA_A<br>(Virtual Account)"]:::va
-        S2["Store B<br>(fshop_id_B)"]:::store --> VA2["VA_B<br>(Virtual Account)"]:::va
-        S3["Store C<br>(fshop_id_C)"]:::store --> VA3["VA_C<br>(Virtual Account)"]:::va
-    end
-
-    %% Fund flow
-    VA1 --> M
-    VA2 --> M
-    VA3 --> M
-
-    %% Styling
-    classDef merchant fill:#FFD580,stroke:#333,stroke-width:2px;
-    classDef store fill:#98FB98,stroke:#333,stroke-width:1px;
-    classDef va fill:#ADD8E6,stroke:#333,stroke-width:1px;
-```
----
+## 3. Data Warehouse How to Built
 
 ```mermaid
 flowchart TB

@@ -16,6 +16,10 @@ We follow a **<mark>business-driven layered architecture</mark>**:
 
 👉 **<mark>ODS → DIL/DIM → DWS → ADS</mark>**
 
+<div align="center">
+  <img src="docs/dwh-1.jpg" alt="Diagram" width="600">
+</div>
+
 * **ODS (Operational Data Store):** Ingest **<mark>raw data</mark>** (e.g., binlog subscription, hourly batch).
 * **DIL/DIM (Integration Layer):** **<mark>Clean, deduplicate, normalize</mark>**; build **<mark>fact</mark>** and **<mark>dimension tables</mark>**.
 * **DWS (Warehouse Service):** Model around **<mark>business entities & processes</mark>** (Merchant, Store, Order, Settlement), delivering **<mark>subject-oriented wide tables</mark>**.
@@ -77,9 +81,7 @@ flowchart TB
 * **<mark>Consolidation</mark>**: simplified management under one Main VA
 * **<mark>Flexibility</mark>**: withdraw to RMB or pay suppliers directly
 
-<div align="center">
-  <img src="docs/dwh-1.jpg" alt="Diagram" width="600">
-</div>
+
 
 - **ODS — (Operational Data Store)**: Ingest raw data via binlog subscription with hourly batch loading.  
 - **DIL/DIM — (Data Integration)**: Clean, <mark>deduplicate /diːˈdjuːplɪkeɪt/</mark>, and normalize data; build fact and dimension tables.  

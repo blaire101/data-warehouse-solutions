@@ -156,9 +156,7 @@ flowchart TB
 ```
 
 
-## 4. Other Info
-
-**Shopee Official Wallet**
+## 4. Other - Shopee Official Wallet
 
 > In Shopee’s official wallet model, Shopee itself acts as the settlement entity. After sellers onboard and bind stores, Shopee credits their **official wallet account** (white-label offshore account powered by Tenpay).  
 There is **no sub-VA per store** — store-level differentiation comes from Shopee’s internal transaction system. Funds can be disbursed (fees, supplier payments, subscription plans) or withdrawn to bank accounts.  
@@ -254,88 +252,7 @@ There is **no sub-VA per store** — store-level differentiation comes from Shop
 </details>
 
 
-## 4. ToC Business - Global Remittances to China
 
-Partner with overseas remittance providers (e.g. Panda Remit, Wise) to bring foreign currency into China  
-
-> This diagram provides a basic outline, — the actual **information flow** and **funds flow** is much more complex.
-
-```mermaid
-flowchart LR
-
-%% Node styles
-classDef user fill:#D1C4E9,stroke:#673AB7,stroke-width:2px;
-classDef product fill:#C8E6C9,stroke:#388E3C,stroke-width:2px;
-classDef infra fill:#FFF9C4,stroke:#FBC02D,stroke-width:2px;
-classDef spacer fill:none,stroke:none;
-
-%% Subgraph background styles
-style overseasBox fill:#EBF5FB,stroke:#85C1E9,stroke-width:2px
-style chinaBox fill:#FEF9E7,stroke:#F7DC6F,stroke-width:2px
-
-%% Nodes
-Sender["Sender"]:::user
-SI["Sending Institution - SI"]:::product
-API["Remittance Services - API"]:::infra
-RI["Receiving Institution - RI"]:::product
-Recipient["Recipient"]:::user
-
-%% Subgraph: Overseas
-subgraph overseasBox["Overseas or HK"]
-    direction LR
-    Sender -->|Initiate Transfer<br>Make Payment| SI
-    SI -->|Forward Transfer<br>Prefund| API
-    OV_SPACER1[" "]:::spacer
-end
-
-%% Subgraph: Onshore China
-subgraph chinaBox["Onshore China"]
-    direction LR
-    API -->|Forward Transfer<br>Settlement| RI
-    RI -.->|Notify| Recipient
-    CN_SPACER1[" "]:::spacer
-end
-```
-
-| No. | Business Processes  | Description |
-|:---:|---------------------|-------------|
-| pre 1   | Partner Onboarding  | Partners complete a onboarding process. Risk & compliance teams perform due diligence. |
-| pre 2   | Institution Funding | Partners pre-fund a designated account to ensure sufficient liquidity for remittance. |
-| pre 3   | Currency Exchange   | Based on settlement needs, foreign currency is converted into RMB. |
-| 4   | Remittance Service | End-users initiate remittance via the provider's app by submitting sender and recipient info.<br>1. If the recipient is new, an SMS prompts setup of a receiving card.<br>2. The provider calls the remittance API to submit the order.<br>3. Funds are routed into local settlement accounts. |
-| 5   | Payment Collection  | Recipients collect RMB via digital wallets or linked bank-cards. |
-
----
-
-**Subject-Specifc Analysis model**
-
-> covering `Sending Institution (Remittance Providers)`, `Orders`, and `Users`.
-
-1. **Sending Institution (SI)** : Analysed key metrics (countries, currencies and transaction, user volumes, fees, FX income ...), produced reports of transaction & profits to guide improvements.
-2. **Orders** : 3 stage life-cycle funnel to measure conversion rates and bottleneck. - Order status: A: Provider order | B: Account opening process | C:  Complete fund receipt.
-3. **Users** : basic info, behaviour, life-cycle, preferences for targeted campaigns.
-
-
-**Regulatory Reporting** 
-
-In cross-border inbound remittance to China, user orders are recorded individually (1-to-1), while actual fund settlements arrive in batches. For regulatory reconciliation—especially under HK MSO, MAS MPI, or SAFE/PBoC oversight—we ensure each fund batch (gather_result_list) is accurately matched to valid user orders (remit_list). This ensures auditability, mitigates AML risks, and enables accurate compliance reporting.
-
-<details>
-<summary>DML：fundin_order_regulation</summary>
-
-| Field                  | Source | Description                                                                 |
-|-----------------------|--------|-----------------------------------------------------------------------------|
-| `Flistid`              | T1     | Remittance order ID (primary key)                                           |
-| `Forg_id` / `Forg_name` | T1     | Sending institution ID / name                                              |
-| `Ftran_amt`            | T1     | Remitted amount in CNY                                                      |
-| `Ftran_ccy`            | T1     | Currency type (fixed as CNY)                                                |
-| `Ffund_inflow_time`    | T5     | Fund arrival time in China (core time field)                                |
-| `Fname_cn_fid`         | T1     | Encrypted recipient name                                                    |
-| `Fcre_type` / `Fcre_id_fid` | T1     | Recipient ID type / encrypted ID (used to identify domestic residency and deduplicate recipients) |
-| `Fpurpose_code`        | T1     | Purpose of remittance (e.g., education, salary, family support)            |
-| `Fpay_final_time`      | T1     | Final timestamp of remittance success or failure                            |
-
-</details>
 
 
 

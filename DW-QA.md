@@ -1,20 +1,81 @@
-# Data Warehouse
+## 🎯 Core Purpose
 
-The core purpose of a data warehouse is to integrate and store large amounts of internal and external data, providing accurate, reliable data for analysis, reporting, and decision-making, while addressing issues like **fragmentation**, and difficult historical data management.
+The **<mark>core purpose</mark>** of a Data Warehouse (DWH) is to **<mark>integrate and store data</mark>** from multiple sources, providing **<mark>accurate, reliable, and consistent data</mark>** for analysis, reporting, and decision-making.
 
-## Q1. Data Warehouse Architecture - Hourglass
+It addresses:
 
-We use a business-driven layered architecture (ODS > DIL > DWS > ADS). ingest Raw data lands in ODS, , clean, and transform data into (DIL) fact and dimension tables.  
+* **<mark>Fragmentation</mark>** across systems
+* Difficulty in **<mark>historical data management</mark>**
+* Lack of **<mark>traceability and reliability</mark>** for compliance & BI
 
-Defined data domains, granularity, metrics, aggregated into subject-oriented DWS, and finally served via ADS, with end-to-end DQ, lineage, and SLAs.  for subject-oriented, multi-dimensional analysis
+---
 
-**Development Process：**
+## Q1. DWH Architecture – Hourglass Model
 
-1. Defined business goals and requirements.
-2. Collected data into ODS and integrated into fact and dimension tables (DIL/DIM).
-3. Organised data domains, determined data granularity, and designed key metrics.
-4. Abstracted business and data subject analyses into DML tables.
-5. Delivered reporting, supporting subject-oriented and multi-dimensional analysis
+We follow a **<mark>business-driven layered architecture</mark>**:
+
+👉 **<mark>ODS → DIL/DIM → DWS → ADS</mark>**
+
+* **ODS (Operational Data Store):** Ingest **<mark>raw data</mark>** (e.g., binlog subscription, hourly batch).
+* **DIL/DIM (Integration Layer):** **<mark>Clean, deduplicate, normalize</mark>**; build **<mark>fact</mark>** and **<mark>dimension tables</mark>**.
+* **DWS (Warehouse Service):** Model around **<mark>business entities & processes</mark>** (Merchant, Store, Order, Settlement), delivering **<mark>subject-oriented wide tables</mark>**.
+* **ADS (Application Layer):** Serve **<mark>BI, Finance, and Risk dashboards</mark>** with **<mark>end-to-end lineage, access control, and SLA</mark>**.
+
+**Development Process**
+
+1. Define **<mark>business goals & requirements</mark>**
+2. Load raw data → **<mark>ODS</mark>**
+3. Transform into **<mark>fact/dim</mark>** → **<mark>DIL/DIM</mark>**
+4. Aggregate by **<mark>subject themes</mark>** → **<mark>DWS</mark>**
+5. Serve **<mark>reporting & BI</mark>** → **<mark>ADS</mark>**
+
+---
+
+## Q2. Business Case 1 – Cross-border E-commerce Collection (Amazon Standard Collection)
+
+### 🔹 Background
+
+* Chinese/HK cross-border sellers operate **<mark>multiple Amazon stores</mark>** across countries.
+* Sellers cannot easily open overseas bank accounts → struggle with **<mark>receiving funds, withdrawing, paying suppliers</mark>**.
+
+### 🔹 Solution (VA Model)
+
+* Providers (Ant/WorldFirst, Tenpay, LianLian) offer an **<mark>offshore Main VA</mark>** (real bank account).
+* Each **<mark>store/currency</mark>** is assigned a **<mark>Sub-VA</mark>** (virtual ledger).
+* **<mark>Sub-VA → Main VA aggregation</mark>** ensures **<mark>traceability & compliance</mark>**.
+
+---
+
+### 🔹 Core Process
+
+```mermaid
+flowchart TB
+    A["1️⃣ **<mark>Merchant Registration & KYC</mark>**"]:::step1
+    B["2️⃣ **<mark>Store Authorization & Binding</mark>**"]:::step2
+    C["3️⃣ **<mark>Sub-VA Assigned</mark>**<br>(per store / currency)"]:::step3
+    D["4️⃣ **<mark>Amazon Payout</mark>**<br>Funds → Sub-VA"]:::step4
+    E["5️⃣ **<mark>Main VA Settlement</mark>**<br>Funds consolidated"]:::step5
+    F["6️⃣ **<mark>Withdrawal / Supplier Payment</mark>**"]:::step6
+
+    A --> B --> C --> D --> E --> F
+
+    classDef step1 fill:#e6f0ff,stroke:#333;
+    classDef step2 fill:#d5f5e3,stroke:#333;
+    classDef step3 fill:#fff2cc,stroke:#333;
+    classDef step4 fill:#ffd580,stroke:#333;
+    classDef step5 fill:#f9c0c0,stroke:#333;
+    classDef step6 fill:#d5b3ff,stroke:#333;
+```
+
+👉 **Amazon pays → <mark>Sub-VA</mark> (store-level) → <mark>Main VA</mark> (aggregation & settlement) → <mark>Bank/Supplier payout</mark>**
+
+---
+
+### 🔹 Benefits
+
+* **<mark>Tracking</mark>**: per store & currency
+* **<mark>Consolidation</mark>**: simplified management under one Main VA
+* **<mark>Flexibility</mark>**: withdraw to RMB or pay suppliers directly
 
 <div align="center">
   <img src="docs/dwh-1.jpg" alt="Diagram" width="600">

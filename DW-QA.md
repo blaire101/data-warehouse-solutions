@@ -13,7 +13,7 @@ It addresses:
 * Difficulty in **<mark>historical data management</mark>**
 * Lack of **<mark>traceability and reliability</mark>** for compliance & BI
 
-## 1. DWH Architecture – Hourglass Model
+## 1. Data Warehouse Architecture – Hourglass Model
 
 We follow a **<mark>business-driven layered architecture</mark>**:
 

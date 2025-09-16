@@ -48,9 +48,7 @@ We follow a **<mark>business-driven layered architecture</mark>**:
 * Each **<mark>store/currency</mark>** is assigned a **<mark>Sub-VA</mark>** (virtual ledger accounts (not real bank accounts), mapped to a Main VA).
 * The system automatically aggregates **<mark>Sub-VA balances</mark>** into the **<mark>Main VA</mark>**, ensuring transaction-level traceability and regulatory compliance.
 
----
-
-### 🔹 Core Process
+### 🔹 Business Process
 
 ```mermaid
 flowchart LR

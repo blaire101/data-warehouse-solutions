@@ -50,7 +50,7 @@ We use a business-driven layered architecture. Raw data lands in ODS, is cleanse
 3. **How it Works**
 
 ```mermaid
-flowchart TB
+flowchart LR
     A["1️⃣ **Merchant Registration & KYC**"] 
     B["2️⃣ **Shop Authorization & Binding**<br>Amazon store linked"]
     C["3️⃣ **Sub-VA Assigned**<br>per shop / currency"]

@@ -1,3 +1,8 @@
+> 🛡️ **Disclaimer:**  
+> The following content represents generalized industry knowledge and anonymized case practices.  
+> It does **not contain any confidential, proprietary, or internal information** from any specific company.  
+> The described models are **common industry practices** widely adopted by major cross-border payment providers (e.g., Ant/WorldFirst, LianLian, PingPong), and do not reflect any proprietary implementation details.
+
 ## 🎯 Data Warehouse Core Purpose
 
 The **<mark>core purpose</mark>** of a Data Warehouse (DWH) is to **<mark>integrate and store data</mark>** from multiple sources, providing **<mark>accurate, reliable, and consistent data</mark>** for analysis, reporting, and decision-making.

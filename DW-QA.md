@@ -36,8 +36,6 @@ We follow a **<mark>business-driven layered architecture</mark>**:
 4. Aggregate by **<mark>subject themes</mark>** → **<mark>DWS</mark>**
 5. Serve **<mark>reporting & BI</mark>** → **<mark>ADS</mark>**
 
----
-
 ## 2. Business Case 1 – Cross-border E-commerce Collection (Amazon Standard Collection)
 
 ### 🔹 Background
@@ -95,12 +93,6 @@ flowchart LR
 ```
 
 👉 **Amazon pays → <mark>Sub-VA</mark> (store-level) → <mark>Main VA</mark> (aggregation & settlement) → <mark>Bank/Supplier payout</mark>**
-
-### 🔹 Benefits
-
-- **<mark>Tracking</mark>**: per store & currency
-- **<mark>Consolidation</mark>**: simplified management under one Main VA
-- **<mark>Flexibility</mark>**: withdraw to RMB or pay suppliers directly
 
 ## 3. Data Warehouse How to Built
 

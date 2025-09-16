@@ -173,86 +173,174 @@ There is **no sub-VA per store** — store-level differentiation comes from Shop
 
 ### Subject-Specifc Table
 
-**Subject-Specifc Analysis model**, covering `Merchant`, `Shop`, and `Orders`.
+<details>
+<summary><strong style="color:#1E90FF;">Merchant Subject Sample - Data Metric</strong></summary>
 
-> Shopee's official wallet business leverages multi-dimensional data analysis to support merchant lifecycle management, transaction insights, and revenue optimization. From churn monitoring to cross-site transaction trend analysis, comprehensive dashboards and thematic tables provide strong data support for business growth, product experience enhancement, and precision operations.
+> Purpose: Merchant-level portrait & funnel — from registration → KYC → store binding → first settlement → cash-out/payment; includes horizontal attributes and longitudinal metrics/tags.
+
+#### Partition & Keys
+
+| Field       | Type   | Description                            | Source/Notes                                                                |
+| ----------- | ------ | -------------------------------------- | --------------------------------------------------------------------------- |
+| `fdate`     | BIGINT | Partition date                         | Partition column                                                            |
+| `fetl_time` | BIGINT | ETL timestamp                          |                                                                             |
+| `fgid`      | STRING | Merchant GID (created at registration) | One of the business keys; `dil_evt_kjzf_mer_login_id_fx_userinfo_db_mso_dd` |
+| `fspid`     | STRING | Merchant ID (Boss side)                | Maps to `fgid`; `dim_kjhk_t_merchant_info_bossdb_mso_d`                     |
+
+#### Merchant Basic Attributes (Horizontal)
+
+| Field                       | Type   | Description                       | Source/Notes                                                           |
+| --------------------------- | ------ | --------------------------------- | ---------------------------------------------------------------------- |
+| `fregister_channel_source`  | STRING | Registration channel (PC/H5/MP)   | Parse from operator JSON; `dim_kjzf_mer_operator_fx_userinfo_db_mso_d` |
+| `fbusiness_att_1`           | STRING | Acquisition channel (ads/BD/etc.) | From operator profile                                                  |
+| `fchannel_name`             | STRING | Marketing channel name            | Added 2024-08-20                                                       |
+| `fname_verification_status` | BIGINT | Real-name/KYC status (1–6)        | Approval task (Boss)                                                   |
+
+#### Key Time Funnel (Horizontal)
+
+| Field                        | Type   | Description                  | Key Rules / Source                                     |
+| ---------------------------- | ------ | ---------------------------- | ------------------------------------------------------ |
+| `fcreate_time_enter`         | STRING | Entry/first seen time        | Login external ID integration                          |
+| `fcreate_time_register`      | STRING | Registration time            | `Portal=3 & Lstate=1`                                  |
+| `fcreate_time_register_info` | STRING | Profile completion time      | From operator/approval trail                           |
+| `fcreate_time_kyc_apply`     | STRING | KYC application time         | ApprovalType=1; scene∈(3,4,5,6)                        |
+| `fcreate_time_kyc_info`      | STRING | KYC info completion time     | Same scenes; latest valid                              |
+| `fcreate_time_kyc_reject`    | STRING | KYC rejection time           | Status=4                                               |
+| `fcreate_time_store_apply`   | STRING | **Store apply** time         | Channel=102                                            |
+| `fcreate_time_store_auth`    | STRING | **Store authorization** time | Event `AUTH_SHOP_SUCCESS`                              |
+| `fcreate_time_store_bind`    | STRING | **Store binding** time       | Event `AUDIT_SHOP_SUCCESS`                             |
+| `ffirst_recharge_time`       | STRING | **First settlement** time    | Earliest in `dil_trd_recharge_list_ia_exc_zwdb_mso_dd` |
+
+> Optional milestones to add later: time when cumulative settlement reaches **10/100/500 USD**.
+
+#### Longitudinal Metrics
+
+| Field                           | Type   | Description                      | Notes                  |
+| ------------------------------- | ------ | -------------------------------- | ---------------------- |
+| `ftotal_recharge_amount_usd`    | DOUBLE | Cumulative settlement (USD)      | After FX conversion    |
+| `ftotal_recharge_amount_rmb`    | DOUBLE | Cumulative settlement (CNH)      | After FX conversion    |
+| `ftotal_recharge_cnt`           | BIGINT | Cumulative number of settlements | Distinct `Fbilling_id` |
+| `flast_recharge_amount_usd_28d` | DOUBLE | Last 28-day settlement (USD)     | Activity/volume        |
+| `flast_recharge_amount_rmb_28d` | DOUBLE | Last 28-day settlement (CNH)     |                        |
+| `flast_recharge_amount_cnt_28d` | BIGINT | Last 28-day settlement count     |                        |
+
+#### Lifecycle & Tags
+
+| Field                     | Type   | Description                         | Rule Highlights                                                      |
+| ------------------------- | ------ | ----------------------------------- | -------------------------------------------------------------------- |
+| `fwas_merchant_lost_p1d`  | BIGINT | Was merchant “lost” yesterday (1/0) | Has historical settlement **and** no settlement in last 28 days      |
+| `fmerchant_lifecycle_tag` | BIGINT | Lifecycle tag                       | 1 No-funding / 2 New / 3 Retained / 4 Lost / 5 Recovered / 0 Default |
 
 </details>
 
 <details>
-<summary><strong style="color:#1E90FF;">Merchant Subject Sample - Data Metric</strong></summary>
+<summary><strong style="color:#1E90FF;">Store Subject Sample - Data Metric</strong></summary>
 
-| --Category-- | Field Name | Data_Type | Description |
-|-----------------------------------------|--------------------------------------|-----------|-----------------------------------------------------------------------------|
-| **Partition Field**   | fdate                       | BIGINT  | Partition date                                                              |
-| **Primary Key**       | fgid                        | STRING  | Merchant GID (Global ID)                                                   |
-| **Primary Key**       | fspid                       | STRING  | Merchant SPID (Sub-platform ID)                                            |
-| **Merchant_Basic_Info** | fcompany_name       | STRING  | Company name       |
-| **<mark>Time Funnel</mark>** |  -  |  -  |  -  |
-| **Horizontal_Time** | fkyc_first_submit_time          | STRING  | First KYC submission time                                                   |
-| **Horizontal Time** | fkyc_first_approved_time        | STRING  | First KYC approval time                                                     |
-| **Horizontal Time** | fshop_apply_time                   | STRING  | Store application time                                                      |
-| **Horizontal Time** | fshop_first_bind_time              | STRING  | First store binding time                                                    |
-| **Horizontal Time** | fcard_first_bind_time              | STRING  | First card binding time                                                     |
-| **Horizontal Time** | ffirst_disbursement_time           | STRING  | First disbursement time (funds distributed on behalf of merchant)          |
-| **Horizontal Time** | ffirst_withdraw_time               | STRING  | First withdrawal to merchant bank account                                  |
-| **Horizontal Time** | ffirst_payment_time                | STRING  | First payment to external supplier                                         |
-| **Horizontal Time** | fsubs_plan_first_buy_time          | STRING  | First annual plan purchase time                                             |
-| **Horizontal Time** | fsubs_plan_first_use_time          | STRING  | First annual plan usage time                                                |
-| **Vertical - Tag** | fsite_count                    | BIGINT  | Number of sites (e.g., Shopee-TW, Shopee-SG)                               |
-| **Vertical - Tag** | fshop_count                    | BIGINT  | Number of stores bound to merchant                                         |
-| **Vertical - Tag** | faccount_count                 | BIGINT  | Number of accounts under this merchant                                     |
-| **Vertical - Tag** | fpayee_count                   | BIGINT  | Unique payee count (withdrawal or supplier payments)                       |
-| **Vertical - Tag** | fpayee_count_30d               | BIGINT  | Payee count in the last 30 days                                            |
-| **Vertical - Calc** | ftrd_cnt_month                 | BIGINT  | Total transaction count this month                                         |
-| **Vertical - Calc** | ftrd_cnt_year                  | BIGINT  | Total transaction count this year                                          |
-| **Vertical - Calc** | flast_disbursement_amount_cny_1d    | DOUBLE    | Disbursement amount in CNY (today)                                         |
-| **Vertical - Calc** | flast_disbursement_amount_usd_1d    | DOUBLE    | Disbursement amount in USD (today)                                         |
-| **Vertical - Calc** | flast_disbursement_amount_cny_28d   | DOUBLE    | Disbursement amount in CNY (last 28 days)                                  |
-| **Vertical - Calc** | flast_disbursement_amount_usd_28d   | DOUBLE    | Disbursement amount in USD (last 28 days)                                  |
-| **Vertical - Calc** | ftrd_amt_month                      | DOUBLE    | Total transaction amount this month                                        |
-| **Vertical - Calc** | ftrd_amt_year                       | DOUBLE    | Total transaction amount this year                                         |
-| **Vertical - Calc** | fmax_trd_amt_month                  | DOUBLE    | Max single transaction amount this month                                   |
-| **Vertical - Calc** | fmax_trd_amt_year                   | DOUBLE    | Max single transaction amount this year                                    |
-| **Lifecycle Tag** | fmerchant_lifecycle_tag   | BIGINT | Merchant lifecycle status tag:<br>1. Not disbursed<br>2. New<br>3. Retained<br>4. Lost<br>5. Recovered<br>0. Default |
+> Purpose: **Store** view (schema retains `shop_*` naming). Captures store attributes, key time funnel (apply → auth → bind → first settlement → first cash-out/payment), and activity/volume metrics.
+
+#### Partition & Keys
+
+| Field       | Type   | Description                | Notes                                        |
+| ----------- | ------ | -------------------------- | -------------------------------------------- |
+| `fdate`     | BIGINT | Partition date             |                                              |
+| `fetl_time` | BIGINT | ETL timestamp              |                                              |
+| `fshop_id`  | STRING | **Store ID** (primary key) | From `dim_kjhk_t_shop_info_collshopdb_mso_d` |
+| `fspid`     | STRING | Merchant ID                |                                              |
+| `fgid`      | STRING | Merchant GID               | Map via merchant dim                         |
+
+#### Store Attributes (Horizontal)
+
+| Field                                                   | Type   | Description                          | Notes                                     |
+| ------------------------------------------------------- | ------ | ------------------------------------ | ----------------------------------------- |
+| `fshop_name`                                            | STRING | Store name                           |                                           |
+| `fshop_state`                                           | BIGINT | State: 10/11/20/21/22/30/31          | Pending/Reviewing/Approved/Failed/Cancel… |
+| `fplatform_id`                                          | STRING | Platform code: `amz`, `shopee`       | Standard collection platforms             |
+| `fsite_id`                                              | STRING | Site code: `amzNA`, `amzEU`, …       |                                           |
+| `fcountry_id`                                           | STRING | Country/region (US, CA, …)           |                                           |
+| `fcur_type`                                             | STRING | Settlement currency (ISO-4217 alpha) | Single currency per store                 |
+| `fbank_type`, `fshop_type`, `fmanage_state`             | BIGINT | Bank/type/centralized-mgmt flags     | Reserved/To be backfilled                 |
+| `fmanage_shop_id`, `fmanage_fspid`, `fmanage_shop_name` | STRING | Parent store/merchant/name           | Centralized management relation           |
+| `fplat_shop_id`, `fplat_shop_name`                      | STRING | Platform store ID/name               |                                           |
+| `fplat_shop_url`, `frefresh_token`                      | STRING | URL / refresh token (encrypted)      | Sensitive                                 |
+
+#### Key Time Funnel (Horizontal)
+
+| Field                     | Type   | Description                   | Rule / Source                     |
+| ------------------------- | ------ | ----------------------------- | --------------------------------- |
+| `fcreate_time_shop_apply` | STRING | Store apply time              | Channel=102                       |
+| `fcreate_time_shop_auth`  | STRING | Store authorization time      | `AUTH_SHOP_SUCCESS`               |
+| `fcreate_time_shop_bind`  | STRING | Store binding (approved)      | `AUDIT_SHOP_SUCCESS`              |
+| `ffirst_recharge_time`    | STRING | First settlement time         | From recharge list                |
+| `ffirst_withdrawal_time`  | STRING | First withdrawal/payment time | From coll order (your conditions) |
+
+#### Metrics (Longitudinal)
+
+| Field                           | Type   | Description                 | Notes         |
+| ------------------------------- | ------ | --------------------------- | ------------- |
+| `ftotal_recharge_amount_usd`    | DOUBLE | Cumulative settlement (USD) | FX conversion |
+| `ftotal_recharge_amount_cnh`    | DOUBLE | Cumulative settlement (CNH) |               |
+| `ftotal_recharge_cnt`           | BIGINT | Cumulative settlement count |               |
+| `flast_recharge_amount_usd_28d` | DOUBLE | 28-day settlement (USD)     |               |
+| `flast_recharge_amount_cnh_28d` | DOUBLE | 28-day settlement (CNH)     |               |
+| `flast_recharge_amount_cnt_28d` | BIGINT | 28-day settlement count     |               |
+
+#### Lifecycle & Tags
+
+| Field                     | Type   | Description                | Rule Highlights                        |
+| ------------------------- | ------ | -------------------------- | -------------------------------------- |
+| `fwas_merchant_lost_p1d`  | BIGINT | Was store “lost” yesterday | Same 28-day rule                       |
+| `fmerchant_lifecycle_tag` | BIGINT | Store lifecycle tag        | No-funding/New/Retained/Lost/Recovered |
 
 </details>
-
 
 <details>
 <summary><strong style="color:#1E90FF;">Order Subject Sample - Data Metric</strong></summary>
 
-| Description | Field Name | Type | Remarks |
-|-------------|------------|------|---------|
-| **Partition** | fdate | BIGINT | Date partition field |
-| **Primary Key** | Ftransaction_scene | BIGINT | 1: Collection Transaction Scene (Top-up to Ten-HK )<br>2: Disbursement Scene – Disbursement <br> 3: Payout Scene (Withdrawal / Pay Supplier / Subs Plan) |
-| **Primary Key** | Flistid | STRING | Order ID |
-| transaction_scene | Ftransaction_scene_type | trans_type | 1: Collection<br> 2: Disbursement<br> 3: Withholding<br>4: Withdrawal<br>5: Payment<br>6: Subs Plan |
-| Merchant SPID | fspid | STRING | Used to join with merchant dimension table |
-| - | fsite_id | STRING | One seller may have multiple sites |
-| - | fshop_id | STRING | Present only in Disbursement Scene; ignored in Payout Scene |
-| **Payout** <br> (Withdrawal/Pay/Subs) | fpayee_id | STRING | Applicable in payout scenarios |
-| **Payout** | fpayee_type | BIGINT | Domestic: 1 - Personal Bank Account, 2 - Corporate Account<br>Overseas: 1 - Same-name Account, 2 - Supplier Account |
-| **Payout** | fbiz_type | BIGINT | 1: FX purchase inbound (domestic)<br>2: FX purchase payment (overseas)<br>3: FX payment (overseas)<br>4: Annual Subs |
-| **Payout** | Fsell_cur_type | STRING | Outgoing currency, ISO 4217 format |
-| **Payout** | Fbuy_cur_type | STRING | Incoming currency, ISO 4217 format |
-| **Payout**  | Fbank_country | STRING | Destination country of funds |
-| **Payout**  | Fproduct_code | STRING | Product code, used in annual card purchase |
-| **Payout**  | Fbiz_fee_cur_type | STRING | Currency of transaction fee |
-| **Payout**  | Fbiz_fee_amount | BIGINT | Transaction fee in original currency (unit: yuan) |
-| **Payout**  | Fbiz_fee_amount_usd | BIGINT | Fee amount (USD) |
-| **Payout** <br> (Withdrawal/Pay/Subs) | Fbiz_fee_amount_cny | BIGINT | Transaction fee converted to CNY |
-| - | - | - |
-| **General Transaction** | Fcur_type | STRING | Transaction currency |
-| **General Transaction** | Famount | BIGINT | Transaction amount in original currency (unit: yuan) |
-| **General Transaction** | Famount_usd | BIGINT | Converted amount in USD |
-| **General Transaction** | Famount_cny | BIGINT | Converted amount in CNY |
-| **General Transaction** | Ftransaction_initiation_time | STRING | Time when the transaction was initiated |
+> Purpose: **Order-grain** view combining **inflow (settlement)** and **outflow (withdrawal/payment)** with consistent merchant/store dimensions, amounts, currencies, and time; supports funnels and distribution analysis.
+
+#### Partition & Event Columns
+
+| Field                | Type   | Description                           | Notes                               |
+| -------------------- | ------ | ------------------------------------- | ----------------------------------- |
+| `fdate`              | BIGINT | Partition date                        |                                     |
+| `fetl_time`          | BIGINT | Extraction timestamp                  |                                     |
+| `Ftransaction_scene` | BIGINT | 1 = Inflow (settlement) ; 2 = Outflow | Inflow branch sets `1`              |
+| `Flistid`            | STRING | Order ID (primary key)                | Aligns across inflow/outflow tables |
+| `Ftransaction_time`  | STRING | Transaction time                      | Inflow uses `Factual_entry_time`    |
+
+#### Merchant / Store Dimensions
+
+| Field      | Type   | Description  | Notes                                        |
+| ---------- | ------ | ------------ | -------------------------------------------- |
+| `fgid`     | STRING | Merchant GID | From merchant dim                            |
+| `fspid`    | STRING | Merchant ID  |                                              |
+| `fshop_id` | STRING | **Store ID** | In inflow: from `Fbusi_uniq_id` (if present) |
+
+#### Amounts & Currencies
+
+| Field                     | Type   | Description                | Notes                            |
+| ------------------------- | ------ | -------------------------- | -------------------------------- |
+| `Ftransaction_cur_type`   | STRING | Currency (ISO-4217 alpha)  | Map from numeric; handle 156→CNH |
+| `Ftransaction_amount`     | DOUBLE | Amount (original currency) | `Famount / 100`                  |
+| `Ftransaction_amount_usd` | DOUBLE | Amount (USD)               | FX table; USD passthrough        |
+| `Ftransaction_amount_cnh` | DOUBLE | Amount (CNH)               | FX table                         |
+
+#### Outflow-only Fields (NULL for inflow)
+
+| Field         | Type   | Description         | Notes                                       |
+| ------------- | ------ | ------------------- | ------------------------------------------- |
+| `fbuy_type`   | STRING | Buy/credit currency | From `Fbuy_cur_type`                        |
+| `fpayee_id`   | STRING | Payee ID            | For withdrawals/payments                    |
+| `fpayee_type` | BIGINT | Payee type          | Your enum rules                             |
+| `fbiz_type`   | BIGINT | Biz type            | 1 FX-inbound / 2 FX-purchase / 3 FX-payment |
+| `fsell_type`  | STRING | Sell currency       | Payment scene                               |
+
+#### Business Enhancements (for BI)
+
+| Field                    | Type   | Description                                    | Notes                     |
+| ------------------------ | ------ | ---------------------------------------------- | ------------------------- |
+| `fcompany_subject_type`  | BIGINT | Legal entity type (enterprise/natural person…) | From merchant dim         |
+| `transaction_category`   | BIGINT | 1 Withdrawal / 2 Supplier Payment / 3 VAT      | Derive via your SQL rules |
+| `payee_account_category` | BIGINT | 1 Same-name bank / 2 Wallet / …                | Requires payee dim joins  |
 
 </details>
-
-
-
-
-
-

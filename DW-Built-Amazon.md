@@ -55,9 +55,9 @@ flowchart TB
 
     subgraph Stores["Stores & Virtual Accounts"]
         direction TB
-        S1["Store A<br>(fshop_id_A)"]:::store --> VA1["VA_A<br>(Virtual Account)"]:::va
-        S2["Store B<br>(fshop_id_B)"]:::store --> VA2["VA_B<br>(Virtual Account)"]:::va
-        S3["Store C<br>(fshop_id_C)"]:::store --> VA3["VA_C<br>(Virtual Account)"]:::va
+        S1["Store A<br>(fstore_id_A)"]:::store --> VA1["VA_A<br>(Virtual Account)"]:::va
+        S2["Store B<br>(fstore_id_B)"]:::store --> VA2["VA_B<br>(Virtual Account)"]:::va
+        S3["Store C<br>(fstore_id_C)"]:::store --> VA3["VA_C<br>(Virtual Account)"]:::va
     end
 
     %% Fund flow

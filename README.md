@@ -214,55 +214,57 @@ Updating the Data Asset Scoring framework (0–100 points) to quantify each tabl
 </details>
 
 ```mermaid
-flowchart TB
+flowchart LR
 
-    subgraph SG_DataAssetScore["4"]
-        direction LR
-        DAS_A(["Table Standards <br> 35%"])
-        DAS_B(["Data Quality Check <br> 35%"])
-        DAS_C(["Security + Cost <br> 15% + 15%"])
-    end
+    %% ============ OUTER CONTAINER ============
+    subgraph DAS[" "]
+      direction TB
 
-    subgraph DAS_SECO["Security + Cost"]
+      %% --- Big Title Node (prominent) ---
+      DAS_TITLE["<br/>**DATA ASSET SCORE**<br/>"]:::title
+
+      %% --- 1) STANDARD (35%) ---
+      subgraph STDG[" "]
         direction TB
-        SECO_A(["Sensitive Field Encryption <br>Owner Compliance"])
-        SECO_B(["Compute Cost <br>Storage Cost"])
-    end
+        STD_HDR["📚 **Standard (35%)**"]:::group
+        ST_A["Naming Conventions<br>50%"]:::item
+        ST_B["Comment Standards<br>37.5%"]:::item
+        ST_C["Dependency Standards<br>12.5%"]:::item
+        STD_HDR --> ST_A & ST_B & ST_C
+      end
 
-    subgraph DAS_DataQuality["DQC"]
+      %% --- 2) DQC (35%) ---
+      subgraph DQG[" "]
         direction TB
-        DQ_A(["Timely Monitoring <br>20%"])
-        DQ_B(["DQC Coverage <br>50%"])
-        DQ_C(["Alert Management <br>30%"])
-    end
+        DQ_HDR["✅ **Data Quality Check (35%)**"]:::group
+        DQ_A["Timely Monitoring<br>20%"]:::item
+        DQ_B["DQC Coverage<br>50%"]:::item
+        DQ_C["Alert Management<br>30%"]:::item
+        DQ_HDR --> DQ_A & DQ_B & DQ_C
+      end
 
-    subgraph DAS_Standard["Standard"]
+      %% --- 3) SECURITY + COST (15% + 15%) ---
+      subgraph SECOG[" "]
         direction TB
-        ST_A(["Naming Conventions <br>50%"])
-        ST_B(["Comment Standards <br>37.5%"])
-        ST_C(["Dependency Standards <br>12.5%"])
+        SECO_HDR["🔐💰 **Security + Cost (15% + 15%)**"]:::group
+        SECO_A["Sensitive Field Encryption<br>Owner Compliance"]:::item
+        SECO_B["Compute Cost<br>Storage Cost"]:::item
+        SECO_HDR --> SECO_A & SECO_B
+      end
     end
 
-    DAS(["Data Asset Score"]) --> DAS_A & DAS_B & DAS_C
-    DAS_A -- rules --> DAS_Standard
-    DAS_B -- rules --> DAS_DataQuality
-    DAS_C -- rules --> DAS_SECO
+    %% ============ FLOW / ORDER ============
+    DAS_TITLE --> STD_HDR --> DQ_HDR --> SECO_HDR
 
+    %% ============ STYLES ============
+    %% Title: strong orange, thick border, bold
+    classDef title fill:#FFB74D,stroke:#333,stroke-width:3px,font-weight:bold;
 
-    classDef rectBox fill:#F5F5DC,stroke:#333,stroke-width:2px,rx:0,ry:0
-    classDef rectMain fill:#FFA07A,stroke:#333,stroke-width:2px,rx:0,ry:0
-    classDef rectGroup fill:#ADD8E6,stroke:#333,stroke-width:2px,rx:0,ry:0
-    classDef rectLight fill:#F0FFF0,stroke:#333,stroke-width:2px,rx:0,ry:0
-    classDef rectWarn fill:#FFE4B5,stroke:#333,stroke-width:2px,rx:0,ry:0
-    classDef rectFrame fill:#98FB98,stroke:#333,stroke-width:2px,rx:0,ry:0
+    %% Group headers: teal/blue-green with white text for strong contrast
+    classDef group fill:#26A69A,stroke:#0D5C55,stroke-width:2px,color:#FFFFFF;
 
-    class DAS rectMain
-    class DAS_A,DAS_B,DAS_C rectLight
-    class SECO_A,SECO_B rectWarn
-    class DQ_A,DQ_B,DQ_C rectBox
-    class ST_A,ST_B,ST_C rectBox
-    class SG_DataAssetScore rectFrame
-    class DAS_Standard,DAS_DataQuality,DAS_SECO rectGroup
+    %% Items: light blue with slightly darker blue border
+    classDef item fill:#E3F2FD,stroke:#1565C0,stroke-width:1.5px;
 ```
 
 **Table Standards**

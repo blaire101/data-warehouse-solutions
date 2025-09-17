@@ -75,7 +75,7 @@ flowchart TB
 
 ```mermaid
 flowchart LR
-    A["1️⃣ **<mark>Merchant Registration & KYC</mark>**"]:::step1
+    A["1️⃣ **<mark>Merchant Registration & KYC & VA Assignment</mark>**"]:::step1
     B["2️⃣ **<mark>Store Authorization & Binding</mark>**"]:::step2
     C["3️⃣ **<mark>Sub-VA Assigned</mark>**<br>(per store / currency)"]:::step3
     D["4️⃣ **<mark>Amazon Payout</mark>**<br>Funds → Sub-VA"]:::step4
@@ -165,7 +165,7 @@ There is **no sub-VA per store** — store-level differentiation comes from Shop
 |-----|--------------------------------|--------------------------------------|
 | 1   | **Merchant Onboarding** – Merchant registers and KYC | **Merchant Onboarding** – Merchant registers and KYC        |
 | 2   | **VA Assignment** – Main VA created, sub-VA per shop | **Shop Binding** – Merchant links their shops               |
-| 3   | **Shop Authorization & Binding** – Sub-VA assigned   | **Funds Inflow (Top-up)** – Shopee credits merchant wallet  |
+| 3   | **Store Authorization & Binding** – Sub-VA assigned   | **Funds Inflow (Top-up)** – Shopee credits merchant wallet  |
 | 4   | **Amazon Pays Store VA** – Funds flow into sub-VA    | **Funds Flow & Deduction** – Payouts/deductions processed   |
 | 5   | **Transaction Details via API** – Collect order data | **Merchant Card Binding** – Bank card linked for withdrawal |
 | 6   | **Merchant Card Binding** – Settlement card binding  | **Payout - Withdrawal/Payment** – Merchant withdraws/pays   |

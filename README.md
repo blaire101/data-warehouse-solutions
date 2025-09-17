@@ -254,7 +254,9 @@ flowchart LR
     end
 
     %% ============ FLOW / ORDER ============
-    DAS_TITLE --> STD_HDR --> DQ_HDR --> SECO_HDR
+    DAS_TITLE --> STD_HDR
+    DAS_TITLE --> DQ_HDR
+    DAS_TITLE --> SECO_HDR
 
     %% ============ STYLES ============
     %% Title: strong orange, thick border, bold

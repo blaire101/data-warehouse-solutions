@@ -260,7 +260,6 @@ There is **no sub-VA per store** — store-level differentiation comes from Shop
 | `fcreate_time_shop_auth`  | STRING | Store authorization time      | `AUTH_SHOP_SUCCESS`               |
 | `fcreate_time_shop_bind`  | STRING | Store binding (approved)      | `AUDIT_SHOP_SUCCESS`              |
 | `ffirst_recharge_time`    | STRING | First settlement time         | From recharge list                |
-| `ffirst_withdrawal_time`  | STRING | First withdrawal/payment time | From coll order (your conditions) |
 
 #### Metrics (Longitudinal)
 

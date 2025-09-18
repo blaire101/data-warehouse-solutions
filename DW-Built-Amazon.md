@@ -166,7 +166,7 @@ There is **no sub-VA per store** — store-level differentiation comes from Shop
 | 1   | **<mark>Merchant Onboarding</mark>** <br> Merchant registers & KYC   | **<mark>Merchant Onboarding</mark>** <br> Merchant registers & KYC     |
 | 2   | **<mark>VA Assignment</mark>** <br> Main VA created (**no Sub-VA yet**)    | **<mark>Shop Binding</mark>** <br> Merchant links their stores   |
 | 3   | **<mark>Store Authorization</mark>** <br> Grant API access; provider receives **seller/store IDs**    | **<mark>Funds Inflow (Top-up)</mark>** <br> Shopee credits merchant wallet  |
-| 4   | **<mark>Store Binding & Sub-VA Assignment</mark>** <br> Provider **assigns/activates Sub-VA per store/currency** and sets **Deposit Method** to this Sub-VA | **<mark>Funds Flow & Deduction</mark>** <br> Payouts/deductions processed   |
+| 4   | **<mark>Store Binding & Sub-VA Assignment</mark>** <br> Provider **assigns/activates Sub-VA per store/currency** | **<mark>Funds Flow & Deduction</mark>** <br> Payouts/deductions processed   |
 | 5   | **<mark>Amazon Payout → Sub-VA</mark>** <br> Funds flow into store-level Sub-VA  | **<mark>Merchant Card Binding</mark>** <br> Bank card linked for withdrawal |
 | 6   | **<mark>Merchant Card Binding</mark>** <br> Settlement card binding   | **<mark>Payout – Withdrawal/Payment</mark>** <br> Merchant withdraws/pays   |
 | 7   | **<mark>Withdrawal & Payout</mark>** <br> From Main VA to bank/supplier | **<mark>Payout – Merchant Ops</mark>** <br> e.g., annual subscription plan  |

@@ -76,7 +76,7 @@ flowchart TB
 ```mermaid
 flowchart LR
     A["1️⃣ **<mark>Merchant Registration & KYC & VA Assignment</mark>**"]:::step1
-    B["2️⃣ **<mark>Store Authorization & Binding</mark>**<br>Tenpay/LianLian can see the store-level payout information (store ID, currency, site, settlement records) from Amazon, but not the detailed order or product-level data."]:::step2
+    B["2️⃣ **<mark>Store Authorization & Binding</mark>**<br>Tenpay/LianLian can see the store-level payout information (store ID..) "]:::step2
     C["3️⃣ **<mark>Sub-VA Assigned</mark>**<br>(per store / currency)"]:::step3
     D["4️⃣ **<mark>Amazon Payout</mark>**<br>Funds → Sub-VA"]:::step4
     E["5️⃣ **<mark>Main VA Settlement</mark>**<br>Funds consolidated"]:::step5

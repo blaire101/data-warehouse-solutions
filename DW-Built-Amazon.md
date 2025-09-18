@@ -75,12 +75,12 @@ flowchart TB
 
 ```mermaid
 flowchart LR
-    A["1️⃣ **<mark>Merchant Registration & KYC & VA Assignment</mark>**"]:::step1
-    B["2️⃣ **<mark>Store Authorization & Binding</mark>**<br>Tenpay/LianLian can see the store-level payout information (store ID..) "]:::step2
-    C["3️⃣ **<mark>Sub-VA Assigned</mark>**<br>(per store / currency)"]:::step3
+    A["1️⃣ **<mark>Merchant Registration & KYC</mark>**<br>Main VA created"]:::step1
+    B["2️⃣ **<mark>Store Authorization & Binding</mark>**<br>Provider obtains store ID / payout info"]:::step2
+    C["3️⃣ **<mark>Sub-VA Activation</mark>**<br>One Sub-VA per store / currency<br>Set as Amazon Deposit Method"]:::step3
     D["4️⃣ **<mark>Amazon Payout</mark>**<br>Funds → Sub-VA"]:::step4
     E["5️⃣ **<mark>Main VA Settlement</mark>**<br>Funds consolidated"]:::step5
-    F["6️⃣ **<mark>Withdrawal / Supplier Payment</mark>**"]:::step6
+    F["6️⃣ **<mark>Withdrawal / Supplier Payment</mark>**<br>To RMB bank account / suppliers"]:::step6
 
     A --> B --> C --> D --> E --> F
 

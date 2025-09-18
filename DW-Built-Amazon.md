@@ -76,7 +76,7 @@ flowchart TB
 ```mermaid
 flowchart LR
     A["1️⃣ **<mark>Merchant Registration & KYC & VA Assignment</mark>**"]:::step1
-    B["2️⃣ **<mark>Store Authorization & Binding</mark>**"]:::step2
+    B["2️⃣ **<mark>Store Authorization & Binding</mark>**<br>Tenpay/LianLian can see the store-level payout information (store ID, currency, site, settlement records) from Amazon, but not the detailed order or product-level data."]:::step2
     C["3️⃣ **<mark>Sub-VA Assigned</mark>**<br>(per store / currency)"]:::step3
     D["4️⃣ **<mark>Amazon Payout</mark>**<br>Funds → Sub-VA"]:::step4
     E["5️⃣ **<mark>Main VA Settlement</mark>**<br>Funds consolidated"]:::step5
@@ -161,15 +161,15 @@ flowchart TB
 > In Shopee’s official wallet model, Shopee itself acts as the settlement entity. After sellers onboard and bind stores, Shopee credits their **official wallet account** (white-label offshore account powered by Tenpay).  
 There is **no sub-VA per store** — store-level differentiation comes from Shopee’s internal transaction system. Funds can be disbursed (fees, supplier payments, subscription plans) or withdrawn to bank accounts.  
 
-| No. | Amazon Standard Collection       | Shopee Official Wallet                                      |
-|-----|--------------------------------|--------------------------------------|
-| 1   | **Merchant Onboarding** – Merchant registers and KYC | **Merchant Onboarding** – Merchant registers and KYC        |
-| 2   | **VA Assignment** – Main VA created, sub-VA per shop | **Shop Binding** – Merchant links their shops               |
-| 3   | **Store Authorization & Binding** – Sub-VA assigned   | **Funds Inflow (Top-up)** – Shopee credits merchant wallet  |
-| 4   | **Amazon Pays Store VA** – Funds flow into sub-VA    | **Funds Flow & Deduction** – Payouts/deductions processed   |
-| 5   | **Transaction Details via API** – Collect order data | **Merchant Card Binding** – Bank card linked for withdrawal |
-| 6   | **Merchant Card Binding** – Settlement card binding  | **Payout - Withdrawal/Payment** – Merchant withdraws/pays   |
-| 7   | **Withdrawal & Payout** – From Main VA to bank/supplier | **Payout - Merchant Ops** – e.g., annual subscription plan   |
+| No. | Amazon Standard Collection   | Shopee Official Wallet   |
+| --- | -------------- | ----------- |
+| 1   | **<mark>Merchant Onboarding</mark>** – Merchant registers & KYC   | **<mark>Merchant Onboarding</mark>** – Merchant registers & KYC     |
+| 2   | **<mark>VA Assignment</mark>** – Main VA created (**no Sub-VA yet**)    | **<mark>Shop Binding</mark>** – Merchant links their stores   |
+| 3   | **<mark>Store Authorization</mark>** – Grant API access; provider receives **seller/store IDs**    | **<mark>Funds Inflow (Top-up)</mark>** – Shopee credits merchant wallet  |
+| 4   | **<mark>Store Binding & Sub-VA Assignment</mark>** – Provider **assigns/activates Sub-VA per store/currency** and sets **Deposit Method** to this Sub-VA | **<mark>Funds Flow & Deduction</mark>** – Payouts/deductions processed   |
+| 5   | **<mark>Amazon Payout → Sub-VA</mark>** – Funds flow into store-level Sub-VA  | **<mark>Merchant Card Binding</mark>** – Bank card linked for withdrawal |
+| 6   | **<mark>Merchant Card Binding</mark>** – Settlement card binding   | **<mark>Payout – Withdrawal/Payment</mark>** – Merchant withdraws/pays   |
+| 7   | **<mark>Withdrawal & Payout</mark>** – From Main VA to bank/supplier | **<mark>Payout – Merchant Ops</mark>** – e.g., annual subscription plan  |
 
 ### Subject-Specifc Table (Standard Collection)
 

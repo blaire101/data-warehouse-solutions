@@ -165,7 +165,7 @@ There is **no sub-VA per store** — store-level differentiation comes from Shop
 | --- | ------------------------------ | -------------------------------- |
 | 1   | **<mark>Merchant Onboarding</mark>** <br> Merchant registers & passes KYC     | **<mark>Merchant Onboarding</mark>** <br> Merchant registers & opens official wallet     |
 | 2   | **<mark>VA Assignment</mark>** <br> Main VA created (**Sub-VA not active yet**)   | **<mark>Store Binding</mark>** <br> Merchant links stores to Shopee wallet   |
-| 3   | **<mark>Store Authorization</mark>** <br> API authorization; provider receives **seller/store IDs**  | **<mark>Funds Inflow</mark>** <br> Shopee platform recharges offshore account pool (via LianLian, etc.)    |
+| 3   | **<mark>Store Authorization</mark>** <br> API authorization; provider receives **seller/store IDs**  | **<mark>Funds Inflow</mark>** <br> Shopee platform recharges offshore account pool   |
 | 4   | **<mark>Store Binding & Sub-VA Activation</mark>** <br> Provider assigns **Sub-VA per store/currency** and sets it as **Amazon Deposit Method** | **<mark>Funds Payout</mark>** <br> Shopee periodically allocates merchant settlement (deducting fees/refunds)    |
 | 5   | **<mark>Amazon Payout → Sub-VA</mark>** <br> Amazon settles funds into each Sub-VA  | **<mark>Periodic Settlement</mark>** <br> Shopee transfers consolidated net amount to merchant wallet (e.g., bi-weekly)            |
 | 6   | **<mark>Merchant Card Binding</mark>** <br> Merchant binds withdrawal bank account    | **<mark>Merchant Card Binding</mark>** <br> Merchant links bank card for withdrawal  |

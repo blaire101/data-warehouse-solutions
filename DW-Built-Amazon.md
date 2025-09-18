@@ -161,16 +161,15 @@ flowchart TB
 > In Shopee’s official wallet model, Shopee itself acts as the settlement entity. After sellers onboard and bind stores, Shopee credits their **official wallet account** (white-label offshore account powered by Tenpay).  
 There is **no sub-VA per store** — store-level differentiation comes from Shopee’s internal transaction system. Funds can be disbursed (fees, supplier payments, subscription plans) or withdrawn to bank accounts.  
 
-| No. | Amazon Standard Collection   | Shopee Official Wallet  |
-| --- | ------------------------------ | -------------------------------- |
-| 1   | **<mark>Merchant Onboarding</mark>** <br> Merchant registers & passes KYC     | **<mark>Merchant Onboarding</mark>** <br> Merchant registers & opens official wallet     |
-| 2   | **<mark>VA Assignment</mark>** <br> Main VA created (**Sub-VA not active yet**)   | **<mark>Store Binding</mark>** <br> Merchant links stores to Shopee wallet   |
-| 3   | **<mark>Store Authorization</mark>** <br> API authorization; provider receives **seller/store IDs**  | **<mark>Funds Inflow</mark>** <br> Shopee platform recharges offshore account pool   |
-| 4   | **<mark>Store Binding & Sub-VA Activation</mark>** <br> Provider assigns **Sub-VA per store/currency** and sets it as **Amazon Deposit Method** | **<mark>Funds Payout</mark>** <br> Shopee periodically allocates merchant settlement (deducting fees/refunds)    |
-| 5   | **<mark>Amazon Payout → Sub-VA</mark>** <br> Amazon settles funds into each Sub-VA  | **<mark>Periodic Settlement</mark>** <br> Shopee transfers consolidated net amount to merchant wallet (e.g., bi-weekly)            |
-| 6   | **<mark>Merchant Card Binding</mark>** <br> Merchant binds withdrawal bank account    | **<mark>Merchant Card Binding</mark>** <br> Merchant links bank card for withdrawal  |
-| 7   | **<mark>Withdrawal & Payout</mark>** <br> Merchant withdraws from Main VA → bank/supplier    | **<mark>Withdrawal & Merchant Ops</mark>** <br> Merchant withdraws to bank or uses balance (e.g., subscription, supplier payments) |
-
+| No. | Amazon Standard Collection                                                                                                                      | Shopee Official Wallet                                                                                                                                    |
+| --- | ----------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | **<mark>Merchant Onboarding</mark>** <br> Merchant registers & passes KYC                                                                       | **<mark>Merchant Onboarding</mark>** <br> Merchant registers & opens official wallet                                                                      |
+| 2   | **<mark>VA Assignment</mark>** <br> Main VA created (**Sub-VA not active yet**)                                                                 | **<mark>Store Binding</mark>** <br> Merchant links stores to Shopee wallet                                                                                |
+| 3   | **<mark>Store Authorization</mark>** <br> API authorization; provider receives **seller/store IDs**                                             | **<mark>Funds Inflow (Platform Recharge)</mark>** <br> E-commerce platform **recharges USD (and other currencies) into the offshore account pool**        |
+| 4   | **<mark>Store Binding & Sub-VA Activation</mark>** <br> Provider assigns **Sub-VA per store/currency** and sets it as **Amazon Deposit Method** | **<mark>Funds Payout (Deduction)</mark>** <br> Shopee deducts platform fees, advertising costs, refunds → calculates **net settlement**                    |
+| 5   | **<mark>Amazon Payout → Sub-VA</mark>** <br> Amazon settles funds into each Sub-VA                                                              | **<mark>Periodic Settlement (Disbursement)</mark>** <br> Shopee **transfers the consolidated net amount from the offshore pool** to merchant wallet (e.g., bi-weekly) |
+| 6   | **<mark>Merchant Card Binding</mark>** <br> Merchant binds withdrawal bank account                                                              | **<mark>Merchant Card Binding</mark>** <br> Merchant links bank card for withdrawal                                                                       |
+| 7   | **<mark>Withdrawal & Payout</mark>** <br> Merchant withdraws from Main VA → bank/supplier                                                       | **<mark>Withdrawal & Merchant Ops</mark>** <br> Merchant withdraws to bank or uses balance (e.g., subscription, supplier payments)                        |
 
 ### Subject-Specifc Table (Standard Collection)
 

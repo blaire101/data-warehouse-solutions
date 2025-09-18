@@ -207,7 +207,7 @@ There is **no sub-VA per store** — store-level differentiation comes from Shop
 | `fcreate_time_store_apply`   | STRING | **Store apply** time         |                                         |
 | `fcreate_time_store_auth`    | STRING | **Store authorization** time | Event `AUTH_SHOP_SUCCESS`                              |
 | `fcreate_time_store_bind`    | STRING | **Store binding** time       | Event `AUDIT_SHOP_SUCCESS`                             |
-| `ffirst_recharge_time`       | STRING | **First settlement** time    | Earliest in `dil_trd_recharge` |
+| `ffirst_settlement_time`       | STRING | **First settlement** time    | Earliest in `dil_trd_recharge` |
 
 > Optional milestones to add later: time when cumulative settlement reaches **10/100/500 USD**.
 
@@ -215,12 +215,12 @@ There is **no sub-VA per store** — store-level differentiation comes from Shop
 
 | Field                           | Type   | Description                      | Notes                  |
 | ------------------------------- | ------ | -------------------------------- | ---------------------- |
-| `ftotal_recharge_amount_usd`    | DOUBLE | Cumulative settlement (USD)      | After    |
-| `ftotal_recharge_amount_rmb`    | DOUBLE | Cumulative settlement (CNH)      | After    |
-| `ftotal_recharge_cnt`           | BIGINT | Cumulative number of settlements | Distinct `Fbilling_id` |
-| `flast_recharge_amount_usd_28d` | DOUBLE | Last 28-day settlement (USD)     | Activity       |
-| `flast_recharge_amount_rmb_28d` | DOUBLE | Last 28-day settlement (CNH)     |                        |
-| `flast_recharge_amount_cnt_28d` | BIGINT | Last 28-day settlement count     |                        |
+| `ftotal_settlement_amount_usd`    | DOUBLE | Cumulative settlement (USD)      | After    |
+| `ftotal_settlement_amount_rmb`    | DOUBLE | Cumulative settlement (CNH)      | After    |
+| `ftotal_settlement_cnt`           | BIGINT | Cumulative number of settlements | Distinct `Fbilling_id` |
+| `flast_settlement_amount_usd_28d` | DOUBLE | Last 28-day settlement (USD)     | Activity       |
+| `flast_settlement_amount_rmb_28d` | DOUBLE | Last 28-day settlement (CNH)     |                        |
+| `flast_settlement_amount_cnt_28d` | BIGINT | Last 28-day settlement count     |                        |
 
 #### Lifecycle & Tags
 
@@ -259,18 +259,18 @@ There is **no sub-VA per store** — store-level differentiation comes from Shop
 | `fcreate_time_shop_apply` | STRING | Store apply time              |                        |
 | `fcreate_time_shop_auth`  | STRING | Store authorization time      | `AUTH_SHOP_SUCCESS`               |
 | `fcreate_time_shop_bind`  | STRING | Store binding (approved)      | `AUDIT_SHOP_SUCCESS`              |
-| `ffirst_recharge_time`    | STRING | First settlement time         | From recharge list                |
+| `ffirst_settlement_time`    | STRING | First settlement time         | From recharge list                |
 
 #### Metrics (Longitudinal)
 
 | Field                           | Type   | Description                 | Notes         |
 | ------------------------------- | ------ | --------------------------- | ------------- |
-| `ftotal_recharge_amount_usd`    | DOUBLE | Cumulative settlement (USD) | FX conversion |
-| `ftotal_recharge_amount_cnh`    | DOUBLE | Cumulative settlement (CNH) |               |
-| `ftotal_recharge_cnt`           | BIGINT | Cumulative settlement count |               |
-| `flast_recharge_amount_usd_28d` | DOUBLE | 28-day settlement (USD)     |               |
-| `flast_recharge_amount_cnh_28d` | DOUBLE | 28-day settlement (CNH)     |               |
-| `flast_recharge_amount_cnt_28d` | BIGINT | 28-day settlement count     |               |
+| `ftotal_settlement_amount_usd`    | DOUBLE | Cumulative settlement (USD) | FX conversion |
+| `ftotal_settlement_amount_cnh`    | DOUBLE | Cumulative settlement (CNH) |               |
+| `ftotal_settlement_cnt`           | BIGINT | Cumulative settlement count |               |
+| `flast_settlement_amount_usd_28d` | DOUBLE | 28-day settlement (USD)     |               |
+| `flast_settlement_amount_cnh_28d` | DOUBLE | 28-day settlement (CNH)     |               |
+| `flast_settlement_amount_cnt_28d` | BIGINT | 28-day settlement count     |               |
 
 #### Lifecycle & Tags
 

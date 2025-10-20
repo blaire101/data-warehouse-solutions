@@ -114,7 +114,7 @@ flowchart TB
     M[Merchant]:::biz
     S[Store]:::biz
     O[Order]:::biz
-    VAM[Main VA - Real Bank Account]:::biz
+    VAM[Main VA - Merchant]:::biz
     VAS[Sub-VA - Store and Currency]:::biz
     SUP[Supplier]:::biz
     CNBK[Bank Card in China]:::biz

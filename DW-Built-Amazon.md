@@ -45,7 +45,7 @@ We follow a **<mark>business-driven layered architecture</mark>**:
 
 ### 🔹 Solution (VA Model)
 
-* L0 - Payment Providers (Ant/WorldFirst, Tenpay, LianLian) - **Pool Account** Acct No: 328-999999-USD (JPM HK)
+* L0 - Payment Providers (Ant/WorldFirst, Tenpay, LianLian) - **Pool Account** - Acct No: 328-999999-USD (JPM HK)
 * L1 - Payment Providers offer an **<mark>offshore Logical Main VA</mark>**（merchant-level ledger）
 * L2 - Each **<mark>store/currency</mark>** is assigned a **<mark>Sub-VA</mark>** (virtual ledger accounts (not real bank accounts), mapped to a Main VA).
 * The system automatically aggregates **<mark>Sub-VA balances</mark>** into the **<mark>Main VA</mark>**, ensuring transaction-level traceability and regulatory compliance.

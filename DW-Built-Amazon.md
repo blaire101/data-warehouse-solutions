@@ -45,8 +45,9 @@ We follow a **<mark>business-driven layered architecture</mark>**:
 
 ### 🔹 Solution (VA Model)
 
-* Providers (Ant/WorldFirst, Tenpay, LianLian) offer an **<mark>offshore Main VA</mark>** (from real bank account).
-* Each **<mark>store/currency</mark>** is assigned a **<mark>Sub-VA</mark>** (virtual ledger accounts (not real bank accounts), mapped to a Main VA).
+* Providers (Ant/WorldFirst, Tenpay, LianLian) - **Pool Account** - L0
+* Providers (Ant/WorldFirst, Tenpay, LianLian) offer an **<mark>offshore Logical Main VA</mark>** - L1.
+* Each **<mark>store/currency</mark>** is assigned a **<mark>Sub-VA</mark> L2** (virtual ledger accounts (not real bank accounts), mapped to a Main VA).
 * The system automatically aggregates **<mark>Sub-VA balances</mark>** into the **<mark>Main VA</mark>**, ensuring transaction-level traceability and regulatory compliance.
 
 ```mermaid

@@ -1,13 +1,3 @@
-## 🎯 Data Warehouse Core Purpose
-
-The **<mark>core purpose</mark>** of a Data Warehouse (DWH) is to **<mark>integrate and store data</mark>** from multiple sources, providing **<mark>accurate, reliable, and consistent data</mark>** for analysis, reporting, and decision-making.
-
-It addresses:
-
-* **<mark>Fragmentation</mark>** across systems
-* Difficulty in **<mark>historical data management</mark>**
-* Lack of **<mark>traceability and reliability</mark>** for compliance & BI
-
 ## 1. Data Warehouse Architecture – Hourglass Model
 
 We follow a **<mark>business-driven layered architecture</mark>**:

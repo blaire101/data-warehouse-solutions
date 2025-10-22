@@ -9,15 +9,6 @@
 3. Security (15%): sensitive‑field encryption & owner compliance
 4. Cost (15%): compute and storage cost
 
-Data Governance for 🚀 SLA Optimisation
-
-| No. | ✨ Optimisation Area                 | 📌 Description                                                                                                          |
-|-----|--------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
-| 1️⃣ | 🔗 **Workflow Dependency**           | Removed non-critical and redundant dependencies to streamline DAG execution.                                           |
-| 2️⃣ | ⏱️ **Trigger-Based Scheduling**      | Replaced fixed-time triggers with dependency-based scheduling.<br>Tasks now auto-execute upon upstream success.        |
-| 3️⃣ | 🚨 **Monitoring & Alerting**         | Added alerting for job failures and delays, enabling early detection and faster troubleshooting.                       |
-| 4️⃣ | 🧩 **Spark Job Optimization**        | Prioritized optimization of long-running (1h+) critical path jobs and de-emphasized low-impact ones.                   |
-
 ```mermaid
 flowchart LR
 
@@ -174,3 +165,13 @@ flowchart TB
 **Security Standards**
 
 **Cost Standards**
+
+Data Governance for 🚀 SLA Optimisation
+
+| No. | ✨ Optimisation Area                 | 📌 Description                                                                                                          |
+|-----|--------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| 1️⃣ | 🔗 **Workflow Dependency**           | Removed non-critical and redundant dependencies to streamline DAG execution.                                           |
+| 2️⃣ | ⏱️ **Trigger-Based Scheduling**      | Replaced fixed-time triggers with dependency-based scheduling.<br>Tasks now auto-execute upon upstream success.        |
+| 3️⃣ | 🚨 **Monitoring & Alerting**         | Added alerting for job failures and delays, enabling early detection and faster troubleshooting.                       |
+| 4️⃣ | 🧩 **Spark Job Optimization**        | Prioritized optimization of long-running (1h+) critical path jobs and de-emphasized low-impact ones.                   |
+

@@ -31,7 +31,7 @@ We follow a **<mark>business-driven layered architecture</mark>**:
 ### 🔹 Solution (VA Model)
 
 * L1 - Payment Providers offer an **<mark>offshore Logical Main VA</mark>**（merchant-level ledger）
-* L2 - Each **<mark>store/currency</mark>** is assigned a **<mark>Sub-VA</mark>** (virtual ledger accounts (not real bank accounts), mapped to a Main VA).
+* L2 - Each **<mark>store</mark>** is assigned a **<mark>Sub-VA</mark>** (virtual ledger accounts (not real bank accounts), mapped to a Main VA).
 * The system automatically aggregates **<mark>Sub-VA balances</mark>** into the **<mark>Main VA</mark>**, ensuring transaction-level traceability and regulatory compliance.
  
 
@@ -55,8 +55,6 @@ flowchart LR
     classDef step5 fill:#f9c0c0,stroke:#333;
     classDef step6 fill:#d5b3ff,stroke:#333;
 ```
-
-👉 **Amazon pays → <mark>Sub-VA</mark> (store-level) → <mark>Main VA</mark> (aggregation & settlement) → <mark>Bank/Supplier payout</mark>**
 
 ## 3. Data Warehouse How to Built
 

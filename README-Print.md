@@ -171,6 +171,6 @@ flowchart TB
   class QAM1,QAM2,QAM3,QAM4 yellowNode
 ```
 
-**SECURITY Standards**
+**Security Standards**
 
-**COST Standards**
+**Cost Standards**

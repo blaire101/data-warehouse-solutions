@@ -65,7 +65,7 @@ flowchart LR
     classDef item fill:#E3F2FD,stroke:#1565C0,stroke-width:1.5px;
 ```
 
-**Table Standards**
+**1. Table Standards**
 
 ```mermaid
 flowchart TB
@@ -114,7 +114,7 @@ flowchart TB
   class DS1,DS2 yellowNode
 ```
 
-**Data Quality Check**
+**2. Data Quality Check**
 
 ```mermaid
 flowchart TB
@@ -162,9 +162,9 @@ flowchart TB
   class QAM1,QAM2,QAM3,QAM4 yellowNode
 ```
 
-**Security Standards**
+**3. Security Standards**
 
-**Cost Standards**
+**4. Cost Standards**
 
 Data Governance for 🚀 SLA Optimisation
 

@@ -31,10 +31,9 @@ We follow a **<mark>business-driven layered architecture</mark>**:
 ### 🔹 Solution (VA Model)
 
 * L1 - Payment Providers offer an **<mark>offshore Logical Main VA</mark>**（merchant-level ledger）
-* L2 - Each **<mark>store</mark>** is assigned a **<mark>Sub-VA</mark>** (virtual ledger accounts (not real bank accounts), mapped to a Main VA).
+* L2 - Each **<mark>store</mark>** is assigned a **<mark>Sub-VA</mark>** (virtual ledger accounts, mapped to a Main VA).
 * The system automatically aggregates **<mark>Sub-VA balances</mark>** into the **<mark>Main VA</mark>**, ensuring transaction-level traceability and regulatory compliance.
  
-
 ### 🔹 Business Process
 
 <div align="center">
@@ -46,5 +45,3 @@ We follow a **<mark>business-driven layered architecture</mark>**:
 <div align="center">
   <img src="docs/DWH-How-to-Built.jpg" alt="Diagram" width="600">
 </div>
-
-

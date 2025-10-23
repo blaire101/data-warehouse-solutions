@@ -166,6 +166,20 @@ flowchart TB
 
 **4. Cost Standards**
 
+I improved and ensured data quality through a structured approach: standardization, automation, and business validation.
+
+Standardization – Enforced naming rules, metadata completeness, and alignment with business definitions.
+
+Automation – Added DQC checks such as zero-record, PK uniqueness, referential consistency, plus alert and escalation workflows.
+
+Business-specific validation – Applied stricter accuracy rules for key payment fields like country codes, currency codes, and payment channels. For high-risk or high-volume merchants, I cross-validated core indicators with source system dashboards or financial statements.
+
+Continuous monitoring – Used a Data Asset Score to measure improvements and optimize until targets were met.
+
+Outcome: Data asset score improved from 77.6 to 86, and report SLA compliance increased from 95% to 99%+.
+
+In short, I combined standardized governance with scenario-based accuracy checks to ensure both technical correctness and business reliability.
+
 Data Governance for 🚀 SLA Optimisation
 
 | No. | ✨ Optimisation Area                 | 📌 Description                                                                                                          |

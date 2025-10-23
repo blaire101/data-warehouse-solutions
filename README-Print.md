@@ -166,19 +166,32 @@ flowchart TB
 
 **4. Cost Standards**
 
-I improved and ensured data quality through a structured approach: standardization, automation, and business validation.
+---
 
-Standardization – Enforced naming rules, metadata completeness, and alignment with business definitions.
+**I improved and ensured data quality through a structured approach:  
+<mark>standardization</mark>, <mark>automation</mark>, and <mark>business validation</mark>.**
 
-Automation – Added DQC checks such as zero-record, PK uniqueness, referential consistency, plus alert and escalation workflows.
+**Standardization** – Enforced <mark>naming rules</mark>, <mark>metadata completeness</mark>,  
+and alignment with <mark>business definitions</mark>.
 
-Business-specific validation – Applied stricter accuracy rules for key payment fields like country codes, currency codes, and payment channels. For high-risk or high-volume merchants, I cross-validated core indicators with source system dashboards or financial statements.
+**Automation** – Added <mark>DQC checks</mark> such as `zero-record`, `PK uniqueness`,  
+`referential consistency`, plus <mark>alert and escalation workflows</mark>.
 
-Continuous monitoring – Used a Data Asset Score to measure improvements and optimize until targets were met.
+**Business-specific validation** – Applied stricter accuracy rules for  
+key payment fields like `country codes`, `currency codes`, and `payment channels`.  
+For <mark>high-risk or high-volume merchants</mark>, I <mark>cross-validated core indicators</mark>  
+with <mark>source system dashboards</mark> or <mark>financial statements</mark>.
 
-Outcome: Data asset score improved from 77.6 to 86, and report SLA compliance increased from 95% to 99%+.
+**Continuous monitoring** – Used a <mark>Data Asset Score</mark> to measure improvements  
+and optimize until targets were met.
 
-In short, I combined standardized governance with scenario-based accuracy checks to ensure both technical correctness and business reliability.
+✅ **Outcome:** Data asset score improved from **<mark>77.6 → 86</mark>**,  
+and **report SLA compliance increased from <mark>95% → 99%+</mark>**.
+
+**In short, I combined standardized governance with scenario-based accuracy  
+checks to ensure both <mark>technical correctness</mark> and <mark>business reliability</mark>.**
+
+---
 
 Data Governance for 🚀 SLA Optimisation
 

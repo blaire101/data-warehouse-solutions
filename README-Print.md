@@ -193,6 +193,54 @@ checks to ensure both <mark>technical correctness</mark> and <mark>business reli
 
 ---
 
+### ✅ Refined Version – Clear, Structured, and Impact-oriented
+
+**Data Governance – Data Asset Scoring Optimization**
+
+🔹 **Background & Motivation**
+The rapid expansion of payment业务 led to severe governance issues in the Hive/Spark data layer:
+– inconsistent table naming
+– missing metadata & unclear ownership
+– weak dependency control
+– insufficient DQC coverage
+– lack of security compliance
+– rising compute/storage cost.
+
+To address this, I implemented a systematic enhancement of the Data Asset Score mechanism and drove score improvement initiatives across critical datasets.
+
+---
+
+### ✅ My Key Contributions (3 Major Workstreams)
+
+#### ✅ 1. Enhanced and standardized the Data Asset Scoring Framework
+
+* Expanded the framework to four weighted dimensions:
+  **Table Standards (35%)**, **DQC (35%)**, **Security (15%)**, **Cost (15%)**
+* Defined measurable scoring rules (e.g. naming coverage %, DQC rule coverage, field encryption compliance, storage usage thresholds).
+* Established governance KPIs and aligned with business stakeholders and platform teams.
+
+#### ✅ 2. Drove score improvement for both new and legacy tables
+
+* Applied score requirements in onboarding new tables (shift-left governance).
+* Conducted batch score remediation for existing tables: added metadata, fixed broken dependencies, implemented DQC, optimized storage format.
+* Enabled self-service quality review dashboards to allow owners to track and improve their table scores.
+
+#### ✅ 3. Introduced enhanced validation and SLA monitoring for critical datasets
+
+* Identified mission-critical SLA-driven reports (e.g., payment reconciliation, regulatory reports).
+* Applied stricter validation logic (volume consistency, cross-table reconciliation, field-level accuracy checks).
+* Implemented escalation workflows for data incidents based on SLA & impact level.
+
+---
+
+### ✅ Result (if needed for summary)
+
+✔ Data Asset Score improved from 77.6 → 86
+✔ DQC coverage and metadata completeness significantly increased
+✔ SLA-critical reporting stabilized at 99%+ compliance
+✔ Shift-left governance culture established in new table creation
+
+
 Data Governance for 🚀 SLA Optimisation
 
 | No. | ✨ Optimisation Area                 | 📌 Description                                                                                                          |
